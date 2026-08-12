@@ -1,52 +1,56 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory
-        app:title="@string/settings_header">
+    <PreferenceCategory app:title="@string/quick_settings_header">
+        <Preference
+            app:key="tile_setup"
+            app:summary="@string/tile_setup_summary"
+            app:title="@string/add_tile_title" />
     </PreferenceCategory>
-    <ListPreference
-        app:defaultValue="2"
-        app:entries="@array/stop_trigger_entries"
-        app:entryValues="@array/stop_trigger_values"
-        app:key="stop_trigger"
-        app:useSimpleSummaryProvider="true"
-        app:title="@string/stop_trigger_title" />
-    <EditTextPreference
-        app:defaultValue="@string/app_name"
-        app:key="tile_title"
-        android:selectAllOnFocus="true"
-        app:singleLine="true"
-        app:useSimpleSummaryProvider="true"
-        app:title="@string/tile_title_title" />
-    <ListPreference
-        app:defaultValue="ic_baseline_ac_unit_24"
-        app:entries="@array/tile_icon_entries"
-        app:entryValues="@array/tile_icon_values"
-        app:key="tile_icon"
-        app:useSimpleSummaryProvider="true"
-        app:icon="@drawable/ic_baseline_ac_unit_24"
-        app:title="@string/tile_icon_title" />
-    <PreferenceCategory app:title="@string/onstart_header">
 
+    <PreferenceCategory app:title="@string/safety_header">
+        <Preference
+            app:key="accessibility_setup"
+            app:summary="@string/accessibility_setup_summary"
+            app:title="@string/accessibility_setup_title" />
+        <ListPreference
+            app:defaultValue="2"
+            app:entries="@array/release_key_entries"
+            app:entryValues="@array/release_key_values"
+            app:key="release_key"
+            app:title="@string/release_key_title" />
+        <Preference
+            app:key="root_disclosure"
+            app:selectable="false"
+            app:summary="@string/root_fallback_summary"
+            app:title="@string/root_fallback_title" />
     </PreferenceCategory>
-    <SwitchPreference
-        app:defaultValue="true"
-        app:key="onstart_alert"
-        app:title="@string/alert_title" />
-    <SwitchPreference
-        app:defaultValue="true"
-        app:key="onstart_vibrate"
-        app:title="@string/vibrate_title" />
-    <PreferenceCategory app:title="@string/onstop_header">
 
+    <PreferenceCategory app:title="@string/feedback_header">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="feedback_start_message"
+            app:title="@string/feedback_start_message_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="feedback_start_vibration"
+            app:title="@string/feedback_start_vibration_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="feedback_stop_message"
+            app:title="@string/feedback_stop_message_title" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="feedback_stop_vibration"
+            app:title="@string/feedback_stop_vibration_title" />
     </PreferenceCategory>
-    <SwitchPreference
-        app:defaultValue="true"
-        app:key="onstop_alert"
-        app:title="@string/alert_title" />
-    <SwitchPreference
-        app:defaultValue="true"
-        app:key="onstop_vibrate"
-        app:title="@string/vibrate_title" />
+
+    <PreferenceCategory app:title="@string/about_header">
+        <Preference
+            app:key="about"
+            app:selectable="false"
+            app:summary="@string/privacy_license_source_summary"
+            app:title="@string/privacy_license_source_title" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

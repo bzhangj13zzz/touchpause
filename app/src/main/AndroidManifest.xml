@@ -2,22 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.VIBRATE" />
 
+    <permission
+        android:name="${applicationId}.permission.INTERNAL_FEEDBACK"
+        android:protectionLevel="signature" />
+
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:logo="@drawable/ic_baseline_ac_unit_24"
+        android:logo="@drawable/ic_touchquell_mark_24"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Snowy"
-        android:extractNativeLibs="true">
+        android:theme="@style/Theme.TouchQuell"
+        tools:targetApi="s">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".settings.SettingsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,22 +29,50 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".tile.AccessibilityToggleActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:theme="@style/Theme.TouchQuell.Transparent" />
         <service
-            android:name=".SnowyTileService"
-            android:icon="@drawable/ic_baseline_ac_unit_24"
+            android:name=".tile.TouchBlockTileService"
+            android:icon="@drawable/ic_touchquell_mark_24"
             android:label="@string/app_name"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE"/>
             </intent-filter>
+            <meta-data
+                android:name="android.service.quicksettings.ACTIVE_TILE"
+                android:value="true" />
+            <meta-data
+                android:name="android.service.quicksettings.TOGGLEABLE_TILE"
+                android:value="true" />
         </service>
-        <receiver android:name=".SnowyToaster" android:enabled="false" android:exported="true">
+        <service
+            android:name=".accessibility.TouchBlockAccessibilityService"
+            android:description="@string/accessibility_service_description"
+            android:enabled="@bool/enable_accessibility_backend"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
-                <action android:name="com.nmelihsensoy.snowy.TOASTER"/>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+        <receiver
+            android:name=".root.RootBlockerStoppedReceiver"
+            android:exported="true"
+            android:permission="${applicationId}.permission.INTERNAL_FEEDBACK">
+            <intent-filter>
+                <action android:name="${applicationId}.action.ROOT_BLOCKER_STOPPED" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

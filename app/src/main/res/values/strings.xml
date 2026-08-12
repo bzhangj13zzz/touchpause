@@ -1,15 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Snowy</string>
-    <!-- Settings Activity Title -->
-    <string name="title_activity_settings">SettingsActivity</string>
-    <string name="settings_header">Settings</string>
-    <string name="stop_trigger_title">Stop trigger</string>
-    <string name="tile_icon_title">Tile icon</string>
-    <string name="tile_title_title">Tile title</string>
-    <string name="onstart_header">On start</string>
-    <string name="onstart_alert_msg">Snowy: touch blocking</string>
-    <string name="onstop_header">On stop</string>
-    <string name="onstop_alert_msg">Snowy: touch released</string>
-    <string name="alert_title">Show alert</string>
-    <string name="vibrate_title">Vibrate</string>
+    <string name="app_name">TouchQuell</string>
+
+    <string name="quick_settings_header">Quick Settings</string>
+    <string name="add_tile_title">Add TouchQuell tile</string>
+    <string name="tile_setup_summary">Add TouchQuell to Quick Settings for one-tap touch control.</string>
+    <string name="tile_setup_manual">Swipe down twice, tap Edit, then drag TouchQuell into Quick Settings.</string>
+    <string name="tile_added_summary">TouchQuell is ready in Quick Settings.</string>
+    <string name="tile_added_message">TouchQuell was added to Quick Settings</string>
+    <string name="tile_already_added_message">TouchQuell is already in Quick Settings</string>
+    <string name="tile_not_added_message">The TouchQuell tile was not added</string>
+    <string name="tile_state_active">Touch paused</string>
+    <string name="tile_state_inactive">Tap to pause touch</string>
+
+    <string name="safety_header">Safety</string>
+    <string name="release_key_title">Release key</string>
+    <string name="release_volume_down">Volume Down</string>
+    <string name="release_volume_up">Volume Up</string>
+    <string name="release_power">Power</string>
+    <string name="release_key_next_session_summary">%1$s for the next block. An active block keeps its original release key.</string>
+    <string name="accessibility_setup_title">Set up rootless mode</string>
+    <string name="accessibility_setup_summary">On Android 14 or newer, enable TouchQuell in Accessibility to block touch without root.</string>
+    <string name="accessibility_enabled_summary">Rootless mode is ready. Use a volume key to release touch.</string>
+    <string name="accessibility_waiting_summary">TouchQuell is enabled and waiting for its Accessibility service to connect.</string>
+    <string name="accessibility_touch_exploration_summary">Touch exploration is active, so TouchQuell must use its root fallback.</string>
+    <string name="accessibility_key_filter_conflict_summary">Another Accessibility service is filtering hardware keys, so TouchQuell must use its root fallback.</string>
+    <string name="accessibility_power_fallback_summary">Power cannot reliably release rootless mode, so TouchQuell must use its root fallback.</string>
+    <string name="accessibility_unsupported_summary">Rootless mode requires Android 14 or newer.</string>
+    <string name="accessibility_service_label">TouchQuell touch control</string>
+    <string name="accessibility_service_summary">Pauses touchscreen input until the selected volume key is pressed.</string>
+    <string name="accessibility_service_description">TouchQuell captures touchscreen motion only while touch is paused. It never reads screen content. Press the selected volume key to restore touch.</string>
+    <string name="accessibility_setup_dialog_title">Enable rootless mode</string>
+    <string name="accessibility_setup_dialog_message">For an APK installed outside an app store, Android may first require App info → More → Allow restricted settings. Then enable TouchQuell in Accessibility.</string>
+    <string name="open_app_info">Open App info</string>
+    <string name="open_accessibility_settings">Accessibility settings</string>
+    <string name="root_fallback_title">When root is used</string>
+    <string name="root_fallback_summary">Root and root-manager approval are required on Android 13 or older, for the Power release key, or when rootless capture is unavailable. TouchQuell requests root only when needed.</string>
+
+    <string name="feedback_header">Feedback</string>
+    <string name="feedback_start_message_title">Message when touch pauses</string>
+    <string name="feedback_start_vibration_title">Vibrate when touch pauses</string>
+    <string name="feedback_stop_message_title">Message when touch returns</string>
+    <string name="feedback_stop_vibration_title">Vibrate when touch returns</string>
+    <string name="touch_block_started">TouchQuell: touch paused</string>
+    <string name="touch_block_released">TouchQuell: touch restored</string>
+    <string name="root_backend_error">TouchQuell could not start root touch blocking. Check root access and try again.</string>
+    <string name="accessibility_not_ready">TouchQuell is not ready yet. Wait for its Accessibility service to connect, then try again.</string>
+
+    <string name="about_header">About</string>
+    <string name="privacy_license_source_title">Privacy, license &amp; source</string>
+    <string name="privacy_license_source_summary">TouchQuell collects or transmits no personal data and never reads screen content. The app is GPL-3.0-or-later; its bundled blockevent helper is Apache-2.0. Source: github.com/bzhangj13zzz/touchquell</string>
 </resources>
