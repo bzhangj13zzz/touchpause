@@ -4,7 +4,19 @@ This file records user-visible and compatibility changes to TouchPause.
 
 ## [Unreleased]
 
-No changes recorded yet.
+### Added
+
+- Ten successfully started touch-pausing sessions for every installation.
+- A one-time Google Play `lifetime_access` purchase with offline entitlement
+  caching and purchase restoration.
+- Trial and lifetime-access status in the minimal settings screen.
+
+### Changed
+
+- The Quick Settings tile opens lifetime access after the trial is exhausted,
+  while always allowing an active block to be released.
+- Privacy and store disclosures now distinguish on-device touch processing from
+  Google Play's optional purchase processing.
 
 ## [1.0.0] - 2026-08-16
 

@@ -7,6 +7,7 @@ import android.util.Log
 import io.github.bzhangj13zzz.touchpause.block.BlockSessionStore
 import io.github.bzhangj13zzz.touchpause.block.FeedbackOptions
 import io.github.bzhangj13zzz.touchpause.block.ReleaseKey
+import io.github.bzhangj13zzz.touchpause.billing.EntitlementStore
 import io.github.bzhangj13zzz.touchpause.feedback.FeedbackNotifier
 import io.github.bzhangj13zzz.touchpause.tile.TileRefresher
 import java.io.File
@@ -19,6 +20,7 @@ class RootBlocker(context: Context) {
     private val appContext = context.applicationContext
     private val sessions = BlockSessionStore(appContext)
     private val feedbackNotifier = FeedbackNotifier(appContext)
+    private val entitlements = EntitlementStore(appContext)
     private val mainHandler = Handler(Looper.getMainLooper())
 
     /**
@@ -74,6 +76,7 @@ class RootBlocker(context: Context) {
                         if (line == RootCommandBuilder.READY_MARKER) {
                             mainHandler.post {
                                 if (sessions.publishRootReady(invocationToken)) {
+                                    entitlements.recordSuccessfulSession()
                                     TileRefresher.request(appContext)
                                     feedbackNotifier.showStarted(feedback)
                                 }

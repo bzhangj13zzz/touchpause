@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import io.github.bzhangj13zzz.touchpause.block.BlockSessionStore
 import io.github.bzhangj13zzz.touchpause.block.FeedbackOptions
 import io.github.bzhangj13zzz.touchpause.block.ReleaseKey
+import io.github.bzhangj13zzz.touchpause.billing.EntitlementStore
 import io.github.bzhangj13zzz.touchpause.feedback.FeedbackNotifier
 import io.github.bzhangj13zzz.touchpause.preferences.UserPreferences
 import io.github.bzhangj13zzz.touchpause.tile.TileRefresher
@@ -27,6 +28,7 @@ class TouchBlockAccessibilityService : AccessibilityService() {
     private val sessions by lazy { BlockSessionStore(this) }
     private val userPreferences by lazy { UserPreferences(this) }
     private val feedbackNotifier by lazy { FeedbackNotifier(this) }
+    private val entitlements by lazy { EntitlementStore(this) }
 
     private val touchExplorationListener =
         AccessibilityManager.TouchExplorationStateChangeListener { enabled ->
@@ -111,6 +113,8 @@ class TouchBlockAccessibilityService : AccessibilityService() {
             return true
         }
 
+        if (!entitlements.canStartSession()) return false
+
         val selectedKey = userPreferences.releaseKey()
         if (!selectedKey.supportsAccessibility || !captureIsAvailable()) return false
         return startBlocking(selectedKey)
@@ -153,6 +157,7 @@ class TouchBlockAccessibilityService : AccessibilityService() {
         }
 
         isBlocking = true
+        entitlements.recordSuccessfulSession()
         TileRefresher.request(this)
         feedbackNotifier.showStarted(feedback)
         return true

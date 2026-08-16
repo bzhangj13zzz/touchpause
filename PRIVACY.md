@@ -1,15 +1,23 @@
 # TouchPause privacy notice
 
-Effective: 2026-08-16
+Effective: 2026-08-17
 
 TouchPause is designed to block touchscreen input locally. It has no account,
-advertising, analytics, telemetry, or app-operated server.
+advertising, developer analytics, or app-operated server.
 
 ## Data collection and network access
 
-TouchPause does not collect, sell, share, or transmit personal data. The app
-does not declare Android's `INTERNET` permission and does not make network
-requests.
+TouchPause does not collect, sell, share, or transmit personal data to the
+developer. It has no developer-operated server.
+
+The optional lifetime unlock uses Google Play Billing. The Billing Library
+declares Android's `INTERNET` and `ACCESS_NETWORK_STATE` permissions and may
+send billing requests and diagnostic information to Google under Google's
+terms. Google Play returns localized product details and purchase status to
+TouchPause. TouchPause handles a purchase token in memory long enough to grant
+and acknowledge access, but does not store it or send it to the developer.
+TouchPause stores only the local trial count and a lifetime-access boolean for
+offline use. Touch and input events are never included in billing traffic.
 
 The repository and build toolchain may contact dependency hosts when a
 developer builds the app. That developer activity is separate from the
@@ -24,6 +32,8 @@ TouchPause stores a small set of preferences in its private app data:
 - message and vibration choices;
 - selected app language;
 - the version of the Accessibility disclosure the user accepted;
+- the number of successfully started free sessions;
+- cached Google Play lifetime-access status;
 - short-lived advisory backend state and random ownership tokens; and
 - Android's boot-count marker, used only to discard stale runtime ownership
   after a reboot.
@@ -35,8 +45,9 @@ single-instance lock and PID record. It is not a history of touch or key input.
 TouchPause does not implement its own backup or synchronization. This build
 disables Android backup and excludes app storage from cloud backup and
 device-to-device transfer. Clearing app data or uninstalling TouchPause removes
-its local preferences; a running root helper must be stopped first or the
-device rebooted.
+its local preferences and trial count. A Google Play lifetime purchase can be
+restored from the purchasing Google account. A running root helper must be
+stopped first or the device rebooted.
 
 ## Accessibility service
 

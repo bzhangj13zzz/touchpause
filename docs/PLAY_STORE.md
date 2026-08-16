@@ -12,11 +12,13 @@ submission.
 - Android App Bundle build support and environment-only upload signing;
 - Android 14+ rootless operation with `isAccessibilityTool=false`;
 - a standalone input-access disclosure and versioned affirmative consent;
-- no window-content access, `INTERNET` permission, analytics, ads, or telemetry;
+- no window-content access, developer analytics, ads, or developer telemetry;
 - privacy policy access from the About dialog;
 - Android backup and device transfer disabled;
 - nine complete app locales and an app-language picker, with all translations
   kept in the base install so selection also works offline;
+- 10 free successful sessions followed by an optional non-consumable
+  `lifetime_access` Google Play purchase;
 - four native ABIs with 16 KiB-aligned ELF load segments; and
 - localized Play listing text for all nine app languages, plus a Play icon,
   localization-neutral feature graphic, and four current phone screenshots
@@ -26,22 +28,26 @@ submission.
 
 1. Finalize the package name. A Play package name is permanent after app
    creation.
-2. Create an upload key outside this repository, set the four
+2. Set the app itself to **Free** and create an active non-consumable one-time
+   product with ID `lifetime_access` and the intended regional prices. Once an
+   app has been offered free it cannot become a paid download under the same
+   package name.
+3. Create an upload key outside this repository, set the four
    `TOUCHPAUSE_UPLOAD_*` environment variables documented in
    [BUILDING.md](BUILDING.md), and build `bundleRelease`.
-3. Enroll in Play App Signing and retain secure backups of any key material the
+4. Enroll in Play App Signing and retain secure backups of any key material the
    owner controls.
-4. Make the comprehensive privacy policy URL public, stable, non-geofenced, and
+5. Make the comprehensive privacy policy URL public, stable, non-geofenced, and
    accessible without login. Add the same URL in Play Console.
-5. Publish the exact Corresponding Source for the distributed GPL build, or
+6. Publish the exact Corresponding Source for the distributed GPL build, or
    provide every recipient another GPL-compliant source offer. The current
    private repository alone is not sufficient for Play users who cannot access
    it.
-6. Supply a public support email and the developer identity shown on the store
+7. Supply a public support email and the developer identity shown on the store
    listing. Add those contact details to the privacy policy.
-7. Recheck the four supplied screenshots against the signed release candidate
+8. Recheck the four supplied screenshots against the signed release candidate
    and recapture any screen whose visible UI has changed.
-8. Generate APKs from the final signed AAB with `bundletool`; verify signatures,
+9. Generate APKs from the final signed AAB with `bundletool`; verify signatures,
    resources, all required ABIs, and 16 KiB alignment; install those generated
    APKs on representative devices.
 
@@ -54,8 +60,13 @@ submission.
   immediately discarded. Provide the required demonstration video showing the
   disclosure, both consent choices, service enablement, tile use, and hardware
   release.
-- Data safety: submit the form even when the answer remains no collection and
-  no sharing. Re-audit the final dependencies and merged manifest first.
+- Data safety: submit the form even though TouchPause sends no data to the
+  developer and shares no touch input. Google Play processes payment data;
+  TouchPause receives purchase status and stores only the local trial count
+  and cached access boolean. Billing Library 9.1.0 also declares `INTERNET`
+  and `ACCESS_NETWORK_STATE` and may send billing requests or diagnostics to
+  Google. Review the current Billing SDK disclosure and decide whether Play's
+  form requires purchase history and diagnostics for this exact integration.
 - Ads: declare no ads while the source remains unchanged.
 - Health and financial features: submit both declarations even when every
   answer is "no features."

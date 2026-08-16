@@ -17,6 +17,36 @@
     <string name="tile_state_description_active">Touch is paused. Press the release key to restore touch.</string>
     <string name="tile_state_description_inactive">Touch is active. Tap to pause touch.</string>
 
+    <string name="access_header">Access</string>
+    <string name="unlock_lifetime_title">Unlock lifetime access</string>
+    <string name="trial_checking_play">Checking Google Play…</string>
+    <string name="lifetime_access_title">Lifetime access</string>
+    <string name="lifetime_access_unlocked">Lifetime access is unlocked.</string>
+    <plurals name="trial_sessions_with_price">
+        <item quantity="one"><xliff:g id="remaining">%1$d</xliff:g> of 10 free sessions remains. Unlock forever for <xliff:g id="price">%2$s</xliff:g>.</item>
+        <item quantity="other"><xliff:g id="remaining">%1$d</xliff:g> of 10 free sessions remain. Unlock forever for <xliff:g id="price">%2$s</xliff:g>.</item>
+    </plurals>
+    <plurals name="trial_sessions_purchase_unavailable">
+        <item quantity="one"><xliff:g id="remaining">%1$d</xliff:g> of 10 free sessions remains. Lifetime access is a one-time Google Play purchase.</item>
+        <item quantity="other"><xliff:g id="remaining">%1$d</xliff:g> of 10 free sessions remain. Lifetime access is a one-time Google Play purchase.</item>
+    </plurals>
+    <plurals name="trial_sessions_checking_play">
+        <item quantity="one"><xliff:g id="remaining">%1$d</xliff:g> of 10 free sessions remains. Checking Google Play for the lifetime price…</item>
+        <item quantity="other"><xliff:g id="remaining">%1$d</xliff:g> of 10 free sessions remain. Checking Google Play for the lifetime price…</item>
+    </plurals>
+    <string name="unlock_dialog_title">Unlock TouchPause</string>
+    <plurals name="unlock_dialog_message">
+        <item quantity="one">Your trial includes 10 successfully started touch-pausing sessions. <xliff:g id="remaining">%1$d</xliff:g> remains. Unlock lifetime access for <xliff:g id="price">%2$s</xliff:g>. This is a one-time purchase, not a subscription.</item>
+        <item quantity="other">Your trial includes 10 successfully started touch-pausing sessions. <xliff:g id="remaining">%1$d</xliff:g> remain. Unlock lifetime access for <xliff:g id="price">%2$s</xliff:g>. This is a one-time purchase, not a subscription.</item>
+    </plurals>
+    <string name="not_now">Not now</string>
+    <string name="unlock_for_price">Unlock now</string>
+    <string name="billing_unavailable">Google Play could not load the lifetime purchase. Check your connection and Play Store account, then try again.</string>
+    <string name="purchase_failed">The purchase could not be completed.</string>
+    <string name="purchase_pending">The purchase is pending. Lifetime access will unlock after Google Play completes payment.</string>
+    <string name="purchase_acknowledgement_failed">Google Play received the purchase, but TouchPause could not acknowledge it yet. Reopen TouchPause while online.</string>
+    <string name="purchase_completed">Lifetime access unlocked</string>
+
     <string name="safety_header">Safety</string>
     <!-- Release key means the physical hardware key that restores touchscreen input. -->
     <string name="release_key_title">Release key</string>
@@ -59,9 +89,9 @@
     <string name="app_language_title">App language</string>
     <string name="app_language_system">System default</string>
     <string name="privacy_license_source_title">Privacy, license &amp; source</string>
-    <string name="privacy_license_source_summary">No data transmission or retention, no ads, and no network access. Tap for details.</string>
+    <string name="privacy_license_source_summary">Touch control stays on-device, with no ads, analytics, or developer server. Google Play handles the optional lifetime purchase.</string>
     <string name="about_dialog_title">Privacy, license &amp; source</string>
-    <string name="about_dialog_message">TouchPause runs entirely on your device. It never reads screen content or stores, sends, or shares touch, stylus, or key events. Root mode temporarily reads input devices only while a user-started block is active.\n\nTouchPause is GPL-3.0-or-later. Its bundled blockevent helper is Apache-2.0. Source and full notices: github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">Touch control runs entirely on your device. TouchPause never reads screen content or stores, sends, or shares touch, stylus, or key events. Root mode temporarily reads input devices only while a user-started block is active. Google Play handles the optional lifetime purchase; TouchPause caches only trial usage and access status.\n\nTouchPause is GPL-3.0-or-later. Its bundled blockevent helper is Apache-2.0. Source and full notices: github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Full privacy policy</string>
     <string name="no_browser_available">No browser is available to open the privacy policy.</string>
     <string name="privacy_policy_url" translatable="false">https://github.com/bzhangj13zzz/touchpause/blob/main/PRIVACY.md</string>

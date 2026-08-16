@@ -13,6 +13,36 @@
     <string name="tile_state_description_active">Die Toucheingabe ist pausiert. Drücke die Freigabetaste, um sie wiederherzustellen.</string>
     <string name="tile_state_description_inactive">Die Toucheingabe ist aktiv. Tippe, um sie zu pausieren.</string>
 
+    <string name="access_header">Zugriff</string>
+    <string name="unlock_lifetime_title">Dauerhaften Zugriff freischalten</string>
+    <string name="trial_checking_play">Google Play wird geprüft…</string>
+    <string name="lifetime_access_title">Dauerhafter Zugriff</string>
+    <string name="lifetime_access_unlocked">Der dauerhafte Zugriff ist freigeschaltet.</string>
+    <plurals name="trial_sessions_with_price">
+        <item quantity="one">Noch <xliff:g id="remaining">%1$d</xliff:g> von 10 kostenlosen Sitzungen. Dauerhaft für <xliff:g id="price">%2$s</xliff:g> freischalten.</item>
+        <item quantity="other">Noch <xliff:g id="remaining">%1$d</xliff:g> von 10 kostenlosen Sitzungen. Dauerhaft für <xliff:g id="price">%2$s</xliff:g> freischalten.</item>
+    </plurals>
+    <plurals name="trial_sessions_purchase_unavailable">
+        <item quantity="one">Noch <xliff:g id="remaining">%1$d</xliff:g> von 10 kostenlosen Sitzungen. Dauerhafter Zugriff ist ein einmaliger Google-Play-Kauf.</item>
+        <item quantity="other">Noch <xliff:g id="remaining">%1$d</xliff:g> von 10 kostenlosen Sitzungen. Dauerhafter Zugriff ist ein einmaliger Google-Play-Kauf.</item>
+    </plurals>
+    <plurals name="trial_sessions_checking_play">
+        <item quantity="one">Noch <xliff:g id="remaining">%1$d</xliff:g> von 10 kostenlosen Sitzungen. Google Play wird nach dem dauerhaften Preis gefragt…</item>
+        <item quantity="other">Noch <xliff:g id="remaining">%1$d</xliff:g> von 10 kostenlosen Sitzungen. Google Play wird nach dem dauerhaften Preis gefragt…</item>
+    </plurals>
+    <string name="unlock_dialog_title">TouchPause freischalten</string>
+    <plurals name="unlock_dialog_message">
+        <item quantity="one">Der Test umfasst 10 erfolgreich gestartete Touch-Pausen. <xliff:g id="remaining">%1$d</xliff:g> ist noch verfügbar. Schalte den dauerhaften Zugriff für <xliff:g id="price">%2$s</xliff:g> frei. Dies ist ein einmaliger Kauf, kein Abonnement.</item>
+        <item quantity="other">Der Test umfasst 10 erfolgreich gestartete Touch-Pausen. <xliff:g id="remaining">%1$d</xliff:g> sind noch verfügbar. Schalte den dauerhaften Zugriff für <xliff:g id="price">%2$s</xliff:g> frei. Dies ist ein einmaliger Kauf, kein Abonnement.</item>
+    </plurals>
+    <string name="not_now">Nicht jetzt</string>
+    <string name="unlock_for_price">Jetzt freischalten</string>
+    <string name="billing_unavailable">Google Play konnte den dauerhaften Kauf nicht laden. Prüfe die Verbindung und das Play-Store-Konto und versuche es erneut.</string>
+    <string name="purchase_failed">Der Kauf konnte nicht abgeschlossen werden.</string>
+    <string name="purchase_pending">Der Kauf steht noch aus. Der dauerhafte Zugriff wird freigeschaltet, sobald Google Play die Zahlung abgeschlossen hat.</string>
+    <string name="purchase_acknowledgement_failed">Google Play hat den Kauf erhalten, aber TouchPause konnte ihn noch nicht bestätigen. Öffne TouchPause online erneut.</string>
+    <string name="purchase_completed">Dauerhafter Zugriff freigeschaltet</string>
+
     <string name="safety_header">Sicherheit</string>
     <string name="release_key_title">Freigabetaste</string>
     <string name="release_volume_down">Leiser</string>
@@ -53,9 +83,9 @@
     <string name="app_language_title">App-Sprache</string>
     <string name="app_language_system">Systemstandard</string>
     <string name="privacy_license_source_title">Datenschutz, Lizenz und Quellcode</string>
-    <string name="privacy_license_source_summary">Keine Übertragung oder Speicherung von Daten, keine Werbung und kein Netzwerkzugriff. Tippen, um Details anzuzeigen.</string>
+    <string name="privacy_license_source_summary">Die Touch-Steuerung bleibt auf dem Gerät, ohne Werbung, Analysen oder Entwicklerserver. Google Play wickelt den optionalen dauerhaften Kauf ab.</string>
     <string name="about_dialog_title">Datenschutz, Lizenz und Quellcode</string>
-    <string name="about_dialog_message">TouchPause wird vollständig auf deinem Gerät ausgeführt. Die App liest niemals Bildschirminhalte und speichert, sendet oder teilt keine Touch-, Eingabestift- oder Tastenereignisse. Im Root-Modus werden Eingabegeräte nur vorübergehend gelesen, solange eine vom Benutzer gestartete Blockierung aktiv ist.\n\nTouchPause steht unter der Lizenz GPL-3.0-or-later. Das enthaltene Hilfsprogramm blockevent steht unter der Lizenz Apache-2.0. Quellcode und vollständige Hinweise: github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">Die Touch-Steuerung läuft vollständig auf deinem Gerät. TouchPause liest niemals Bildschirminhalte und speichert, sendet oder teilt keine Touch-, Eingabestift- oder Tastenereignisse. Im Root-Modus werden Eingabegeräte nur vorübergehend gelesen, solange eine vom Benutzer gestartete Blockierung aktiv ist. Google Play wickelt den optionalen dauerhaften Kauf ab; TouchPause speichert nur die Testnutzung und den Zugriffsstatus.\n\nTouchPause steht unter der Lizenz GPL-3.0-or-later. Das enthaltene Hilfsprogramm blockevent steht unter der Lizenz Apache-2.0. Quellcode und vollständige Hinweise: github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Vollständige Datenschutzerklärung</string>
     <string name="no_browser_available">Zum Öffnen der Datenschutzerklärung ist kein Browser verfügbar.</string>
     <string name="close">Schließen</string>

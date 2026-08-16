@@ -19,12 +19,16 @@ ROOT-ALTERNATIVE
 
 Android 7–13, die Ein/Aus-Taste als Freigabetaste und nicht kompatible Konfigurationen der Bedienungshilfen erfordern ein gerootetes Gerät sowie die Zustimmung des Root-Managers. Während einer vom Benutzer gestarteten Pause liest das enthaltene Hilfsprogramm vorübergehend Android-Eingabegeräte und übernimmt den Touchscreen exklusiv. Es gibt den Touchscreen frei, wenn die gewählte Hardwaretaste gedrückt wird, das Hilfsprogramm beendet wird oder das Gerät neu startet.
 
+ZUERST AUSPROBIEREN
+
+Jede Installation enthält 10 erfolgreich gestartete Touch-Pausen. Fehlgeschlagene Einrichtungsversuche und das Beenden einer aktiven Blockierung zählen nicht. Nach dem Test kannst du den dauerhaften Zugriff mit einem einmaligen Google-Play-Kauf freischalten – ohne Abonnement.
+
 DATENSCHUTZ VON GRUND AUF
 
-• Keine Internetberechtigung
-• Keine Analysen oder Telemetrie
-• Keine Werbung und keine Konten
-• Keine Erfassung oder Weitergabe von Daten außerhalb des Geräts
+• Netzwerkzugriff nur für Google Play Billing
+• Keine Entwickleranalysen, Werbung oder Konten
+• Kein vom Entwickler betriebener Server
+• Touch- und Tasteneingaben verlassen nie dein Gerät
 • Einstellungen bleiben auf deinem Gerät
 
-TouchPause ist freie Open-Source-Software unter der Lizenz GPL-3.0-or-later. Das enthaltene Hilfsprogramm blockevent steht unter der Lizenz Apache-2.0.
+TouchPause ist Open-Source-Software unter der Lizenz GPL-3.0-or-later. Das enthaltene Hilfsprogramm blockevent steht unter der Lizenz Apache-2.0. Google Play wickelt den optionalen dauerhaften Kauf ab; TouchPause hat keinen vom Entwickler betriebenen Server.

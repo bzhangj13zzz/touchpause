@@ -1,1 +1,1 @@
-Versão inicial do TouchPause com controle pelas Configurações rápidas, modo sem root no Android 14 ou mais recente, alternativa segura com root, nove idiomas de interface e suporte a páginas de 16 KB.
+Versão inicial do TouchPause com 10 sessões gratuitas, desbloqueio vitalício opcional, controle pelas Configurações rápidas, modo sem root no Android 14 ou mais recente, alternativa segura com root, nove idiomas e páginas de 16 KB.

@@ -7,6 +7,10 @@ input. Its launcher screen is intentionally small: use it to complete setup,
 choose a hardware release key, and adjust feedback. Day-to-day control belongs
 in the Quick Settings tile.
 
+Every installation includes 10 successfully started touch-pausing sessions.
+After those sessions, Google Play offers a one-time lifetime unlock; there are
+no subscriptions, ads, or developer-operated accounts.
+
 TouchPause 1.0.0 uses the application ID
 `io.github.bzhangj13zzz.touchpause`. It is a substantially modified and
 rebranded derivative of Snowy; see [NOTICE.md](NOTICE.md) for its history and
@@ -90,6 +94,22 @@ Touch exploration and hardware-key filtering are shared Android facilities. If
 touch exploration is active, or another enabled Accessibility service already
 owns hardware-key filtering, TouchPause does not start rootless capture and may
 use the disclosed root fallback instead.
+
+## Trial and lifetime access
+
+TouchPause counts a trial session only after a backend has successfully started
+blocking touch. Failed root requests, setup screens, and stopping an active
+block do not consume a session. The release key always remains available,
+including on the tenth session.
+
+After 10 successful starts, the Quick Settings tile opens the lifetime-access
+screen instead of beginning another block. The unlock is a non-consumable,
+one-time Google Play product named `lifetime_access`, not a subscription.
+Google Play restores ownership on another device using the purchasing Google
+account. TouchPause caches the entitlement for offline use and stores the local
+trial count in private app data. Clearing app data can reset the local trial;
+preventing that would require a developer server, which this project
+deliberately avoids.
 
 ## Emergency recovery
 

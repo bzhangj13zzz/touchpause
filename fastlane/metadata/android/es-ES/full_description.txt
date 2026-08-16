@@ -19,12 +19,16 @@ ALTERNATIVA CON ROOT
 
 En Android 7–13, con la tecla de reactivación Encendido o con configuraciones de Accesibilidad incompatibles, se necesita un dispositivo rooteado y la aprobación del gestor de root. Durante una pausa iniciada por el usuario, la herramienta incluida lee temporalmente los dispositivos de entrada de Android y toma el control exclusivo de la pantalla táctil. Libera ese control cuando se pulsa la tecla física seleccionada, la herramienta se detiene o el dispositivo se reinicia.
 
+PRUÉBALO PRIMERO
+
+Cada instalación incluye 10 sesiones en las que la pausa táctil se inicia correctamente. Los intentos fallidos de configuración y la liberación de un bloqueo activo no cuentan. Después de la prueba, desbloquea el acceso de por vida con una sola compra en Google Play, sin suscripción.
+
 PRIVACIDAD DESDE EL DISEÑO
 
-• Sin permiso de Internet
-• Sin analíticas ni telemetría
-• Sin anuncios ni cuentas
-• Sin recogida ni uso compartido de datos fuera del dispositivo
+• Acceso a la red solo para Google Play Billing
+• Sin analíticas del desarrollador, anuncios ni cuentas
+• Sin servidor operado por el desarrollador
+• Los eventos táctiles y de teclas nunca salen del dispositivo
 • Las preferencias permanecen en tu dispositivo
 
-TouchPause es software libre y de código abierto con licencia GPL-3.0-or-later. La herramienta blockevent incluida tiene licencia Apache-2.0.
+TouchPause es software de código abierto con licencia GPL-3.0-or-later. La herramienta blockevent incluida tiene licencia Apache-2.0. Google Play gestiona la compra vitalicia opcional; TouchPause no tiene un servidor operado por el desarrollador.

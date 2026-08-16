@@ -1,6 +1,7 @@
 package io.github.bzhangj13zzz.touchpause
 
 import android.content.res.Configuration
+import android.content.pm.PackageManager
 import android.util.Xml
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -38,6 +39,23 @@ class ApplicationIdentityTest {
         )
         assertFalse(File(nativeLibraryDirectory, "touchpause-input.so").exists())
         assertFalse(File(nativeLibraryDirectory, "touchquell-input.so").exists())
+    }
+
+    @Test
+    fun manifestContainsOnlyExpectedNetworkAndBillingPermissions() {
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val packageInfo = appContext.packageManager.getPackageInfo(
+            appContext.packageName,
+            PackageManager.GET_PERMISSIONS
+        )
+        val requested = packageInfo.requestedPermissions.orEmpty().toSet()
+
+        assertTrue("Google Play Billing permission is missing", BILLING_PERMISSION in requested)
+        assertTrue("Billing Library network permission is missing", INTERNET_PERMISSION in requested)
+        assertTrue(
+            "Billing Library network-state permission is missing",
+            NETWORK_STATE_PERMISSION in requested
+        )
     }
 
     @Test
@@ -130,5 +148,8 @@ class ApplicationIdentityTest {
 
     private companion object {
         const val ANDROID_NAMESPACE = "http://schemas.android.com/apk/res/android"
+        const val BILLING_PERMISSION = "com.android.vending.BILLING"
+        const val INTERNET_PERMISSION = "android.permission.INTERNET"
+        const val NETWORK_STATE_PERMISSION = "android.permission.ACCESS_NETWORK_STATE"
     }
 }

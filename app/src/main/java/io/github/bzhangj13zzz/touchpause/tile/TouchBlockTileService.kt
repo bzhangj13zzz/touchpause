@@ -1,5 +1,6 @@
 package io.github.bzhangj13zzz.touchpause.tile
 
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.drawable.Icon
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import io.github.bzhangj13zzz.touchpause.R
 import io.github.bzhangj13zzz.touchpause.accessibility.AccessibilityStatus
 import io.github.bzhangj13zzz.touchpause.accessibility.TouchBlockAccessibilityService
+import io.github.bzhangj13zzz.touchpause.billing.EntitlementStore
 import io.github.bzhangj13zzz.touchpause.block.Backend
 import io.github.bzhangj13zzz.touchpause.block.BlockSessionStore
 import io.github.bzhangj13zzz.touchpause.feedback.FeedbackNotifier
@@ -22,12 +24,19 @@ import io.github.bzhangj13zzz.touchpause.settings.SettingsActivity
 class TouchBlockTileService : TileService() {
     private val sessions by lazy { BlockSessionStore(this) }
     private val userPreferences by lazy { UserPreferences(this) }
+    private val entitlements by lazy { EntitlementStore(this) }
 
     override fun onClick() {
         super.onClick()
 
         val releaseKey = userPreferences.releaseKey()
         val activeBackend = sessions.activeBackend()
+        if (activeBackend == null && !sessions.hasPendingRootInvocation() &&
+            !entitlements.canStartSession()
+        ) {
+            launchPurchaseSetup()
+            return
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             val rootPending = sessions.hasPendingRootInvocation()
             val useAccessibility = activeBackend == Backend.ACCESSIBILITY ||
@@ -76,7 +85,7 @@ class TouchBlockTileService : TileService() {
     private fun launchAccessibilitySetup() {
         val intent = Intent(this, SettingsActivity::class.java).apply {
             putExtra(SettingsActivity.EXTRA_SHOW_ACCESSIBILITY_DISCLOSURE, true)
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         }
         val pendingIntent = PendingIntent.getActivity(
             this,
@@ -85,6 +94,26 @@ class TouchBlockTileService : TileService() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         startActivityAndCollapse(pendingIntent)
+    }
+
+    /** Opens lifetime access without ever interfering with an already active block. */
+    @SuppressLint("StartActivityAndCollapseDeprecated")
+    private fun launchPurchaseSetup() {
+        val intent = Intent(this, SettingsActivity::class.java).apply {
+            putExtra(SettingsActivity.EXTRA_SHOW_PURCHASE, true)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            val pendingIntent = PendingIntent.getActivity(
+                this,
+                PURCHASE_SETUP_REQUEST_CODE,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            startActivityAndCollapse(pendingIntent)
+        } else {
+            startActivityAndCollapse(intent)
+        }
     }
 
     override fun onStartListening() {
@@ -128,5 +157,6 @@ class TouchBlockTileService : TileService() {
 
     private companion object {
         const val ACCESSIBILITY_SETUP_REQUEST_CODE = 1
+        const val PURCHASE_SETUP_REQUEST_CODE = 2
     }
 }

@@ -8,6 +8,13 @@
             app:title="@string/add_tile_title" />
     </PreferenceCategory>
 
+    <PreferenceCategory app:title="@string/access_header">
+        <Preference
+            app:key="lifetime_access"
+            app:summary="@string/trial_checking_play"
+            app:title="@string/unlock_lifetime_title" />
+    </PreferenceCategory>
+
     <PreferenceCategory app:title="@string/safety_header">
         <Preference
             app:key="accessibility_setup"

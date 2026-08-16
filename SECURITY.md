@@ -101,3 +101,18 @@ universal recovery.
   installed TouchPause build.
 - Preserve the exact source commit and native sources used for every APK shared
   with another person.
+
+## Purchase boundary
+
+TouchPause uses Google Play Billing only for the non-consumable lifetime
+unlock. It does not accept payment details itself and has no developer server
+or app account. The client grants access only for a `PURCHASED` item, asks
+Google Play to acknowledge new purchases, and refreshes ownership when settings
+connects. The last successful entitlement is cached so a paid user can operate
+offline.
+
+Google recommends server-side verification for stronger fraud, refund, and
+revocation handling. TouchPause deliberately accepts the lower assurance of a
+client-only implementation for this low-cost utility rather than introducing a
+server and user identity system. Commercial gating runs only before a new block
+starts; it never blocks a release action or tears down an active session.

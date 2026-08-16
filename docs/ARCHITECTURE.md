@@ -19,6 +19,8 @@ The primary invariants are:
 ```text
 Quick Settings tile
         |
+        +-- no active block and trial exhausted --> settings --> Google Play Billing
+        |
         +-- API 34+ and safe volume release --> transparent toggle activity
         |                                      --> Accessibility service
         |
@@ -31,6 +33,26 @@ Quick Settings tile
 The launcher activity hosts the small setup and preferences screen. The Quick
 Settings tile is the normal runtime entry point. Shared preference helpers hold
 configuration and advisory UI state; they do not own an input grab.
+
+## Trial and purchase boundary
+
+`EntitlementStore` owns two small pieces of private app data: the number of
+successfully started free sessions and the last Google Play lifetime-ownership
+result. A new block may start while lifetime access is cached or fewer than 10
+free sessions have succeeded. Stopping an existing block bypasses this gate so
+commercial logic can never interfere with input recovery.
+
+Each backend records a session only after it owns capture: after verified
+Accessibility configuration and ownership publication, or after the root
+helper's readiness line. Errors and setup flows do not consume the trial.
+
+`PlayBillingManager` connects only from settings. It queries the non-consumable
+`lifetime_access` product and current purchases, launches Google Play's UI,
+grants only a `PURCHASED` item, and acknowledges it. The last successful
+ownership result is cached for offline use and refreshed whenever settings
+connects. The implementation intentionally has no developer backend or app
+account; this preserves privacy and simplicity at the cost of weaker fraud and
+refund detection than server-side verification.
 
 ## Backend selection
 
@@ -137,9 +159,11 @@ signature-level app permission. The transparent toggle activity is not
 exported.
 
 The Accessibility configuration does not permit retrieval of window content.
-The installed app has no network permission. Root mode has broader device
-authority by definition, so its source is vendored, auditable, and rebuilt for
-the four packaged Android ABIs.
+The installed app has no developer-operated server. Its Billing Library uses
+network access only for the optional Google Play lifetime purchase; touch and
+input events remain on-device. Root mode has broader device authority by
+definition, so its source is vendored, auditable, and rebuilt for the four
+packaged Android ABIs.
 
 See [../SECURITY.md](../SECURITY.md) for the threat and recovery model and
 [../PRIVACY.md](../PRIVACY.md) for input-data handling.
@@ -161,10 +185,10 @@ script are the reviewable authority.
 ## Verification strategy
 
 - JVM tests cover release-key parsing, shell quoting, root command construction,
-  and token propagation.
+  token propagation, and trial access boundaries.
 - Android lint checks manifest/component and API usage.
-- Instrumentation tests cover runtime ownership, consent persistence, and
-  localized resources.
+- Instrumentation tests cover runtime ownership, consent persistence, trial
+  counting, and localized resources.
 - APK checks cover signing, alignment, packaged ABIs, and native ELF alignment.
 - Device or emulator tests exercise tile state, raw touchscreen and stylus
   blocking, and hardware-key release. Root behavior must also be tested on a

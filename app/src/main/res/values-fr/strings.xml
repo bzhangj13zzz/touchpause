@@ -13,6 +13,40 @@
     <string name="tile_state_description_active">L’entrée tactile est en pause. Appuyez sur la touche de réactivation pour la rétablir.</string>
     <string name="tile_state_description_inactive">L’entrée tactile est active. Appuyez pour la mettre en pause.</string>
 
+    <string name="access_header">Accès</string>
+    <string name="unlock_lifetime_title">Débloquer l’accès à vie</string>
+    <string name="trial_checking_play">Vérification de Google Play…</string>
+    <string name="lifetime_access_title">Accès à vie</string>
+    <string name="lifetime_access_unlocked">L’accès à vie est débloqué.</string>
+    <plurals name="trial_sessions_with_price">
+        <item quantity="one">Il reste <xliff:g id="remaining">%1$d</xliff:g> session gratuite sur 10. Débloquez à vie pour <xliff:g id="price">%2$s</xliff:g>.</item>
+        <item quantity="many">Il reste <xliff:g id="remaining">%1$d</xliff:g> sessions gratuites sur 10. Débloquez à vie pour <xliff:g id="price">%2$s</xliff:g>.</item>
+        <item quantity="other">Il reste <xliff:g id="remaining">%1$d</xliff:g> sessions gratuites sur 10. Débloquez à vie pour <xliff:g id="price">%2$s</xliff:g>.</item>
+    </plurals>
+    <plurals name="trial_sessions_purchase_unavailable">
+        <item quantity="one">Il reste <xliff:g id="remaining">%1$d</xliff:g> session gratuite sur 10. L’accès à vie est un achat Google Play unique.</item>
+        <item quantity="many">Il reste <xliff:g id="remaining">%1$d</xliff:g> sessions gratuites sur 10. L’accès à vie est un achat Google Play unique.</item>
+        <item quantity="other">Il reste <xliff:g id="remaining">%1$d</xliff:g> sessions gratuites sur 10. L’accès à vie est un achat Google Play unique.</item>
+    </plurals>
+    <plurals name="trial_sessions_checking_play">
+        <item quantity="one">Il reste <xliff:g id="remaining">%1$d</xliff:g> session gratuite sur 10. Vérification du prix à vie sur Google Play…</item>
+        <item quantity="many">Il reste <xliff:g id="remaining">%1$d</xliff:g> sessions gratuites sur 10. Vérification du prix à vie sur Google Play…</item>
+        <item quantity="other">Il reste <xliff:g id="remaining">%1$d</xliff:g> sessions gratuites sur 10. Vérification du prix à vie sur Google Play…</item>
+    </plurals>
+    <string name="unlock_dialog_title">Débloquer TouchPause</string>
+    <plurals name="unlock_dialog_message">
+        <item quantity="one">Votre essai comprend 10 sessions de mise en pause tactile démarrées avec succès. Il en reste <xliff:g id="remaining">%1$d</xliff:g>. Débloquez l’accès à vie pour <xliff:g id="price">%2$s</xliff:g>. Il s’agit d’un achat unique, sans abonnement.</item>
+        <item quantity="many">Votre essai comprend 10 sessions de mise en pause tactile démarrées avec succès. Il en reste <xliff:g id="remaining">%1$d</xliff:g>. Débloquez l’accès à vie pour <xliff:g id="price">%2$s</xliff:g>. Il s’agit d’un achat unique, sans abonnement.</item>
+        <item quantity="other">Votre essai comprend 10 sessions de mise en pause tactile démarrées avec succès. Il en reste <xliff:g id="remaining">%1$d</xliff:g>. Débloquez l’accès à vie pour <xliff:g id="price">%2$s</xliff:g>. Il s’agit d’un achat unique, sans abonnement.</item>
+    </plurals>
+    <string name="not_now">Pas maintenant</string>
+    <string name="unlock_for_price">Débloquer maintenant</string>
+    <string name="billing_unavailable">Google Play n’a pas pu charger l’achat à vie. Vérifiez votre connexion et votre compte Play Store, puis réessayez.</string>
+    <string name="purchase_failed">L’achat n’a pas pu être effectué.</string>
+    <string name="purchase_pending">L’achat est en attente. L’accès à vie sera débloqué lorsque Google Play aura traité le paiement.</string>
+    <string name="purchase_acknowledgement_failed">Google Play a reçu l’achat, mais TouchPause ne peut pas encore le confirmer. Rouvrez TouchPause lorsque vous êtes en ligne.</string>
+    <string name="purchase_completed">Accès à vie débloqué</string>
+
     <string name="safety_header">Sécurité</string>
     <string name="release_key_title">Touche de réactivation</string>
     <string name="release_volume_down">Baisser le volume</string>
@@ -53,9 +87,9 @@
     <string name="app_language_title">Langue de l’application</string>
     <string name="app_language_system">Langue du système</string>
     <string name="privacy_license_source_title">Confidentialité, licence et code source</string>
-    <string name="privacy_license_source_summary">Aucune transmission ni conservation de données, aucune publicité et aucun accès au réseau. Appuyez pour en savoir plus.</string>
+    <string name="privacy_license_source_summary">Le contrôle tactile reste sur l’appareil, sans publicité, analyse ni serveur du développeur. Google Play gère l’achat à vie facultatif.</string>
     <string name="about_dialog_title">Confidentialité, licence et code source</string>
-    <string name="about_dialog_message">TouchPause fonctionne entièrement sur votre appareil. L’application ne lit jamais le contenu de l’écran et ne stocke, n’envoie ni ne partage d’événements tactiles, de stylet ou de touches physiques. Le mode root ne lit temporairement les périphériques d’entrée que lorsqu’un blocage lancé par l’utilisateur est actif.\n\nTouchPause est sous licence GPL-3.0-or-later. L’utilitaire blockevent inclus est sous licence Apache-2.0. Code source et mentions complètes : github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">Le contrôle tactile fonctionne entièrement sur votre appareil. TouchPause ne lit jamais le contenu de l’écran et ne stocke, n’envoie ni ne partage d’événements tactiles, de stylet ou de touches physiques. Le mode root ne lit temporairement les périphériques d’entrée que lorsqu’un blocage lancé par l’utilisateur est actif. Google Play gère l’achat à vie facultatif ; TouchPause ne conserve que l’utilisation de l’essai et l’état d’accès.\n\nTouchPause est sous licence GPL-3.0-or-later. L’utilitaire blockevent inclus est sous licence Apache-2.0. Code source et mentions complètes : github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Politique de confidentialité complète</string>
     <string name="no_browser_available">Aucun navigateur n’est disponible pour ouvrir la politique de confidentialité.</string>
     <string name="close">Fermer</string>

@@ -19,12 +19,16 @@ ROOT FALLBACK
 
 Android 7–13, the Power release key, and incompatible Accessibility configurations require a rooted device and approval from your root manager. During a user-started pause, the bundled helper temporarily reads Android input devices and exclusively grabs the touchscreen. It releases the grab when the selected hardware key is pressed, the helper stops, or the device restarts.
 
+TRY IT FIRST
+
+Every installation includes 10 successfully started touch-pausing sessions. Failed setup attempts and releasing an active block do not count. After the trial, unlock lifetime access with one Google Play purchase—no subscription.
+
 PRIVATE BY DESIGN
 
-• No Internet permission
-• No analytics or telemetry
-• No ads or accounts
-• No off-device data collection or sharing
+• Network access only for Google Play Billing
+• No developer analytics, ads, or accounts
+• No developer-operated server
+• Touch and key input never leaves your device
 • Preferences stay on your device
 
-TouchPause is free and open-source software licensed under GPL-3.0-or-later. The bundled blockevent helper is licensed under Apache-2.0.
+TouchPause is open-source software licensed under GPL-3.0-or-later. The bundled blockevent helper is licensed under Apache-2.0. Google Play handles the optional lifetime purchase; TouchPause has no developer-operated server.

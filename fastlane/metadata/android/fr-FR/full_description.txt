@@ -19,12 +19,16 @@ SOLUTION DE SECOURS AVEC ROOT
 
 Sous Android 7 à 13, avec la touche Marche/Arrêt ou en cas de configuration d’Accessibilité incompatible, un appareil rooté et l’autorisation du gestionnaire root sont nécessaires. Pendant une pause lancée par l’utilisateur, l’outil inclus lit temporairement les périphériques d’entrée Android et prend le contrôle exclusif de l’écran tactile. Il libère ce contrôle lorsque la touche physique sélectionnée est pressée, que l’outil s’arrête ou que l’appareil redémarre.
 
+ESSAYEZ D’ABORD
+
+Chaque installation comprend 10 sessions de mise en pause tactile démarrées avec succès. Les échecs de configuration et la libération d’un blocage actif ne sont pas comptés. Après l’essai, débloquez l’accès à vie avec un seul achat Google Play, sans abonnement.
+
 LA CONFIDENTIALITÉ AVANT TOUT
 
-• Aucune autorisation d’accès à Internet
-• Aucune analyse ni télémétrie
-• Aucune publicité ni aucun compte
-• Aucune collecte ni aucun partage de données hors de l’appareil
+• Accès réseau uniquement pour Google Play Billing
+• Aucune analyse du développeur, publicité ni aucun compte
+• Aucun serveur exploité par le développeur
+• Les entrées tactiles et de touches ne quittent jamais l’appareil
 • Vos préférences restent sur votre appareil
 
-TouchPause est un logiciel libre et open source sous licence GPL-3.0-or-later. L’outil blockevent inclus est sous licence Apache-2.0.
+TouchPause est un logiciel open source sous licence GPL-3.0-or-later. L’outil blockevent inclus est sous licence Apache-2.0. Google Play gère l’achat à vie facultatif ; TouchPause ne possède aucun serveur exploité par le développeur.

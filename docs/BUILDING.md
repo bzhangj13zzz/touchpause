@@ -167,3 +167,25 @@ launched from Android's extracted native-library directory, not a JNI library;
 compressed/extracted packaging preserves that execution path.
 
 See [PLAY_STORE.md](PLAY_STORE.md) for the publication checklist.
+
+## Configure the lifetime product
+
+TouchPause is free to install and uses one non-consumable Google Play product:
+
+```text
+Product ID: lifetime_access
+Type: one-time product, non-consumable
+Suggested base price: US$2.99
+```
+
+Create and activate that exact product in Play Console before testing purchase
+flows. The identifier is compiled into the app and cannot be substituted from
+the UI. Test with Play license testers and Play-installed bundles; a sideloaded
+debug APK normally cannot load product details from Google Play.
+
+The purchase implementation is intentionally client-only because TouchPause
+has no developer server or account system. It grants only `PURCHASED` items,
+acknowledges new purchases, queries current ownership when settings connects,
+and caches the last valid entitlement for offline use. This is simpler and less
+fraud-resistant than Google's recommended server verification; revisit that
+tradeoff only if abuse becomes material.

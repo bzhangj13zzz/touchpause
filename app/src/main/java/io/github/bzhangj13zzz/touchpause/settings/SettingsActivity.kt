@@ -55,6 +55,10 @@ class SettingsActivity : AppCompatActivity() {
                         SettingsFragment.ARG_SHOW_ACCESSIBILITY_DISCLOSURE,
                         intent.getBooleanExtra(EXTRA_SHOW_ACCESSIBILITY_DISCLOSURE, false)
                     )
+                    putBoolean(
+                        SettingsFragment.ARG_SHOW_PURCHASE,
+                        intent.getBooleanExtra(EXTRA_SHOW_PURCHASE, false)
+                    )
                 }
             }
             supportFragmentManager.beginTransaction()
@@ -67,5 +71,7 @@ class SettingsActivity : AppCompatActivity() {
     companion object {
         const val EXTRA_SHOW_ACCESSIBILITY_DISCLOSURE =
             "io.github.bzhangj13zzz.touchpause.extra.SHOW_ACCESSIBILITY_DISCLOSURE"
+        const val EXTRA_SHOW_PURCHASE =
+            "io.github.bzhangj13zzz.touchpause.extra.SHOW_PURCHASE"
     }
 }

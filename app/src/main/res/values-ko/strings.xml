@@ -13,6 +13,32 @@
     <string name="tile_state_description_active">터치가 일시중지되었습니다. 해제 키를 눌러 터치를 복원하세요.</string>
     <string name="tile_state_description_inactive">터치가 활성 상태입니다. 탭하여 터치를 일시중지하세요.</string>
 
+    <string name="access_header">이용 권한</string>
+    <string name="unlock_lifetime_title">평생 이용 잠금 해제</string>
+    <string name="trial_checking_play">Google Play 확인 중…</string>
+    <string name="lifetime_access_title">평생 이용</string>
+    <string name="lifetime_access_unlocked">평생 이용이 잠금 해제되었습니다.</string>
+    <plurals name="trial_sessions_with_price">
+        <item quantity="other">무료 세션 10회 중 <xliff:g id="remaining">%1$d</xliff:g>회가 남았습니다. <xliff:g id="price">%2$s</xliff:g>에 영구적으로 잠금 해제하세요.</item>
+    </plurals>
+    <plurals name="trial_sessions_purchase_unavailable">
+        <item quantity="other">무료 세션 10회 중 <xliff:g id="remaining">%1$d</xliff:g>회가 남았습니다. 평생 이용은 Google Play 일회성 구매입니다.</item>
+    </plurals>
+    <plurals name="trial_sessions_checking_play">
+        <item quantity="other">무료 세션 10회 중 <xliff:g id="remaining">%1$d</xliff:g>회가 남았습니다. Google Play에서 평생 가격을 확인 중입니다…</item>
+    </plurals>
+    <string name="unlock_dialog_title">TouchPause 잠금 해제</string>
+    <plurals name="unlock_dialog_message">
+        <item quantity="other">평가판에는 터치 일시중지를 성공적으로 시작할 수 있는 세션 10회가 포함됩니다. <xliff:g id="remaining">%1$d</xliff:g>회가 남았습니다. <xliff:g id="price">%2$s</xliff:g>에 평생 이용을 잠금 해제하세요. 구독이 아닌 일회성 구매입니다.</item>
+    </plurals>
+    <string name="not_now">나중에</string>
+    <string name="unlock_for_price">지금 잠금 해제</string>
+    <string name="billing_unavailable">Google Play에서 평생 구매를 불러오지 못했습니다. 연결과 Play 스토어 계정을 확인한 후 다시 시도하세요.</string>
+    <string name="purchase_failed">구매를 완료하지 못했습니다.</string>
+    <string name="purchase_pending">구매가 대기 중입니다. Google Play에서 결제를 완료하면 평생 이용이 잠금 해제됩니다.</string>
+    <string name="purchase_acknowledgement_failed">Google Play에서 구매를 받았지만 TouchPause가 아직 확인하지 못했습니다. 온라인 상태에서 TouchPause를 다시 여세요.</string>
+    <string name="purchase_completed">평생 이용 잠금 해제됨</string>
+
     <string name="safety_header">안전</string>
     <string name="release_key_title">해제 키</string>
     <string name="release_volume_down">볼륨 다운 키</string>
@@ -53,9 +79,9 @@
     <string name="app_language_title">앱 언어</string>
     <string name="app_language_system">시스템 기본값</string>
     <string name="privacy_license_source_title">개인정보 보호, 라이선스 및 소스 코드</string>
-    <string name="privacy_license_source_summary">데이터를 전송하거나 보관하지 않으며 광고가 없고 네트워크에 액세스하지도 않습니다. 탭하여 세부정보를 확인하세요.</string>
+    <string name="privacy_license_source_summary">터치 제어는 기기에서만 처리되며 광고, 분석, 개발자 서버가 없습니다. 선택적 평생 구매는 Google Play에서 처리합니다.</string>
     <string name="about_dialog_title">개인정보 보호, 라이선스 및 소스 코드</string>
-    <string name="about_dialog_message">TouchPause는 기기에서만 실행됩니다. 화면 콘텐츠를 읽지 않으며 터치, 스타일러스 또는 키 이벤트를 저장, 전송 또는 공유하지 않습니다. 루트 모드는 사용자가 시작한 터치 차단이 활성화된 동안에만 입력 장치를 일시적으로 읽습니다.\n\nTouchPause는 GPL-3.0-or-later에 따라 제공됩니다. 함께 제공되는 blockevent 도우미에는 Apache-2.0이 적용됩니다. 소스 코드 및 전체 고지: github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">터치 제어는 기기에서만 실행됩니다. TouchPause는 화면 콘텐츠를 읽지 않으며 터치, 스타일러스 또는 키 이벤트를 저장, 전송 또는 공유하지 않습니다. 루트 모드는 사용자가 시작한 터치 차단이 활성화된 동안에만 입력 장치를 일시적으로 읽습니다. 선택적 평생 구매는 Google Play에서 처리하며 TouchPause는 평가판 사용 횟수와 이용 상태만 저장합니다.\n\nTouchPause는 GPL-3.0-or-later에 따라 제공됩니다. 함께 제공되는 blockevent 도우미에는 Apache-2.0이 적용됩니다. 소스 코드 및 전체 고지: github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">전체 개인정보처리방침</string>
     <string name="no_browser_available">개인정보처리방침을 열 수 있는 브라우저가 없습니다.</string>
     <string name="close">닫기</string>
