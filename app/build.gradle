@@ -3,22 +3,54 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+def uploadKeystorePath = System.getenv('TOUCHPAUSE_UPLOAD_KEYSTORE')
+def uploadKeyAlias = System.getenv('TOUCHPAUSE_UPLOAD_KEY_ALIAS')
+def uploadStorePassword = System.getenv('TOUCHPAUSE_UPLOAD_STORE_PASSWORD')
+def uploadKeyPassword = System.getenv('TOUCHPAUSE_UPLOAD_KEY_PASSWORD')
+def hasUploadSigning = [
+    uploadKeystorePath,
+    uploadKeyAlias,
+    uploadStorePassword,
+    uploadKeyPassword
+].every { value -> value != null && !value.isBlank() }
+
 android {
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
-        applicationId "io.github.bzhangj13zzz.touchquell"
+        applicationId "io.github.bzhangj13zzz.touchpause"
         minSdk 24
-        targetSdk 34
+        targetSdk 36
         versionCode 1
         versionName "1.0.0"
+
+        resourceConfigurations += [
+            "en", "es", "fr", "de", "b+pt+BR", "ja", "ko",
+            "b+zh+Hans", "b+zh+Hant"
+        ]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (hasUploadSigning) {
+            upload {
+                storeFile file(uploadKeystorePath)
+                storePassword uploadStorePassword
+                keyAlias uploadKeyAlias
+                keyPassword uploadKeyPassword
+            }
+        }
+    }
     buildTypes {
+        debug {
+            pseudoLocalesEnabled true
+        }
         release {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (hasUploadSigning) {
+                signingConfig signingConfigs.upload
+            }
         }
     }
     compileOptions {
@@ -33,16 +65,30 @@ android {
             useLegacyPackaging = true
         }
     }
-    namespace 'io.github.bzhangj13zzz.touchquell'
+    androidResources {
+        generateLocaleConfig = true
+    }
+    bundle {
+        // The in-app picker must work offline even when its language differs from the device.
+        language {
+            enableSplit = false
+        }
+    }
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
+        fatal 'MissingTranslation', 'ExtraTranslation'
+    }
+    namespace 'io.github.bzhangj13zzz.touchpause'
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.12.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.core:core-ktx:1.16.0'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.preference:preference-ktx:1.2.1'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }

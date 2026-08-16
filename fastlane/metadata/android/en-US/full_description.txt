@@ -1,0 +1,30 @@
+TouchPause adds a simple Quick Settings tile that temporarily pauses touchscreen input without stopping the app, video, or other content already on screen.
+
+Use it while cleaning your screen, tracing an image, presenting something without accidental taps, or keeping controls untouched while media continues to play.
+
+HOW IT WORKS
+
+• Add the TouchPause tile to Quick Settings.
+• Choose Volume Up, Volume Down, or Power as the physical release key.
+• Tap the tile to pause touch.
+• Press the selected release key to restore touch at any time.
+
+ROOTLESS MODE ON ANDROID 14+
+
+TouchPause can use an optional Android Accessibility service to pause touchscreen and stylus motion without root. Only during an active pause, the service receives touchscreen and stylus motion, including positions and timing, and filters hardware keys. It receives all hardware-key events only to detect the selected volume key and forwards unrelated keys. All events are processed only on the device and discarded immediately. TouchPause never reads screen content and never stores or shares touch, stylus, or key events.
+
+Rootless mode uses Volume Up or Volume Down as the release key. Touch exploration or another service that filters hardware keys can make rootless capture unavailable.
+
+ROOT FALLBACK
+
+Android 7–13, the Power release key, and incompatible Accessibility configurations require a rooted device and approval from your root manager. During a user-started pause, the bundled helper temporarily reads Android input devices and exclusively grabs the touchscreen. It releases the grab when the selected hardware key is pressed, the helper stops, or the device restarts.
+
+PRIVATE BY DESIGN
+
+• No Internet permission
+• No analytics or telemetry
+• No ads or accounts
+• No off-device data collection or sharing
+• Preferences stay on your device
+
+TouchPause is free and open-source software licensed under GPL-3.0-or-later. The bundled blockevent helper is licensed under Apache-2.0.

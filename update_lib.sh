@@ -1,5 +1,5 @@
 #!/bin/sh
-# Rebuild TouchQuell's vendored input helper for every packaged Android ABI.
+# Rebuild TouchPause's vendored input helper for every packaged Android ABI.
 
 set -eu
 
@@ -32,14 +32,14 @@ if [ -z "$toolchain" ]; then
     exit 1
 fi
 
-build_dir=$(mktemp -d "${TMPDIR:-/tmp}/touchquell-native.XXXXXX")
+build_dir=$(mktemp -d "${TMPDIR:-/tmp}/touchpause-native.XXXXXX")
 trap 'rm -rf "$build_dir"' EXIT HUP INT TERM
 
 build_one() {
     compiler_name=$1
     abi=$2
     compiler="$toolchain/bin/$compiler_name"
-    built_binary="$build_dir/$abi-touchquell-input.so"
+    built_binary="$build_dir/$abi-libtouchpause-input.so"
 
     if [ ! -x "$compiler" ]; then
         echo "Missing NDK compiler: $compiler" >&2
@@ -63,8 +63,8 @@ build_one() {
 
     "$toolchain/bin/llvm-strip" "$built_binary"
     mkdir -p "$output_root/$abi"
-    cp "$built_binary" "$output_root/$abi/touchquell-input.so"
-    chmod 0755 "$output_root/$abi/touchquell-input.so"
+    cp "$built_binary" "$output_root/$abi/libtouchpause-input.so"
+    chmod 0755 "$output_root/$abi/libtouchpause-input.so"
     echo "Built $abi"
 }
 

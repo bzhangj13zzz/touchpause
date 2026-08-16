@@ -46,9 +46,15 @@
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/about_header">
+        <ListPreference
+            app:entries="@array/app_language_entries"
+            app:entryValues="@array/app_language_values"
+            app:key="app_language"
+            app:persistent="false"
+            app:title="@string/app_language_title"
+            app:useSimpleSummaryProvider="true" />
         <Preference
             app:key="about"
-            app:selectable="false"
             app:summary="@string/privacy_license_source_summary"
             app:title="@string/privacy_license_source_title" />
     </PreferenceCategory>

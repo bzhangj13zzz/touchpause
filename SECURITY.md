@@ -1,6 +1,6 @@
-# TouchQuell security and recovery
+# TouchPause security and recovery
 
-TouchQuell deliberately interferes with the primary input device. Its design
+TouchPause deliberately interferes with the primary input device. Its design
 therefore treats a dependable hardware or out-of-band recovery path as a core
 security requirement.
 
@@ -18,26 +18,30 @@ the owner without posting exploit details in a public venue.
 ### Rootless backend
 
 On API 34+, Android's Accessibility framework owns the input filter.
-TouchQuell requests touchscreen motion only after it confirms that the selected
-volume key can reach its service. It restores the previous motion-source
-configuration before reporting that blocking stopped.
+TouchPause requires its versioned in-app disclosure to be accepted before the
+service remains enabled. It requests touchscreen and stylus motion plus key
+filtering only after it confirms that the selected volume key can reach its
+service, and only for an active pause. It restores the previous motion-source
+mask and service flags before reporting that blocking stopped.
 
 Rootless capture is rejected when:
 
 - the release key is Power;
+- the current Accessibility disclosure has not been accepted;
 - touch exploration is active;
 - another enabled Accessibility service owns hardware-key filtering;
 - a root invocation is being reconciled; or
-- the TouchQuell service is not connected and ready.
+- the TouchPause service is not connected and ready.
 
 Service interruption, force-stop, or reboot removes the Android input filter.
-TouchQuell does not automatically restore blocking.
+TouchPause does not automatically restore blocking. A boot-count marker also
+clears stale advisory tile ownership after reboot.
 
 ### Root backend
 
-Root is not an Android manifest permission. TouchQuell starts `su`, and the
+Root is not an Android manifest permission. TouchPause starts `su`, and the
 device's root manager grants or rejects that request. A granted session runs the
-vendored `touchquell-input.so` helper with root privileges.
+vendored `libtouchpause-input.so` helper with root privileges.
 
 The helper:
 
@@ -64,8 +68,8 @@ reviewed commit and a signing key you trust.
 ## Recovery order
 
 1. Press the configured Volume Up, Volume Down, or Power key.
-2. If an uncaptured mouse or stylus is available, use it to toggle the Quick
-   Settings tile off.
+2. If an external mouse is available and not part of a grabbed touchscreen,
+   use it to toggle the Quick Settings tile off.
 3. Reboot the phone. Blocking is not restored after boot.
 4. If USB debugging was authorized before the incident, use the backend-specific
    command below.
@@ -73,14 +77,14 @@ reviewed commit and a signing key you trust.
 Stop the Accessibility-backed app process:
 
 ```sh
-adb shell am force-stop io.github.bzhangj13zzz.touchquell
+adb shell am force-stop io.github.bzhangj13zzz.touchpause
 ```
 
 The native root helper survives an app force-stop. Signal only processes whose
-executable is the packaged TouchQuell helper:
+executable is the packaged TouchPause helper:
 
 ```sh
-adb shell su -c 'for d in /proc/[0-9]*; do case "$(readlink "$d/exe")" in */touchquell-input.so|*/touchquell-input.so\ \(deleted\)) kill -INT "${d##*/}";; esac; done'
+adb shell su -c 'for d in /proc/[0-9]*; do case "$(readlink "$d/exe")" in */libtouchpause-input.so|*/libtouchpause-input.so\ \(deleted\)) kill -INT "${d##*/}";; esac; done'
 ```
 
 This deliberately checks `/proc/<pid>/exe` instead of trusting PID text in the
@@ -94,6 +98,6 @@ universal recovery.
 - Never commit a release keystore, its passwords, `local.properties`, or local
   SDK paths.
 - An update must use the same application ID and signing certificate as the
-  installed TouchQuell build.
+  installed TouchPause build.
 - Preserve the exact source commit and native sources used for every APK shared
   with another person.

@@ -1,0 +1,1 @@
+Versión inicial de TouchPause con control desde Ajustes rápidos, modo sin root en Android 14 o posterior, una alternativa segura con root, nueve idiomas de interfaz y compatibilidad con páginas de 16 KB.

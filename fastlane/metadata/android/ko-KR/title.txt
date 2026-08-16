@@ -1,0 +1,1 @@
+TouchPause: 터치스크린 잠금

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_header">Ajustes rápidos</string>
+    <string name="add_tile_title">Añadir el mosaico de TouchPause</string>
+    <string name="tile_setup_summary">Añade TouchPause a Ajustes rápidos para controlar la entrada táctil con un solo toque.</string>
+    <string name="tile_setup_manual">Desliza hacia abajo dos veces, toca Editar y arrastra TouchPause hasta Ajustes rápidos.</string>
+    <string name="tile_added_summary">TouchPause ya está disponible en Ajustes rápidos.</string>
+    <string name="tile_added_message">TouchPause se ha añadido a Ajustes rápidos</string>
+    <string name="tile_already_added_message">TouchPause ya está en Ajustes rápidos</string>
+    <string name="tile_not_added_message">No se ha añadido el mosaico de TouchPause</string>
+    <string name="tile_state_active">Entrada táctil en pausa</string>
+    <string name="tile_state_inactive">Toca para pausar la entrada táctil</string>
+    <string name="tile_state_description_active">La entrada táctil está en pausa. Pulsa la tecla de reactivación para restablecerla.</string>
+    <string name="tile_state_description_inactive">La entrada táctil está activa. Toca para pausarla.</string>
+
+    <string name="safety_header">Seguridad</string>
+    <string name="release_key_title">Tecla de reactivación</string>
+    <string name="release_volume_down">Bajar volumen</string>
+    <string name="release_volume_up">Subir volumen</string>
+    <string name="release_power">Encendido</string>
+    <string name="release_key_next_session_summary"><xliff:g id="release_key">%1$s</xliff:g> para el siguiente bloqueo. Un bloqueo activo conserva su tecla de reactivación original.</string>
+
+    <string name="accessibility_setup_title">Configurar el modo sin root</string>
+    <string name="accessibility_setup_summary">En Android 14 o posterior, activa TouchPause en Accesibilidad para pausar la entrada táctil sin root.</string>
+    <string name="accessibility_consent_required_summary">Revisa la información sobre Accesibilidad antes de activar el modo sin root.</string>
+    <string name="accessibility_enabled_summary">El modo sin root está listo. Usa una tecla de volumen para restablecer la entrada táctil.</string>
+    <string name="accessibility_waiting_summary">TouchPause está activado y esperando a que se conecte su servicio de Accesibilidad.</string>
+    <string name="accessibility_touch_exploration_summary">La exploración táctil está activa, por lo que TouchPause debe recurrir a su alternativa con root.</string>
+    <string name="accessibility_key_filter_conflict_summary">Otro servicio de Accesibilidad está filtrando las teclas físicas, por lo que TouchPause debe recurrir a su alternativa con root.</string>
+    <string name="accessibility_power_fallback_summary">La tecla de encendido no permite restablecer de forma fiable el modo sin root, por lo que TouchPause debe recurrir a su alternativa con root.</string>
+    <string name="accessibility_unsupported_summary">El modo sin root requiere Android 14 o posterior.</string>
+    <string name="accessibility_service_label">Control táctil de TouchPause</string>
+    <string name="accessibility_service_summary">Pausa la entrada de la pantalla táctil hasta que se pulsa la tecla de volumen seleccionada.</string>
+    <string name="accessibility_service_description">Mientras la entrada táctil está en pausa, TouchPause recibe los movimientos de la pantalla táctil y del lápiz óptico, incluidos los datos de posición y tiempo, y todos los eventos de las teclas físicas. Procesa estos eventos solo en el dispositivo, utiliza los eventos de teclas únicamente para detectar la tecla de volumen seleccionada, reenvía los de otras teclas y descarta todos los eventos de inmediato. Nunca lee el contenido de la pantalla; tampoco almacena ni comparte eventos de entrada.</string>
+    <string name="accessibility_disclosure_title">¿Permitir el control táctil sin root?</string>
+    <string name="accessibility_disclosure_message">Para pausar la entrada táctil sin root, TouchPause usa el servicio de Accesibilidad de Android para acceder a los movimientos sin procesar de la pantalla táctil y del lápiz óptico, incluidos los datos de posición y tiempo de los toques y del lápiz, y a todos los eventos de las teclas físicas mientras la entrada táctil está en pausa. Impide que otras aplicaciones reciban los movimientos de la pantalla táctil y del lápiz óptico, procesa todos los eventos solo en el dispositivo, utiliza los eventos de teclas únicamente para detectar la tecla de volumen seleccionada y reenvía los de todas las demás teclas. Descarta todos los eventos de inmediato. Nunca lee el contenido de la pantalla; tampoco almacena estos eventos ni los comparte con nadie.</string>
+    <string name="accessibility_disclosure_agree">Aceptar y continuar</string>
+    <string name="accessibility_disclosure_decline">Ahora no</string>
+    <string name="root_fallback_title">Cuándo se usa root</string>
+    <string name="root_fallback_summary">Se requieren root y la aprobación del gestor de root en Android 13 o versiones anteriores, al elegir la tecla de encendido o cuando la captura sin root no está disponible. TouchPause solo solicita root cuando es necesario.</string>
+
+    <string name="feedback_header">Avisos</string>
+    <string name="feedback_start_message_title">Mensaje al pausar la entrada táctil</string>
+    <string name="feedback_start_vibration_title">Vibrar al pausar la entrada táctil</string>
+    <string name="feedback_stop_message_title">Mensaje al restablecer la entrada táctil</string>
+    <string name="feedback_stop_vibration_title">Vibrar al restablecer la entrada táctil</string>
+    <string name="touch_block_started">TouchPause: entrada táctil en pausa</string>
+    <string name="touch_block_released">TouchPause: entrada táctil restablecida</string>
+    <string name="root_backend_error">TouchPause no ha podido iniciar el control táctil con root. Comprueba el acceso root e inténtalo de nuevo.</string>
+    <string name="accessibility_not_ready">El modo sin root no está listo. Abre TouchPause y termina de configurar Accesibilidad.</string>
+
+    <string name="about_header">Acerca de</string>
+    <string name="app_language_title">Idioma de la aplicación</string>
+    <string name="app_language_system">Predeterminado del sistema</string>
+    <string name="privacy_license_source_title">Privacidad, licencia y código fuente</string>
+    <string name="privacy_license_source_summary">Sin transmisión ni retención de datos, sin anuncios y sin acceso a la red. Toca para ver los detalles.</string>
+    <string name="about_dialog_title">Privacidad, licencia y código fuente</string>
+    <string name="about_dialog_message">TouchPause funciona íntegramente en tu dispositivo. Nunca lee el contenido de la pantalla y no almacena, envía ni comparte eventos táctiles, del lápiz óptico o de teclas. El modo root lee temporalmente los dispositivos de entrada solo mientras está activo un bloqueo iniciado por el usuario.\n\nTouchPause tiene licencia GPL-3.0-or-later. La herramienta blockevent incluida tiene licencia Apache-2.0. Código fuente y avisos completos: github.com/bzhangj13zzz/touchpause</string>
+    <string name="open_privacy_policy">Política de privacidad completa</string>
+    <string name="no_browser_available">No hay ningún navegador disponible para abrir la política de privacidad.</string>
+    <string name="close">Cerrar</string>
+</resources>

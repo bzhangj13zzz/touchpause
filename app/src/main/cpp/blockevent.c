@@ -3,8 +3,9 @@ blockevent.c - blockevent for Android v0.4.6
 
 Copyright 2022 N. Melih Sensoy
 
-Modified 2026-08-12 for TouchQuell: multi-node release-key monitoring,
-single-instance locking, readiness signaling, and fail-safe input polling.
+Modified 2026-08-12 and 2026-08-16 for TouchPause: multi-node touchscreen and
+release-key monitoring, single-instance locking, readiness signaling, and
+fail-safe input polling.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -35,10 +36,10 @@ limitations under the License.
 #include <errno.h>
 #include <limits.h>
 
-#define VERSION "0.4.6-touchquell.1"
+#define VERSION "0.4.6-touchpause.2"
 #define DEV_DIR "/dev/input"
 #define VIRTUAL_DEV_LOC "/dev/uinput"
-#define VIRTUAL_DEV_NAME "touchquell-input-"VERSION"_virtual_dev"
+#define VIRTUAL_DEV_NAME "touchpause-input-"VERSION"_virtual_dev"
 #define PRESET_DEV_CNT 4
 #define POLL_TIMEOUT_MS 250
 #define READY_MESSAGE "BLOCKER_READY"
@@ -603,6 +604,38 @@ static int scan_devices(uint8_t classes, uint8_t print_flags)
 }
 
 /**
+ * Opens every direct-touch node so foldable and attached displays are blocked together.
+ * Input: verbosity flags. Output: candidate count, or -1 when /dev/input cannot be scanned.
+ */
+static int scan_touchscreen_candidates(uint8_t print_flags)
+{
+    char devloc[PATH_MAX];
+    DIR *dir;
+    struct dirent *dp;
+    int candidates = 0;
+
+    dir = opendir(DEV_DIR);
+    if (dir == NULL)
+        return -1;
+
+    while ((dp = readdir(dir)) != NULL) {
+        uint8_t touchscreen_class = DEV_TOUCHSCREEN;
+
+        if (!is_event_device_name(dp->d_name))
+            continue;
+        if (snprintf(devloc, sizeof(devloc), "%s/%s", DEV_DIR, dp->d_name) >=
+            (int)sizeof(devloc))
+            continue;
+
+        if (open_device(devloc, &touchscreen_class, print_flags, false, ROLE_BLOCK) >= 0)
+            candidates++;
+    }
+
+    closedir(dir);
+    return candidates;
+}
+
+/**
  * Opens every input node that advertises trigger_code.
  * Input: Linux EV_KEY code. Output: candidate count, or -1 on scan failure.
  */
@@ -885,10 +918,19 @@ int main(int argc, char *argv[])
             return 1;
     }
 
-    // start scanning for preset devices
+    /* A phone may expose more than one direct touchscreen (for example, a foldable). */
     if (flags & ST_SCAN){
         print_all("[INFO] Device scan has started with flag:'%lu'\n", NULL, flags, print_flags);
-        res = scan_devices(classes, print_flags);
+        if (classes & DEV_TOUCHSCREEN) {
+            res = scan_touchscreen_candidates(print_flags);
+            if (res <= 0) {
+                print_err("[ERR] no direct touchscreen input device was found.\n",
+                    NULL, 0, print_flags);
+                return 1;
+            }
+            classes &= ~DEV_TOUCHSCREEN;
+        }
+        res = classes != 0 ? scan_devices(classes, print_flags) : 0;
         if (res < 0){
             print_err("[ERR] Failed to open '%s'.\n", DEV_DIR, 0, print_flags);
             return 1;

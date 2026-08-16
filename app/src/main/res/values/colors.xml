@@ -2,8 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="touchquell_indigo">#312E81</color>
-    <color name="touchquell_indigo_dark">#1E1B4B</color>
-    <color name="touchquell_mint">#6EE7B7</color>
-    <color name="touchquell_mint_dark">#34D399</color>
+    <color name="touchpause_indigo">#312E81</color>
+    <color name="touchpause_indigo_dark">#1E1B4B</color>
+    <color name="touchpause_mint">#6EE7B7</color>
+    <color name="touchpause_mint_dark">#34D399</color>
 </resources>

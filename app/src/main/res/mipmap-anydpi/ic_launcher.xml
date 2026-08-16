@@ -5,7 +5,7 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
     <path
-        android:fillColor="@color/touchquell_indigo"
+        android:fillColor="@color/touchpause_indigo"
         android:pathData="M18,0H90C99.94,0 108,8.06 108,18V90C108,99.94 99.94,108 90,108H18C8.06,108 0,99.94 0,90V18C0,8.06 8.06,0 18,0Z" />
     <group
         android:scaleX="2.5"
@@ -14,19 +14,13 @@
         android:translateY="24">
         <path
             android:fillColor="@android:color/transparent"
-            android:pathData="M18.35,16.8A8,8 0,1 0,16.8,18.35"
-            android:strokeColor="@color/touchquell_mint"
+            android:pathData="M6.34,17.66A8,8 0,1 1,17.66,17.66"
+            android:strokeColor="@color/touchpause_mint"
             android:strokeLineCap="round"
             android:strokeLineJoin="round"
             android:strokeWidth="2" />
         <path
-            android:fillColor="@android:color/transparent"
-            android:pathData="M16.8,16.8L21,21"
-            android:strokeColor="@color/touchquell_mint"
-            android:strokeLineCap="round"
-            android:strokeWidth="2" />
-        <path
-            android:fillColor="@color/touchquell_mint"
-            android:pathData="M12,9.75A2.25,2.25 0,1 1,12,14.25A2.25,2.25 0,1 1,12,9.75Z" />
+            android:fillColor="@color/touchpause_mint"
+            android:pathData="M8.75,8.25H11V15.75H8.75ZM13,8.25H15.25V15.75H13Z" />
     </group>
 </vector>

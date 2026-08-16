@@ -1,36 +1,36 @@
 # Notices and attribution
 
-## TouchQuell
+## TouchPause
 
-TouchQuell is a substantially modified and rebranded derivative of Snowy.
+TouchPause is a substantially modified and rebranded derivative of Snowy.
 
-- TouchQuell modifications: Copyright (C) 2026 bzhangj13zzz
+- TouchPause modifications: Copyright (C) 2026 bzhangj13zzz
 - Original project: [Snowy](https://github.com/nmelihsensoy/snowy)
 - Original copyright: Copyright (C) 2022 N. Melih Sensoy
 - License: GNU General Public License, version 3 or later
 
-The TouchQuell name, application ID, user interface, rootless Android 14
+The TouchPause name, application ID, user interface, rootless Android 14
 backend, state ownership, recovery behavior, native integration, build, and
 documentation materially differ from the original project.
 
 **Modification notice:** the original work was substantially modified and
-rebranded as TouchQuell on 2026-08-12. The original author is not affiliated
+rebranded as TouchPause on 2026-08-16. The original author is not affiliated
 with, responsible for, or endorsing this derivative.
 
 The complete GPLv3 terms are in [LICENSE](LICENSE).
 
 ## blockevent native helper
 
-TouchQuell includes a modified version of
+TouchPause includes a modified version of
 [blockevent](https://github.com/nmelihsensoy/blockevent):
 
 - Copyright (C) 2022 N. Melih Sensoy
 - License: Apache License 2.0
 - Local license: [app/src/main/cpp/LICENSE.blockevent](app/src/main/cpp/LICENSE.blockevent)
-- Packaged binary name: `touchquell-input.so`
+- Packaged binary name: `libtouchpause-input.so`
 
-**Modification notice (2026-08-12):** the vendored helper was changed for
-multi-node release-key discovery, direct-touchscreen classification, safe
+**Modification notice (2026-08-12 and 2026-08-16):** the vendored helper was
+changed for multi-node release-key and direct-touchscreen discovery, safe
 single-instance locking through `touch-blocker.lock`, readiness signaling,
 fail-safe input polling and cleanup, and Android 16 KiB page-compatible builds.
 
@@ -40,7 +40,7 @@ the packaged ABI binaries.
 
 ## Android and build dependencies
 
-TouchQuell uses AndroidX, Material Components for Android, Kotlin, and the
+TouchPause uses AndroidX, Material Components for Android, Kotlin, and the
 Gradle wrapper. These projects are distributed under their respective terms;
 the directly used components are predominantly licensed under Apache License
 2.0. Their names identify their upstream projects and do not imply endorsement.

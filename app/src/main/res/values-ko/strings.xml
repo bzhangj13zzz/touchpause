@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="quick_settings_header">빠른 설정</string>
+    <string name="add_tile_title">TouchPause 타일 추가</string>
+    <string name="tile_setup_summary">빠른 설정에 TouchPause를 추가하여 탭 한 번으로 터치를 제어하세요.</string>
+    <string name="tile_setup_manual">화면 상단에서 아래로 두 번 스와이프하고 수정을 탭한 다음 TouchPause를 빠른 설정으로 드래그하세요.</string>
+    <string name="tile_added_summary">빠른 설정에서 TouchPause를 사용할 수 있습니다.</string>
+    <string name="tile_added_message">TouchPause가 빠른 설정에 추가되었습니다</string>
+    <string name="tile_already_added_message">TouchPause가 이미 빠른 설정에 있습니다</string>
+    <string name="tile_not_added_message">TouchPause 타일이 추가되지 않았습니다</string>
+    <string name="tile_state_active">터치 일시중지됨</string>
+    <string name="tile_state_inactive">탭하여 터치 일시중지</string>
+    <string name="tile_state_description_active">터치가 일시중지되었습니다. 해제 키를 눌러 터치를 복원하세요.</string>
+    <string name="tile_state_description_inactive">터치가 활성 상태입니다. 탭하여 터치를 일시중지하세요.</string>
+
+    <string name="safety_header">안전</string>
+    <string name="release_key_title">해제 키</string>
+    <string name="release_volume_down">볼륨 다운 키</string>
+    <string name="release_volume_up">볼륨 업 키</string>
+    <string name="release_power">전원</string>
+    <string name="release_key_next_session_summary">다음번에 터치를 일시중지할 때 사용할 해제 키: <xliff:g id="release_key">%1$s</xliff:g>. 현재 일시중지에는 기존 해제 키가 유지됩니다.</string>
+
+    <string name="accessibility_setup_title">루트 권한 없는 모드 설정</string>
+    <string name="accessibility_setup_summary">Android 14 이상에서는 접근성에서 TouchPause를 사용 설정하여 루트 권한 없이 터치를 일시중지할 수 있습니다.</string>
+    <string name="accessibility_consent_required_summary">루트 권한 없는 모드를 사용 설정하기 전에 접근성 기능 사용에 관한 고지 내용을 확인하세요.</string>
+    <string name="accessibility_enabled_summary">루트 권한 없는 모드를 사용할 준비가 되었습니다. 볼륨 키를 사용하여 터치를 복원하세요.</string>
+    <string name="accessibility_waiting_summary">TouchPause가 사용 설정되었으며 접근성 서비스 연결을 기다리는 중입니다.</string>
+    <string name="accessibility_touch_exploration_summary">터치하여 탐색이 활성화되어 있어 TouchPause에서 루트 대체 방식을 사용해야 합니다.</string>
+    <string name="accessibility_key_filter_conflict_summary">다른 접근성 서비스에서 하드웨어 키를 필터링하고 있어 TouchPause에서 루트 대체 방식을 사용해야 합니다.</string>
+    <string name="accessibility_power_fallback_summary">전원 키로는 루트 권한 없는 모드에서 터치를 안정적으로 복원할 수 없으므로 TouchPause에서 루트 대체 방식을 사용해야 합니다.</string>
+    <string name="accessibility_unsupported_summary">루트 권한 없는 모드를 사용하려면 Android 14 이상이 필요합니다.</string>
+    <string name="accessibility_service_label">TouchPause 터치 제어</string>
+    <string name="accessibility_service_summary">선택한 볼륨 키를 누를 때까지 터치스크린 입력을 일시중지합니다.</string>
+    <string name="accessibility_service_description">터치가 일시중지된 동안 TouchPause는 위치와 타이밍 정보를 포함한 터치스크린 및 스타일러스 동작과 모든 하드웨어 키 이벤트를 수신합니다. 이러한 이벤트는 기기에서만 처리하며, 키 이벤트는 선택한 볼륨 키를 감지하는 용도로만 사용하고 그 밖의 키는 전달합니다. 모든 이벤트는 즉시 폐기합니다. 화면 콘텐츠를 읽거나 입력 이벤트를 저장 또는 공유하지 않습니다.</string>
+    <string name="accessibility_disclosure_title">루트 권한 없는 터치 제어를 허용할까요?</string>
+    <string name="accessibility_disclosure_message">루트 권한 없이 터치를 일시중지하기 위해 TouchPause는 Android 접근성 서비스를 사용하여 터치가 일시중지된 동안 터치 및 스타일러스 위치와 타이밍 정보를 포함한 원시 터치스크린 및 스타일러스 동작과 모든 하드웨어 키 이벤트에 액세스합니다. 터치스크린 및 스타일러스 동작이 다른 앱에 전달되지 않도록 차단하고, 모든 이벤트를 기기에서만 처리하며, 키 이벤트는 선택한 볼륨 키를 감지하는 용도로만 사용하고 그 밖의 모든 키는 전달합니다. 모든 이벤트는 즉시 폐기합니다. 화면 콘텐츠를 읽거나 이러한 이벤트를 저장하거나 누구와도 공유하지 않습니다.</string>
+    <string name="accessibility_disclosure_agree">동의하고 계속</string>
+    <string name="accessibility_disclosure_decline">지금은 안 함</string>
+    <string name="root_fallback_title">루트 권한을 사용하는 경우</string>
+    <string name="root_fallback_summary">Android 13 이하, 전원 키를 해제 키로 선택한 경우 또는 루트 권한 없는 캡처를 사용할 수 없는 경우에는 루트 권한 및 루트 관리자 승인이 필요합니다. TouchPause는 필요할 때만 루트 권한을 요청합니다.</string>
+
+    <string name="feedback_header">피드백</string>
+    <string name="feedback_start_message_title">터치 일시중지 시 메시지 표시</string>
+    <string name="feedback_start_vibration_title">터치 일시중지 시 진동</string>
+    <string name="feedback_stop_message_title">터치 복원 시 메시지 표시</string>
+    <string name="feedback_stop_vibration_title">터치 복원 시 진동</string>
+    <string name="touch_block_started">TouchPause: 터치 일시중지됨</string>
+    <string name="touch_block_released">TouchPause: 터치 복원됨</string>
+    <string name="root_backend_error">TouchPause에서 루트 터치 제어를 시작할 수 없습니다. 루트 권한을 확인하고 다시 시도하세요.</string>
+    <string name="accessibility_not_ready">루트 권한 없는 모드를 사용할 준비가 되지 않았습니다. TouchPause를 열어 접근성 설정을 완료하세요.</string>
+
+    <string name="about_header">정보</string>
+    <string name="app_language_title">앱 언어</string>
+    <string name="app_language_system">시스템 기본값</string>
+    <string name="privacy_license_source_title">개인정보 보호, 라이선스 및 소스 코드</string>
+    <string name="privacy_license_source_summary">데이터를 전송하거나 보관하지 않으며 광고가 없고 네트워크에 액세스하지도 않습니다. 탭하여 세부정보를 확인하세요.</string>
+    <string name="about_dialog_title">개인정보 보호, 라이선스 및 소스 코드</string>
+    <string name="about_dialog_message">TouchPause는 기기에서만 실행됩니다. 화면 콘텐츠를 읽지 않으며 터치, 스타일러스 또는 키 이벤트를 저장, 전송 또는 공유하지 않습니다. 루트 모드는 사용자가 시작한 터치 차단이 활성화된 동안에만 입력 장치를 일시적으로 읽습니다.\n\nTouchPause는 GPL-3.0-or-later에 따라 제공됩니다. 함께 제공되는 blockevent 도우미에는 Apache-2.0이 적용됩니다. 소스 코드 및 전체 고지: github.com/bzhangj13zzz/touchpause</string>
+    <string name="open_privacy_policy">전체 개인정보처리방침</string>
+    <string name="no_browser_available">개인정보처리방침을 열 수 있는 브라우저가 없습니다.</string>
+    <string name="close">닫기</string>
+</resources>

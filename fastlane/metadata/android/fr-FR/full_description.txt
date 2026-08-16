@@ -1,0 +1,30 @@
+TouchPause ajoute aux Réglages rapides une simple tuile qui suspend temporairement la saisie sur l’écran tactile sans arrêter l’application, la vidéo ou tout autre contenu déjà affiché.
+
+Utilisez-la pour nettoyer votre écran, décalquer une image, faire une présentation sans appuis accidentels ou éviter de toucher les commandes pendant la lecture d’un contenu multimédia.
+
+FONCTIONNEMENT
+
+• Ajoutez la tuile TouchPause aux Réglages rapides.
+• Choisissez Augmenter le volume, Baisser le volume ou Marche/Arrêt comme touche physique de réactivation.
+• Appuyez sur la tuile pour suspendre le tactile.
+• Appuyez à tout moment sur la touche sélectionnée pour rétablir le tactile.
+
+MODE SANS ROOT SOUS ANDROID 14 OU VERSION ULTÉRIEURE
+
+TouchPause peut utiliser un service d’Accessibilité Android facultatif pour suspendre les mouvements de l’écran tactile et du stylet sans root. Uniquement pendant une pause active, le service reçoit les mouvements de l’écran tactile et du stylet, notamment les données de position et d’horodatage, et filtre les touches physiques. Il reçoit tous les événements des touches physiques uniquement pour détecter la touche de volume sélectionnée et transmet ceux des autres touches. Tous les événements sont traités uniquement sur l’appareil et immédiatement supprimés. TouchPause ne lit jamais le contenu de l’écran et ne stocke ni ne partage les événements tactiles, de stylet ou de touches.
+
+Le mode sans root utilise Augmenter le volume ou Baisser le volume comme touche de réactivation. La fonctionnalité Explorer au toucher ou un autre service qui filtre les touches physiques peut rendre la capture sans root indisponible.
+
+SOLUTION DE SECOURS AVEC ROOT
+
+Sous Android 7 à 13, avec la touche Marche/Arrêt ou en cas de configuration d’Accessibilité incompatible, un appareil rooté et l’autorisation du gestionnaire root sont nécessaires. Pendant une pause lancée par l’utilisateur, l’outil inclus lit temporairement les périphériques d’entrée Android et prend le contrôle exclusif de l’écran tactile. Il libère ce contrôle lorsque la touche physique sélectionnée est pressée, que l’outil s’arrête ou que l’appareil redémarre.
+
+LA CONFIDENTIALITÉ AVANT TOUT
+
+• Aucune autorisation d’accès à Internet
+• Aucune analyse ni télémétrie
+• Aucune publicité ni aucun compte
+• Aucune collecte ni aucun partage de données hors de l’appareil
+• Vos préférences restent sur votre appareil
+
+TouchPause est un logiciel libre et open source sous licence GPL-3.0-or-later. L’outil blockevent inclus est sous licence Apache-2.0.

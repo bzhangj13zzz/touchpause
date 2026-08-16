@@ -1,0 +1,1 @@
+Pause a entrada por toque nas Configurações rápidas sem parar o conteúdo.

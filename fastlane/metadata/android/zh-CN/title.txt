@@ -1,0 +1,1 @@
+TouchPause：触摸屏锁定

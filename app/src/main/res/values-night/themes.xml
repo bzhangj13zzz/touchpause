@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.TouchQuell" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/touchquell_indigo</item>
-        <item name="colorPrimaryVariant">@color/touchquell_indigo_dark</item>
+    <style name="Theme.TouchPause" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/touchpause_indigo</item>
+        <item name="colorPrimaryVariant">@color/touchpause_indigo_dark</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/touchquell_mint</item>
-        <item name="colorSecondaryVariant">@color/touchquell_mint_dark</item>
-        <item name="colorOnSecondary">@color/touchquell_indigo_dark</item>
-        <item name="android:statusBarColor">@color/touchquell_indigo_dark</item>
+        <item name="colorSecondary">@color/touchpause_mint</item>
+        <item name="colorSecondaryVariant">@color/touchpause_mint_dark</item>
+        <item name="colorOnSecondary">@color/touchpause_indigo_dark</item>
+        <item name="android:statusBarColor">@color/touchpause_indigo_dark</item>
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
 
-    <style name="Theme.TouchQuell.Transparent" parent="android:style/Theme.Translucent.NoTitleBar">
+    <style name="Theme.TouchPause.Transparent" parent="android:style/Theme.Translucent.NoTitleBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowDisablePreview">true</item>

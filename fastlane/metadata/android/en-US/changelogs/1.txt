@@ -1,0 +1,1 @@
+Initial TouchPause release with Quick Settings control, Android 14+ rootless mode, a safe root fallback, nine UI languages, and 16 KB page-size support.

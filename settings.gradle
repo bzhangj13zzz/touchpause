@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "TouchQuell"
+rootProject.name = "TouchPause"
 include ':app'

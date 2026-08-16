@@ -1,53 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">TouchQuell</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Product names and legal identifiers stay identical in every locale. -->
+    <string name="app_name" translatable="false">TouchPause</string>
 
+    <!-- Quick Settings is Android's system panel of tiles. -->
     <string name="quick_settings_header">Quick Settings</string>
-    <string name="add_tile_title">Add TouchQuell tile</string>
-    <string name="tile_setup_summary">Add TouchQuell to Quick Settings for one-tap touch control.</string>
-    <string name="tile_setup_manual">Swipe down twice, tap Edit, then drag TouchQuell into Quick Settings.</string>
-    <string name="tile_added_summary">TouchQuell is ready in Quick Settings.</string>
-    <string name="tile_added_message">TouchQuell was added to Quick Settings</string>
-    <string name="tile_already_added_message">TouchQuell is already in Quick Settings</string>
-    <string name="tile_not_added_message">The TouchQuell tile was not added</string>
+    <string name="add_tile_title">Add TouchPause tile</string>
+    <string name="tile_setup_summary">Add TouchPause to Quick Settings for one-tap touch control.</string>
+    <string name="tile_setup_manual">Swipe down twice, tap Edit, then drag TouchPause into Quick Settings.</string>
+    <string name="tile_added_summary">TouchPause is ready in Quick Settings.</string>
+    <string name="tile_added_message">TouchPause was added to Quick Settings</string>
+    <string name="tile_already_added_message">TouchPause is already in Quick Settings</string>
+    <string name="tile_not_added_message">The TouchPause tile was not added</string>
     <string name="tile_state_active">Touch paused</string>
     <string name="tile_state_inactive">Tap to pause touch</string>
+    <string name="tile_state_description_active">Touch is paused. Press the release key to restore touch.</string>
+    <string name="tile_state_description_inactive">Touch is active. Tap to pause touch.</string>
 
     <string name="safety_header">Safety</string>
+    <!-- Release key means the physical hardware key that restores touchscreen input. -->
     <string name="release_key_title">Release key</string>
     <string name="release_volume_down">Volume Down</string>
     <string name="release_volume_up">Volume Up</string>
     <string name="release_power">Power</string>
-    <string name="release_key_next_session_summary">%1$s for the next block. An active block keeps its original release key.</string>
+    <string name="release_key_next_session_summary"><xliff:g id="release_key">%1$s</xliff:g> for the next block. An active block keeps its original release key.</string>
+
+    <!-- Accessibility is Android's named system feature/API; root means superuser access. -->
     <string name="accessibility_setup_title">Set up rootless mode</string>
-    <string name="accessibility_setup_summary">On Android 14 or newer, enable TouchQuell in Accessibility to block touch without root.</string>
-    <string name="accessibility_enabled_summary">Rootless mode is ready. Use a volume key to release touch.</string>
-    <string name="accessibility_waiting_summary">TouchQuell is enabled and waiting for its Accessibility service to connect.</string>
-    <string name="accessibility_touch_exploration_summary">Touch exploration is active, so TouchQuell must use its root fallback.</string>
-    <string name="accessibility_key_filter_conflict_summary">Another Accessibility service is filtering hardware keys, so TouchQuell must use its root fallback.</string>
-    <string name="accessibility_power_fallback_summary">Power cannot reliably release rootless mode, so TouchQuell must use its root fallback.</string>
+    <string name="accessibility_setup_summary">On Android 14 or newer, enable TouchPause in Accessibility to pause touch without root.</string>
+    <string name="accessibility_consent_required_summary">Review the Accessibility disclosure before enabling rootless mode.</string>
+    <string name="accessibility_enabled_summary">Rootless mode is ready. Use a volume key to restore touch.</string>
+    <string name="accessibility_waiting_summary">TouchPause is enabled and waiting for its Accessibility service to connect.</string>
+    <string name="accessibility_touch_exploration_summary">Touch exploration is active, so TouchPause must use its root fallback.</string>
+    <string name="accessibility_key_filter_conflict_summary">Another Accessibility service is filtering hardware keys, so TouchPause must use its root fallback.</string>
+    <string name="accessibility_power_fallback_summary">Power cannot reliably restore rootless mode, so TouchPause must use its root fallback.</string>
     <string name="accessibility_unsupported_summary">Rootless mode requires Android 14 or newer.</string>
-    <string name="accessibility_service_label">TouchQuell touch control</string>
+    <string name="accessibility_service_label">TouchPause touch control</string>
     <string name="accessibility_service_summary">Pauses touchscreen input until the selected volume key is pressed.</string>
-    <string name="accessibility_service_description">TouchQuell captures touchscreen motion only while touch is paused. It never reads screen content. Press the selected volume key to restore touch.</string>
-    <string name="accessibility_setup_dialog_title">Enable rootless mode</string>
-    <string name="accessibility_setup_dialog_message">For an APK installed outside an app store, Android may first require App info → More → Allow restricted settings. Then enable TouchQuell in Accessibility.</string>
-    <string name="open_app_info">Open App info</string>
-    <string name="open_accessibility_settings">Accessibility settings</string>
+    <string name="accessibility_service_description">While touch is paused, TouchPause receives touchscreen and stylus motion, including positions and timing, and all hardware-key events. It processes these events only on your device, uses key events only to detect the selected volume key, forwards unrelated keys, and immediately discards every event. It never reads screen content, stores input events, or shares them.</string>
+    <string name="accessibility_disclosure_title">Allow rootless touch control?</string>
+    <string name="accessibility_disclosure_message">To pause touch without root, TouchPause uses Android’s Accessibility service to access raw touchscreen and stylus motion, including touch and stylus positions and timing, and all hardware-key events while touch is paused. It withholds touchscreen and stylus motion from other apps, processes all events only on your device, uses key events only to detect the selected volume key, and forwards all unrelated keys. It immediately discards every event. It never reads screen content, stores these events, or shares them with anyone.</string>
+    <string name="accessibility_disclosure_agree">Agree and continue</string>
+    <string name="accessibility_disclosure_decline">Not now</string>
     <string name="root_fallback_title">When root is used</string>
-    <string name="root_fallback_summary">Root and root-manager approval are required on Android 13 or older, for the Power release key, or when rootless capture is unavailable. TouchQuell requests root only when needed.</string>
+    <string name="root_fallback_summary">Root and root-manager approval are required on Android 13 or older, for the Power release key, or when rootless capture is unavailable. TouchPause requests root only when needed.</string>
 
     <string name="feedback_header">Feedback</string>
     <string name="feedback_start_message_title">Message when touch pauses</string>
     <string name="feedback_start_vibration_title">Vibrate when touch pauses</string>
     <string name="feedback_stop_message_title">Message when touch returns</string>
     <string name="feedback_stop_vibration_title">Vibrate when touch returns</string>
-    <string name="touch_block_started">TouchQuell: touch paused</string>
-    <string name="touch_block_released">TouchQuell: touch restored</string>
-    <string name="root_backend_error">TouchQuell could not start root touch blocking. Check root access and try again.</string>
-    <string name="accessibility_not_ready">TouchQuell is not ready yet. Wait for its Accessibility service to connect, then try again.</string>
+    <string name="touch_block_started">TouchPause: touch paused</string>
+    <string name="touch_block_released">TouchPause: touch restored</string>
+    <string name="root_backend_error">TouchPause could not start root touch control. Check root access and try again.</string>
+    <string name="accessibility_not_ready">Rootless mode is not ready. Open TouchPause and finish Accessibility setup.</string>
 
     <string name="about_header">About</string>
+    <string name="app_language_title">App language</string>
+    <string name="app_language_system">System default</string>
     <string name="privacy_license_source_title">Privacy, license &amp; source</string>
-    <string name="privacy_license_source_summary">TouchQuell collects or transmits no personal data and never reads screen content. The app is GPL-3.0-or-later; its bundled blockevent helper is Apache-2.0. Source: github.com/bzhangj13zzz/touchquell</string>
+    <string name="privacy_license_source_summary">No data transmission or retention, no ads, and no network access. Tap for details.</string>
+    <string name="about_dialog_title">Privacy, license &amp; source</string>
+    <string name="about_dialog_message">TouchPause runs entirely on your device. It never reads screen content or stores, sends, or shares touch, stylus, or key events. Root mode temporarily reads input devices only while a user-started block is active.\n\nTouchPause is GPL-3.0-or-later. Its bundled blockevent helper is Apache-2.0. Source and full notices: github.com/bzhangj13zzz/touchpause</string>
+    <string name="open_privacy_policy">Full privacy policy</string>
+    <string name="no_browser_available">No browser is available to open the privacy policy.</string>
+    <string name="privacy_policy_url" translatable="false">https://github.com/bzhangj13zzz/touchpause/blob/main/PRIVACY.md</string>
+    <string name="close">Close</string>
 </resources>

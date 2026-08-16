@@ -1,0 +1,1 @@
+Erste TouchPause-Version mit Steuerung über die Schnelleinstellungen, rootlosem Modus ab Android 14, sicherer Root-Alternative, neun UI-Sprachen und Unterstützung für Speicherseiten mit 16 KB.

@@ -1,0 +1,1 @@
+TouchPause: Bloqueio de toque
