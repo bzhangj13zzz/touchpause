@@ -5,19 +5,15 @@ TouchPause añade un sencillo mosaico a Ajustes rápidos que pausa temporalmente
 CÓMO FUNCIONA
 
 • Añade el mosaico de TouchPause a Ajustes rápidos.
-• Elige Subir volumen, Bajar volumen o Encendido como tecla física de reactivación.
+• Elige Subir volumen o Bajar volumen como tecla física de reactivación.
 • Toca el mosaico para pausar la entrada táctil.
 • Pulsa la tecla de reactivación seleccionada para restablecer la entrada táctil en cualquier momento.
 
-MODO SIN ROOT EN ANDROID 14 O POSTERIOR
+CONTROL TÁCTIL EN ANDROID 14 O POSTERIOR
 
-TouchPause puede usar un servicio opcional de Accesibilidad de Android para pausar los movimientos de la pantalla táctil y del lápiz óptico sin root. Solo durante una pausa activa, el servicio recibe los movimientos de la pantalla táctil y del lápiz óptico, incluidos los datos de posición y tiempo, y filtra las teclas físicas. Recibe todos los eventos de las teclas físicas únicamente para detectar la tecla de volumen seleccionada y reenvía los de otras teclas. Todos los eventos se procesan solo en el dispositivo y se descartan de inmediato. TouchPause nunca lee el contenido de la pantalla ni almacena ni comparte eventos táctiles, del lápiz óptico o de teclas.
+TouchPause usa un servicio de Accesibilidad de Android activado por el usuario para pausar los movimientos de la pantalla táctil y del lápiz óptico sin root. Solo durante una pausa activa, el servicio recibe los movimientos de la pantalla táctil y del lápiz óptico, incluidos los datos de posición y tiempo, y filtra las teclas físicas. Recibe todos los eventos de las teclas físicas únicamente para detectar la tecla de volumen seleccionada y reenvía los de otras teclas. Todos los eventos se procesan solo en el dispositivo y se descartan de inmediato. TouchPause nunca lee el contenido de la pantalla ni almacena ni comparte eventos táctiles, del lápiz óptico o de teclas.
 
-El modo sin root usa Subir volumen o Bajar volumen como tecla de reactivación. La exploración táctil u otro servicio que filtre teclas físicas puede hacer que la captura sin root no esté disponible.
-
-ALTERNATIVA CON ROOT
-
-En Android 7–13, con la tecla de reactivación Encendido o con configuraciones de Accesibilidad incompatibles, se necesita un dispositivo rooteado y la aprobación del gestor de root. Durante una pausa iniciada por el usuario, la herramienta incluida lee temporalmente los dispositivos de entrada de Android y toma el control exclusivo de la pantalla táctil. Libera ese control cuando se pulsa la tecla física seleccionada, la herramienta se detiene o el dispositivo se reinicia.
+TouchPause requiere Android 14 o posterior y usa Subir volumen o Bajar volumen como tecla de reactivación. La exploración táctil u otro servicio que filtre teclas físicas puede impedir la pausa táctil. La aplicación nunca solicita acceso root.
 
 PRUÉBALO PRIMERO
 
@@ -31,4 +27,4 @@ PRIVACIDAD DESDE EL DISEÑO
 • Los eventos táctiles y de teclas nunca salen del dispositivo
 • Las preferencias permanecen en tu dispositivo
 
-TouchPause es software de código abierto con licencia GPL-3.0-or-later. La herramienta blockevent incluida tiene licencia Apache-2.0. Google Play gestiona la compra vitalicia opcional; TouchPause no tiene un servidor operado por el desarrollador.
+TouchPause es software de código abierto con licencia GPL-3.0-or-later. Google Play gestiona la compra vitalicia opcional; TouchPause no tiene un servidor operado por el desarrollador.

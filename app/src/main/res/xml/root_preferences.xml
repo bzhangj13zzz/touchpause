@@ -26,11 +26,6 @@
             app:entryValues="@array/release_key_values"
             app:key="release_key"
             app:title="@string/release_key_title" />
-        <Preference
-            app:key="root_disclosure"
-            app:selectable="false"
-            app:summary="@string/root_fallback_summary"
-            app:title="@string/root_fallback_title" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/feedback_header">

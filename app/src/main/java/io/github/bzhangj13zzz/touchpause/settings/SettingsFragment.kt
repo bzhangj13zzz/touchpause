@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Icon
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
@@ -102,8 +101,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         val accessibilitySetup = findPreference<Preference>(KEY_ACCESSIBILITY_SETUP)
-        accessibilitySetup?.isVisible =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE
         accessibilitySetup?.setOnPreferenceClickListener {
             if (userPreferences.hasAccessibilityConsent()) {
                 openAccessibilitySettings()
@@ -153,14 +150,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         super.onDestroy()
     }
 
-    /** Uses Android 13's supported add-tile prompt, with manual guidance on older releases. */
+    /** Uses Android's supported user-initiated add-tile prompt. */
     private fun requestTileSetup() {
         val context = requireContext()
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            Toast.makeText(context, R.string.tile_setup_manual, Toast.LENGTH_LONG).show()
-            return
-        }
-
         val statusBarManager = context.getSystemService(StatusBarManager::class.java)
         if (statusBarManager == null) {
             Toast.makeText(context, R.string.tile_not_added_message, Toast.LENGTH_SHORT).show()
@@ -302,21 +294,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     private fun updateTileSetupSummary() {
-        val summary = when {
-            userPreferences.isTileAdded() -> R.string.tile_added_summary
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU -> R.string.tile_setup_manual
-            else -> R.string.tile_setup_summary
+        val summary = if (userPreferences.isTileAdded()) {
+            R.string.tile_added_summary
+        } else {
+            R.string.tile_setup_summary
         }
         findPreference<Preference>(KEY_TILE_SETUP)?.setSummary(summary)
     }
 
     private fun updateAccessibilitySummary() {
         val preference = findPreference<Preference>(KEY_ACCESSIBILITY_SETUP) ?: return
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            preference.setSummary(R.string.accessibility_unsupported_summary)
-            return
-        }
-
         val summary = when {
             !userPreferences.hasAccessibilityConsent() ->
                 R.string.accessibility_consent_required_summary
@@ -326,8 +313,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 R.string.accessibility_touch_exploration_summary
             AccessibilityStatus.hasKeyFilterConflict(requireContext()) ->
                 R.string.accessibility_key_filter_conflict_summary
-            !userPreferences.releaseKey().supportsAccessibility ->
-                R.string.accessibility_power_fallback_summary
             TouchBlockAccessibilityService.isReady() ->
                 R.string.accessibility_enabled_summary
             else -> R.string.accessibility_waiting_summary

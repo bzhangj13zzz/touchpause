@@ -1,1 +1,1 @@
-Initial TouchPause release with 10 free sessions, an optional lifetime unlock, Quick Settings control, Android 14+ rootless mode, a safe root fallback, nine UI languages, and 16 KB page-size support.
+Initial TouchPause release with 10 free sessions, an optional lifetime unlock, completely rootless Android 14+ touch control, Quick Settings operation, and nine UI languages.

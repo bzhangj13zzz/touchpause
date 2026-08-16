@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.VIBRATE" />
-
-    <permission
-        android:name="${applicationId}.permission.INTERNAL_FEEDBACK"
-        android:protectionLevel="signature" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="true"
+        tools:ignore="UnnecessaryRequiredFeature" />
 
     <application
         android:allowBackup="false"
@@ -17,8 +17,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TouchPause"
-        tools:targetApi="s">
+        android:theme="@style/Theme.TouchPause">
         <activity
             android:name=".settings.SettingsActivity"
             android:exported="true">
@@ -54,11 +53,9 @@
         <service
             android:name=".accessibility.TouchBlockAccessibilityService"
             android:description="@string/accessibility_service_description"
-            android:enabled="@bool/enable_accessibility_backend"
             android:exported="true"
             android:label="@string/accessibility_service_label"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            tools:targetApi="34">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
@@ -74,14 +71,6 @@
                 android:name="autoStoreLocales"
                 android:value="true" />
         </service>
-        <receiver
-            android:name=".root.RootBlockerStoppedReceiver"
-            android:exported="true"
-            android:permission="${applicationId}.permission.INTERNAL_FEEDBACK">
-            <intent-filter>
-                <action android:name="${applicationId}.action.ROOT_BLOCKER_STOPPED" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

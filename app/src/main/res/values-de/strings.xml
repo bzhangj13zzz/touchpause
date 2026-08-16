@@ -3,7 +3,6 @@
     <string name="quick_settings_header">Schnelleinstellungen</string>
     <string name="add_tile_title">TouchPause-Kachel hinzufügen</string>
     <string name="tile_setup_summary">Füge TouchPause den Schnelleinstellungen hinzu, um die Toucheingabe mit einem Tippen zu steuern.</string>
-    <string name="tile_setup_manual">Wische zweimal nach unten, tippe auf Bearbeiten und ziehe TouchPause in die Schnelleinstellungen.</string>
     <string name="tile_added_summary">TouchPause ist in den Schnelleinstellungen verfügbar.</string>
     <string name="tile_added_message">TouchPause wurde den Schnelleinstellungen hinzugefügt</string>
     <string name="tile_already_added_message">TouchPause ist bereits in den Schnelleinstellungen</string>
@@ -47,27 +46,22 @@
     <string name="release_key_title">Freigabetaste</string>
     <string name="release_volume_down">Leiser</string>
     <string name="release_volume_up">Lauter</string>
-    <string name="release_power">Ein/Aus</string>
     <string name="release_key_next_session_summary">Für die nächste Blockierung: <xliff:g id="release_key">%1$s</xliff:g>. Eine aktive Blockierung behält ihre ursprüngliche Freigabetaste.</string>
 
-    <string name="accessibility_setup_title">Modus ohne Root einrichten</string>
-    <string name="accessibility_setup_summary">Aktiviere TouchPause unter Android 14 oder neuer in den Bedienungshilfen, um die Toucheingabe ohne Root zu pausieren.</string>
-    <string name="accessibility_consent_required_summary">Lies vor dem Aktivieren des Modus ohne Root die Hinweise zu den Bedienungshilfen.</string>
-    <string name="accessibility_enabled_summary">Der Modus ohne Root ist bereit. Verwende eine Lautstärketaste, um die Toucheingabe wiederherzustellen.</string>
+    <string name="accessibility_setup_title">Touchsteuerung einrichten</string>
+    <string name="accessibility_setup_summary">Aktiviere TouchPause in den Bedienungshilfen, um die Toucheingabe zu pausieren.</string>
+    <string name="accessibility_consent_required_summary">Lies vor dem Aktivieren der Touchsteuerung die Hinweise zu den Bedienungshilfen.</string>
+    <string name="accessibility_enabled_summary">Die Touchsteuerung ist bereit. Verwende eine Lautstärketaste, um die Toucheingabe wiederherzustellen.</string>
     <string name="accessibility_waiting_summary">TouchPause ist aktiviert und wartet auf die Verbindung mit seinem Bedienungshilfendienst.</string>
-    <string name="accessibility_touch_exploration_summary">„Tippen &amp; Entdecken“ ist aktiv. TouchPause muss daher den Root-Fallback verwenden.</string>
-    <string name="accessibility_key_filter_conflict_summary">Ein anderer Bedienungshilfendienst filtert Hardwaretasten. TouchPause muss daher den Root-Fallback verwenden.</string>
-    <string name="accessibility_power_fallback_summary">Mit der Ein/Aus-Taste lässt sich der Modus ohne Root nicht zuverlässig wiederherstellen. TouchPause muss daher den Root-Fallback verwenden.</string>
-    <string name="accessibility_unsupported_summary">Der Modus ohne Root erfordert Android 14 oder neuer.</string>
+    <string name="accessibility_touch_exploration_summary">„Tippen &amp; Entdecken“ ist aktiv. TouchPause kann die Toucheingabe daher nicht pausieren.</string>
+    <string name="accessibility_key_filter_conflict_summary">Ein anderer Bedienungshilfendienst filtert Hardwaretasten. TouchPause kann die Toucheingabe daher nicht pausieren.</string>
     <string name="accessibility_service_label">TouchPause-Touchsteuerung</string>
     <string name="accessibility_service_summary">Pausiert die Touchscreen-Eingabe, bis die ausgewählte Lautstärketaste gedrückt wird.</string>
     <string name="accessibility_service_description">Während die Toucheingabe pausiert ist, empfängt TouchPause Bewegungsdaten vom Touchscreen und Eingabestift einschließlich Positions- und Zeitangaben sowie alle Ereignisse von Hardwaretasten. Die App verarbeitet diese Ereignisse nur auf dem Gerät, verwendet Tastenereignisse nur, um die ausgewählte Lautstärketaste zu erkennen, leitet Ereignisse anderer Tasten weiter und verwirft jedes Ereignis sofort. Sie liest niemals Bildschirminhalte, speichert keine Eingabeereignisse und teilt sie mit niemandem.</string>
-    <string name="accessibility_disclosure_title">Touchsteuerung ohne Root zulassen?</string>
-    <string name="accessibility_disclosure_message">Um die Toucheingabe ohne Root zu pausieren, greift TouchPause über den Bedienungshilfendienst von Android auf rohe Bewegungsdaten vom Touchscreen und Eingabestift einschließlich Positions- und Zeitangaben zu Berührungen und Eingabestiftbewegungen sowie auf alle Ereignisse von Hardwaretasten zu, während die Toucheingabe pausiert ist. Die App hält Bewegungsdaten vom Touchscreen und Eingabestift von anderen Apps zurück, verarbeitet alle Ereignisse nur auf dem Gerät, verwendet Tastenereignisse nur, um die ausgewählte Lautstärketaste zu erkennen, und leitet Ereignisse aller anderen Tasten weiter. Sie verwirft jedes Ereignis sofort. Sie liest niemals Bildschirminhalte, speichert diese Ereignisse nicht und teilt sie mit niemandem.</string>
+    <string name="accessibility_disclosure_title">Touchsteuerung zulassen?</string>
+    <string name="accessibility_disclosure_message">Um die Toucheingabe zu pausieren, greift TouchPause über den Bedienungshilfendienst von Android auf rohe Bewegungsdaten vom Touchscreen und Eingabestift einschließlich Positions- und Zeitangaben zu Berührungen und Eingabestiftbewegungen sowie auf alle Ereignisse von Hardwaretasten zu, während die Toucheingabe pausiert ist. Die App hält Bewegungsdaten vom Touchscreen und Eingabestift von anderen Apps zurück, verarbeitet alle Ereignisse nur auf dem Gerät, verwendet Tastenereignisse nur, um die ausgewählte Lautstärketaste zu erkennen, und leitet Ereignisse aller anderen Tasten weiter. Sie verwirft jedes Ereignis sofort. Sie liest niemals Bildschirminhalte, speichert diese Ereignisse nicht und teilt sie mit niemandem.</string>
     <string name="accessibility_disclosure_agree">Zustimmen und fortfahren</string>
     <string name="accessibility_disclosure_decline">Nicht jetzt</string>
-    <string name="root_fallback_title">Wann Root verwendet wird</string>
-    <string name="root_fallback_summary">Unter Android 13 oder älter, bei Verwendung der Ein/Aus-Taste oder wenn die Erfassung ohne Root nicht verfügbar ist, sind Root und die Genehmigung des Root-Managers erforderlich. TouchPause fordert Root nur bei Bedarf an.</string>
 
     <string name="feedback_header">Rückmeldung</string>
     <string name="feedback_start_message_title">Meldung beim Pausieren der Toucheingabe</string>
@@ -76,8 +70,7 @@
     <string name="feedback_stop_vibration_title">Beim Wiederherstellen der Toucheingabe vibrieren</string>
     <string name="touch_block_started">TouchPause: Toucheingabe pausiert</string>
     <string name="touch_block_released">TouchPause: Toucheingabe wiederhergestellt</string>
-    <string name="root_backend_error">TouchPause konnte die Touchsteuerung mit Root nicht starten. Prüfe den Root-Zugriff und versuche es noch einmal.</string>
-    <string name="accessibility_not_ready">Der Modus ohne Root ist nicht bereit. Öffne TouchPause und schließe die Einrichtung der Bedienungshilfen ab.</string>
+    <string name="accessibility_not_ready">Die Touchsteuerung ist nicht bereit. Öffne TouchPause und schließe die Einrichtung der Bedienungshilfen ab.</string>
 
     <string name="about_header">Über die App</string>
     <string name="app_language_title">App-Sprache</string>
@@ -85,7 +78,7 @@
     <string name="privacy_license_source_title">Datenschutz, Lizenz und Quellcode</string>
     <string name="privacy_license_source_summary">Die Touch-Steuerung bleibt auf dem Gerät, ohne Werbung, Analysen oder Entwicklerserver. Google Play wickelt den optionalen dauerhaften Kauf ab.</string>
     <string name="about_dialog_title">Datenschutz, Lizenz und Quellcode</string>
-    <string name="about_dialog_message">Die Touch-Steuerung läuft vollständig auf deinem Gerät. TouchPause liest niemals Bildschirminhalte und speichert, sendet oder teilt keine Touch-, Eingabestift- oder Tastenereignisse. Im Root-Modus werden Eingabegeräte nur vorübergehend gelesen, solange eine vom Benutzer gestartete Blockierung aktiv ist. Google Play wickelt den optionalen dauerhaften Kauf ab; TouchPause speichert nur die Testnutzung und den Zugriffsstatus.\n\nTouchPause steht unter der Lizenz GPL-3.0-or-later. Das enthaltene Hilfsprogramm blockevent steht unter der Lizenz Apache-2.0. Quellcode und vollständige Hinweise: github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">Die Touch-Steuerung läuft vollständig auf deinem Gerät. Während einer vom Benutzer gestarteten Pause empfängt die Bedienungshilfe Touch-, Eingabestift- und Hardwaretastenereignisse und verwirft sie sofort. TouchPause liest niemals Bildschirminhalte und speichert, sendet oder teilt keine Eingabeereignisse. Google Play wickelt den optionalen dauerhaften Kauf ab; TouchPause speichert nur die Testnutzung und den Zugriffsstatus.\n\nTouchPause steht unter der Lizenz GPL-3.0-or-later. Quellcode und vollständige Hinweise: github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Vollständige Datenschutzerklärung</string>
     <string name="no_browser_available">Zum Öffnen der Datenschutzerklärung ist kein Browser verfügbar.</string>
     <string name="close">Schließen</string>

@@ -29,16 +29,15 @@ class ApplicationIdentityTest {
     }
 
     @Test
-    fun packagedNativeHelperUsesTouchPauseIdentity() {
+    fun appRequiresAndroid14AndPackagesNoNativeHelper() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val nativeLibraryDirectory = File(appContext.applicationInfo.nativeLibraryDir)
 
+        assertEquals(34, appContext.applicationInfo.minSdkVersion)
         assertTrue(
-            "Expected the installed ABI's TouchPause helper in $nativeLibraryDirectory",
-            File(nativeLibraryDirectory, "libtouchpause-input.so").isFile
+            "The rootless build must not package native libraries in $nativeLibraryDirectory",
+            nativeLibraryDirectory.listFiles()?.none { it.extension == "so" } ?: true
         )
-        assertFalse(File(nativeLibraryDirectory, "touchpause-input.so").exists())
-        assertFalse(File(nativeLibraryDirectory, "touchquell-input.so").exists())
     }
 
     @Test

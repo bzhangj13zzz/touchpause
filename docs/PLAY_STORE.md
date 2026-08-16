@@ -8,9 +8,9 @@ submission.
 ## Implemented in the app
 
 - application ID `io.github.bzhangj13zzz.touchpause`, version code 1;
-- target and compile SDK 36, minimum SDK 24;
+- target and compile SDK 36, minimum SDK 34;
 - Android App Bundle build support and environment-only upload signing;
-- Android 14+ rootless operation with `isAccessibilityTool=false`;
+- completely rootless Android 14+ operation with `isAccessibilityTool=false`;
 - a standalone input-access disclosure and versioned affirmative consent;
 - no window-content access, developer analytics, ads, or developer telemetry;
 - privacy policy access from the About dialog;
@@ -19,7 +19,7 @@ submission.
   kept in the base install so selection also works offline;
 - 10 free successful sessions followed by an optional non-consumable
   `lifetime_access` Google Play purchase;
-- four native ABIs with 16 KiB-aligned ELF load segments; and
+- no native libraries, shell execution, or root integration; and
 - localized Play listing text for all nine app languages, plus a Play icon,
   localization-neutral feature graphic, and four current phone screenshots
   under `fastlane/metadata/android`.
@@ -48,8 +48,8 @@ submission.
 8. Recheck the four supplied screenshots against the signed release candidate
    and recapture any screen whose visible UI has changed.
 9. Generate APKs from the final signed AAB with `bundletool`; verify signatures,
-   resources, all required ABIs, and 16 KiB alignment; install those generated
-   APKs on representative devices.
+   resources, all nine bundled locales, and the absence of native libraries;
+   install those generated APKs on representative devices.
 
 ## Play Console declarations
 
@@ -79,9 +79,7 @@ submission.
   registered during creation, but the Console status still needs checking.
 - Reviewer instructions should use Android 14+, select a volume key, accept the
   disclosure, enable TouchPause, add the Quick Settings tile, pause touch, and
-  release it with that key. Root is not required for this review path.
-- Explain the optional root fallback and its bundled helper honestly in the
-  listing and review notes; do not imply Play's test devices can exercise root.
+  release it with that key. State explicitly that the app never requests root.
 
 ## Testing tracks and rollout
 
@@ -89,10 +87,8 @@ submission.
   candidate commit.
 - Test Android 14, 15, and 16; touchscreen and stylus input; gesture and
   three-button navigation; light and dark themes; every locale; another
-  key-filtering service; touch exploration; root denial; and a real rooted
-  phone for the native fallback.
-- Run on a 16 KiB-page 64-bit Android 15/16 image and verify the actual runtime
-  page size.
+  key-filtering service; touch exploration; service disablement; force-stop;
+  and reboot recovery.
 - Use internal testing first, then the account's required closed-testing path.
   Newer personal developer accounts may require at least 12 continuously opted-
   in testers for 14 days before production access.
@@ -122,7 +118,6 @@ are complete.
 - [Data safety guidance](https://support.google.com/googleplay/android-developer/answer/10787469)
 - [Android App Bundles](https://developer.android.com/guide/app-bundle)
 - [App signing and Play App Signing](https://developer.android.com/studio/publish/app-signing)
-- [16 KiB page-size support](https://developer.android.com/guide/practices/page-sizes)
 - [Store listing asset requirements](https://support.google.com/googleplay/android-developer/answer/9866151)
 - [Developer verification and package registration](https://support.google.com/googleplay/android-developer/answer/16984799)
 - [Health apps declaration](https://support.google.com/googleplay/android-developer/answer/14738291)

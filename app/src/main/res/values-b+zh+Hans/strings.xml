@@ -3,7 +3,6 @@
     <string name="quick_settings_header">快捷设置</string>
     <string name="add_tile_title">添加 TouchPause 图块</string>
     <string name="tile_setup_summary">将 TouchPause 添加到快捷设置，即可一键控制触控。</string>
-    <string name="tile_setup_manual">从屏幕顶部向下滑动两次，点按“编辑”，然后将 TouchPause 拖到快捷设置中。</string>
     <string name="tile_added_summary">TouchPause 已可在快捷设置中使用。</string>
     <string name="tile_added_message">TouchPause 已添加到快捷设置</string>
     <string name="tile_already_added_message">TouchPause 已在快捷设置中</string>
@@ -43,27 +42,22 @@
     <string name="release_key_title">恢复键</string>
     <string name="release_volume_down">音量调低键</string>
     <string name="release_volume_up">音量调高键</string>
-    <string name="release_power">电源键</string>
     <string name="release_key_next_session_summary">下一次暂停触控时使用的恢复键：<xliff:g id="release_key">%1$s</xliff:g>。当前暂停会继续使用原来的恢复键。</string>
 
-    <string name="accessibility_setup_title">设置无 root 权限模式</string>
-    <string name="accessibility_setup_summary">在 Android 14 或更高版本中，在无障碍设置里启用 TouchPause，即可在无 root 权限的情况下暂停触控。</string>
-    <string name="accessibility_consent_required_summary">请先查看无障碍功能披露说明，再启用无 root 权限模式。</string>
-    <string name="accessibility_enabled_summary">无 root 权限模式已准备就绪。使用音量键即可恢复触控。</string>
+    <string name="accessibility_setup_title">设置触控控制</string>
+    <string name="accessibility_setup_summary">在无障碍设置中启用 TouchPause，即可暂停触控。</string>
+    <string name="accessibility_consent_required_summary">请先查看无障碍功能披露说明，再启用触控控制。</string>
+    <string name="accessibility_enabled_summary">触控控制已准备就绪。使用音量键即可恢复触控。</string>
     <string name="accessibility_waiting_summary">TouchPause 已启用，正在等待连接无障碍服务。</string>
-    <string name="accessibility_touch_exploration_summary">触摸浏览处于启用状态，因此 TouchPause 必须改用 root 备用方式。</string>
-    <string name="accessibility_key_filter_conflict_summary">其他无障碍服务正在过滤硬件按键事件，因此 TouchPause 必须改用 root 备用方式。</string>
-    <string name="accessibility_power_fallback_summary">电源键无法可靠地恢复无 root 权限模式，因此 TouchPause 必须改用 root 备用方式。</string>
-    <string name="accessibility_unsupported_summary">无 root 权限模式需要 Android 14 或更高版本。</string>
+    <string name="accessibility_touch_exploration_summary">触摸浏览处于启用状态，因此 TouchPause 无法暂停触控。</string>
+    <string name="accessibility_key_filter_conflict_summary">其他无障碍服务正在过滤硬件按键事件，因此 TouchPause 无法暂停触控。</string>
     <string name="accessibility_service_label">TouchPause 触控控制</string>
     <string name="accessibility_service_summary">暂停触摸屏输入，直到按下所选音量键。</string>
     <string name="accessibility_service_description">触控暂停期间，TouchPause 会接收触摸屏和触控笔动作（包括位置和时间信息）以及所有硬件按键事件。它仅在设备上处理这些事件，仅使用按键事件来检测所选音量键，并转发所有无关按键。所有事件都会立即丢弃。它绝不会读取屏幕内容、存储输入事件或分享这些事件。</string>
-    <string name="accessibility_disclosure_title">允许无 root 权限的触控控制吗？</string>
-    <string name="accessibility_disclosure_message">为了在无 root 权限的情况下暂停触控，TouchPause 会使用 Android 的无障碍服务，在触控暂停期间访问原始触摸屏和触控笔动作（包括触摸及触控笔的位置和时间信息）以及所有硬件按键事件。它会拦截触摸屏和触控笔动作，不将其传递给其他应用；所有事件都仅在设备上处理；它仅使用按键事件来检测所选音量键，并转发所有无关按键。所有事件都会立即丢弃。它绝不会读取屏幕内容、存储这些事件或与任何人分享这些事件。</string>
+    <string name="accessibility_disclosure_title">允许触控控制吗？</string>
+    <string name="accessibility_disclosure_message">为了暂停触控，TouchPause 会使用 Android 的无障碍服务，在触控暂停期间访问原始触摸屏和触控笔动作（包括触摸及触控笔的位置和时间信息）以及所有硬件按键事件。它会拦截触摸屏和触控笔动作，不将其传递给其他应用；所有事件都仅在设备上处理；它仅使用按键事件来检测所选音量键，并转发所有无关按键。所有事件都会立即丢弃。它绝不会读取屏幕内容、存储这些事件或与任何人分享这些事件。</string>
     <string name="accessibility_disclosure_agree">同意并继续</string>
     <string name="accessibility_disclosure_decline">暂不</string>
-    <string name="root_fallback_title">何时使用 root 权限</string>
-    <string name="root_fallback_summary">在 Android 13 或更低版本中、选择电源键作为恢复键时，或无法使用无 root 权限的触控捕获时，需要 root 权限并在 root 管理器中授权。TouchPause 仅在需要时请求 root 权限。</string>
 
     <string name="feedback_header">反馈</string>
     <string name="feedback_start_message_title">触控暂停时显示消息</string>
@@ -72,8 +66,7 @@
     <string name="feedback_stop_vibration_title">触控恢复时振动</string>
     <string name="touch_block_started">TouchPause：触控已暂停</string>
     <string name="touch_block_released">TouchPause：触控已恢复</string>
-    <string name="root_backend_error">TouchPause 无法启动 root 触控控制。请检查 root 权限，然后重试。</string>
-    <string name="accessibility_not_ready">无 root 权限模式尚未准备就绪。请打开 TouchPause 并完成无障碍设置。</string>
+    <string name="accessibility_not_ready">触控控制尚未准备就绪。请打开 TouchPause 并完成无障碍设置。</string>
 
     <string name="about_header">关于</string>
     <string name="app_language_title">应用语言</string>
@@ -81,7 +74,7 @@
     <string name="privacy_license_source_title">隐私、许可与源代码</string>
     <string name="privacy_license_source_summary">触控控制仅在设备上处理，无广告、分析或开发者服务器。可选的终身购买由 Google Play 处理。</string>
     <string name="about_dialog_title">隐私、许可与源代码</string>
-    <string name="about_dialog_message">触控控制完全在设备上运行。TouchPause 绝不会读取屏幕内容，也不会存储、发送或分享触控、触控笔或按键事件。root 模式仅在用户启动的触控暂停期间临时读取输入设备。可选的终身购买由 Google Play 处理；TouchPause 只缓存试用次数和使用权状态。\n\nTouchPause 采用 GPL-3.0-or-later 许可。其捆绑的 blockevent 辅助程序采用 Apache-2.0 许可。源代码和完整声明：github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">触控控制完全在设备上运行。在用户启动的暂停期间，无障碍服务会接收触控、触控笔和硬件按键事件，并立即将其丢弃。TouchPause 绝不会读取屏幕内容，也不会存储、发送或分享输入事件。可选的终身购买由 Google Play 处理；TouchPause 只缓存试用次数和使用权状态。\n\nTouchPause 采用 GPL-3.0-or-later 许可。源代码和完整声明：github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">完整隐私政策</string>
     <string name="no_browser_available">没有可用于打开隐私政策的浏览器。</string>
     <string name="close">关闭</string>

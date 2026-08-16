@@ -3,7 +3,6 @@
     <string name="quick_settings_header">クイック設定</string>
     <string name="add_tile_title">TouchPause タイルを追加</string>
     <string name="tile_setup_summary">TouchPause をクイック設定に追加すると、ワンタップでタッチ操作を制御できます。</string>
-    <string name="tile_setup_manual">画面上部から下に2回スワイプして「編集」をタップし、TouchPause をクイック設定にドラッグします。</string>
     <string name="tile_added_summary">TouchPause をクイック設定で使用できます。</string>
     <string name="tile_added_message">TouchPause をクイック設定に追加しました</string>
     <string name="tile_already_added_message">TouchPause はすでにクイック設定に追加されています</string>
@@ -43,27 +42,22 @@
     <string name="release_key_title">解除キー</string>
     <string name="release_volume_down">音量小ボタン</string>
     <string name="release_volume_up">音量大ボタン</string>
-    <string name="release_power">電源ボタン</string>
     <string name="release_key_next_session_summary">次回タッチを一時停止するときに使用する解除キー：<xliff:g id="release_key">%1$s</xliff:g>。現在の一時停止では、元の解除キーが引き続き使用されます。</string>
 
-    <string name="accessibility_setup_title">root 権限なしモードを設定</string>
-    <string name="accessibility_setup_summary">Android 14 以降では、ユーザー補助で TouchPause を有効にすると、root 権限なしでタッチを一時停止できます。</string>
-    <string name="accessibility_consent_required_summary">ユーザー補助に関する情報開示を確認してから、root 権限なしモードを有効にしてください。</string>
-    <string name="accessibility_enabled_summary">root 権限なしモードの準備ができました。音量キーを使ってタッチを復帰させてください。</string>
+    <string name="accessibility_setup_title">タッチ制御を設定</string>
+    <string name="accessibility_setup_summary">ユーザー補助で TouchPause を有効にして、タッチを一時停止します。</string>
+    <string name="accessibility_consent_required_summary">タッチ制御を有効にする前に、ユーザー補助に関する情報開示を確認してください。</string>
+    <string name="accessibility_enabled_summary">タッチ制御の準備ができました。音量キーを使ってタッチを復帰させてください。</string>
     <string name="accessibility_waiting_summary">TouchPause は有効で、ユーザー補助サービスへの接続を待っています。</string>
-    <string name="accessibility_touch_exploration_summary">タッチガイドが有効なため、TouchPause は root による代替手段を使用する必要があります。</string>
-    <string name="accessibility_key_filter_conflict_summary">別のユーザー補助サービスがハードウェアキーをフィルタリングしているため、TouchPause は root による代替手段を使用する必要があります。</string>
-    <string name="accessibility_power_fallback_summary">電源ボタンでは root 権限なしモードから確実に復帰できないため、TouchPause は root による代替手段を使用する必要があります。</string>
-    <string name="accessibility_unsupported_summary">root 権限なしモードを使用するには Android 14 以降が必要です。</string>
+    <string name="accessibility_touch_exploration_summary">タッチガイドが有効なため、TouchPause はタッチを一時停止できません。</string>
+    <string name="accessibility_key_filter_conflict_summary">別のユーザー補助サービスがハードウェアキーをフィルタリングしているため、TouchPause はタッチを一時停止できません。</string>
     <string name="accessibility_service_label">TouchPause タッチ制御</string>
     <string name="accessibility_service_summary">選択した音量キーが押されるまで、タッチスクリーン入力を一時停止します。</string>
     <string name="accessibility_service_description">タッチが一時停止されている間、TouchPause は位置やタイミングを含むタッチスクリーンとタッチペンの動き、およびすべてのハードウェアキーイベントを受信します。これらのイベントはデバイス上でのみ処理し、キーイベントは選択した音量キーを検出するためだけに使用し、それ以外のキーは転送します。すべてのイベントを直ちに破棄します。画面の内容を読み取ったり、入力イベントを保存したり、共有したりすることはありません。</string>
-    <string name="accessibility_disclosure_title">root 権限なしでのタッチ制御を許可しますか？</string>
-    <string name="accessibility_disclosure_message">root 権限なしでタッチを一時停止するため、TouchPause は Android のユーザー補助サービスを使用して、タッチが一時停止されている間、タッチやタッチペンの位置とタイミングを含むタッチスクリーンとタッチペンの生の動き、およびすべてのハードウェアキーイベントにアクセスします。タッチスクリーンとタッチペンの動きは他のアプリに渡さず、すべてのイベントをデバイス上でのみ処理し、キーイベントは選択した音量キーを検出するためだけに使用し、それ以外のキーはすべて転送します。すべてのイベントを直ちに破棄します。画面の内容を読み取ったり、これらのイベントを保存したり、誰かと共有したりすることはありません。</string>
+    <string name="accessibility_disclosure_title">タッチ制御を許可しますか？</string>
+    <string name="accessibility_disclosure_message">タッチを一時停止するため、TouchPause は Android のユーザー補助サービスを使用して、タッチが一時停止されている間、タッチやタッチペンの位置とタイミングを含むタッチスクリーンとタッチペンの生の動き、およびすべてのハードウェアキーイベントにアクセスします。タッチスクリーンとタッチペンの動きは他のアプリに渡さず、すべてのイベントをデバイス上でのみ処理し、キーイベントは選択した音量キーを検出するためだけに使用し、それ以外のキーはすべて転送します。すべてのイベントを直ちに破棄します。画面の内容を読み取ったり、これらのイベントを保存したり、誰かと共有したりすることはありません。</string>
     <string name="accessibility_disclosure_agree">同意して続行</string>
     <string name="accessibility_disclosure_decline">今はしない</string>
-    <string name="root_fallback_title">root 権限を使用する場合</string>
-    <string name="root_fallback_summary">Android 13 以前、解除キーに電源ボタンを選択した場合、または root 権限なしのキャプチャを利用できない場合は、root 権限と root 管理アプリでの承認が必要です。TouchPause は必要な場合にのみ root 権限を要求します。</string>
 
     <string name="feedback_header">フィードバック</string>
     <string name="feedback_start_message_title">タッチの一時停止時にメッセージを表示</string>
@@ -72,8 +66,7 @@
     <string name="feedback_stop_vibration_title">タッチの復帰時に振動</string>
     <string name="touch_block_started">TouchPause：タッチを一時停止しました</string>
     <string name="touch_block_released">TouchPause：タッチが復帰しました</string>
-    <string name="root_backend_error">TouchPause で root によるタッチ制御を開始できませんでした。root 権限を確認して、もう一度お試しください。</string>
-    <string name="accessibility_not_ready">root 権限なしモードの準備ができていません。TouchPause を開き、ユーザー補助の設定を完了してください。</string>
+    <string name="accessibility_not_ready">タッチ制御の準備ができていません。TouchPause を開き、ユーザー補助の設定を完了してください。</string>
 
     <string name="about_header">アプリについて</string>
     <string name="app_language_title">アプリの言語</string>
@@ -81,7 +74,7 @@
     <string name="privacy_license_source_title">プライバシー、ライセンス、ソースコード</string>
     <string name="privacy_license_source_summary">タッチ制御はデバイス上だけで行われ、広告、分析、開発者サーバーはありません。任意の永久購入は Google Play が処理します。</string>
     <string name="about_dialog_title">プライバシー、ライセンス、ソースコード</string>
-    <string name="about_dialog_message">タッチ制御は完全にデバイス上で動作します。TouchPause は画面の内容を読み取らず、タッチ、タッチペン、キーの各イベントを保存、送信、共有しません。root モードでは、ユーザーが開始したタッチの一時停止が有効な間だけ、入力デバイスを一時的に読み取ります。任意の永久購入は Google Play が処理し、TouchPause は試用回数とアクセス状態だけを保存します。\n\nTouchPause は GPL-3.0-or-later ライセンスで提供されます。付属の blockevent ヘルパーは Apache-2.0 ライセンスで提供されます。ソースコードとすべての法的通知：github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">タッチ制御は完全にデバイス上で動作します。ユーザーが開始した一時停止中、ユーザー補助サービスはタッチ、タッチペン、ハードウェアキーのイベントを受信し、直ちに破棄します。TouchPause は画面の内容を読み取らず、入力イベントを保存、送信、共有しません。任意の永久購入は Google Play が処理し、TouchPause は試用回数とアクセス状態だけを保存します。\n\nTouchPause は GPL-3.0-or-later ライセンスで提供されます。ソースコードとすべての法的通知：github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">プライバシーポリシー全文</string>
     <string name="no_browser_available">プライバシーポリシーを開けるブラウザがありません。</string>
     <string name="close">閉じる</string>

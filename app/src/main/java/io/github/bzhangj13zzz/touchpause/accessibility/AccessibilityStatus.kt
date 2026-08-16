@@ -3,13 +3,10 @@ package io.github.bzhangj13zzz.touchpause.accessibility
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.ComponentName
 import android.content.Context
-import android.os.Build
 import android.provider.Settings
 import android.view.accessibility.AccessibilityManager
-import androidx.annotation.RequiresApi
 
-/** Read-only checks that explain whether Android can provide TouchPause's rootless backend. */
-@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+/** Read-only checks that explain whether Android can provide TouchPause touch control. */
 object AccessibilityStatus {
     /** Reads the user-enabled component list, including the short interval before service binding. */
     fun isEnabled(context: Context): Boolean {

@@ -3,7 +3,6 @@
     <string name="quick_settings_header">Réglages rapides</string>
     <string name="add_tile_title">Ajouter la tuile TouchPause</string>
     <string name="tile_setup_summary">Ajoutez TouchPause aux Réglages rapides pour contrôler le tactile en un geste.</string>
-    <string name="tile_setup_manual">Balayez l’écran deux fois vers le bas, appuyez sur Modifier, puis faites glisser TouchPause dans les Réglages rapides.</string>
     <string name="tile_added_summary">TouchPause est disponible dans les Réglages rapides.</string>
     <string name="tile_added_message">TouchPause a été ajouté aux Réglages rapides</string>
     <string name="tile_already_added_message">TouchPause figure déjà dans les Réglages rapides</string>
@@ -51,27 +50,22 @@
     <string name="release_key_title">Touche de réactivation</string>
     <string name="release_volume_down">Baisser le volume</string>
     <string name="release_volume_up">Augmenter le volume</string>
-    <string name="release_power">Marche/Arrêt</string>
     <string name="release_key_next_session_summary"><xliff:g id="release_key">%1$s</xliff:g> pour le prochain blocage. Un blocage actif conserve sa touche de réactivation d’origine.</string>
 
-    <string name="accessibility_setup_title">Configurer le mode sans root</string>
-    <string name="accessibility_setup_summary">Sous Android 14 ou version ultérieure, activez TouchPause dans Accessibilité pour mettre le tactile en pause sans root.</string>
-    <string name="accessibility_consent_required_summary">Lisez les informations sur l’Accessibilité avant d’activer le mode sans root.</string>
-    <string name="accessibility_enabled_summary">Le mode sans root est prêt. Utilisez une touche de volume pour rétablir le tactile.</string>
+    <string name="accessibility_setup_title">Configurer le contrôle tactile</string>
+    <string name="accessibility_setup_summary">Activez TouchPause dans Accessibilité pour mettre le tactile en pause.</string>
+    <string name="accessibility_consent_required_summary">Lisez les informations sur l’Accessibilité avant d’activer le contrôle tactile.</string>
+    <string name="accessibility_enabled_summary">Le contrôle tactile est prêt. Utilisez une touche de volume pour rétablir le tactile.</string>
     <string name="accessibility_waiting_summary">TouchPause est activé et attend la connexion de son service d’Accessibilité.</string>
-    <string name="accessibility_touch_exploration_summary">La fonctionnalité Explorer au toucher est active. TouchPause doit donc utiliser sa solution de secours avec root.</string>
-    <string name="accessibility_key_filter_conflict_summary">Un autre service d’Accessibilité filtre les touches physiques. TouchPause doit donc utiliser sa solution de secours avec root.</string>
-    <string name="accessibility_power_fallback_summary">La touche Marche/Arrêt ne permet pas de rétablir de façon fiable le mode sans root. TouchPause doit donc utiliser sa solution de secours avec root.</string>
-    <string name="accessibility_unsupported_summary">Le mode sans root nécessite Android 14 ou une version ultérieure.</string>
+    <string name="accessibility_touch_exploration_summary">La fonctionnalité Explorer au toucher est active. TouchPause ne peut donc pas mettre le tactile en pause.</string>
+    <string name="accessibility_key_filter_conflict_summary">Un autre service d’Accessibilité filtre les touches physiques. TouchPause ne peut donc pas mettre le tactile en pause.</string>
     <string name="accessibility_service_label">Contrôle tactile TouchPause</string>
     <string name="accessibility_service_summary">Met l’entrée de l’écran tactile en pause jusqu’à l’appui sur la touche de volume sélectionnée.</string>
     <string name="accessibility_service_description">Lorsque le tactile est en pause, TouchPause reçoit les mouvements de l’écran tactile et du stylet, notamment les données de position et d’horodatage, ainsi que tous les événements des touches physiques. L’application traite ces événements uniquement sur l’appareil, n’utilise les événements de touches que pour détecter la touche de volume sélectionnée, transmet les événements des autres touches et supprime immédiatement tous les événements. Elle ne lit jamais le contenu de l’écran, ne stocke aucun événement d’entrée et n’en partage aucun.</string>
-    <string name="accessibility_disclosure_title">Autoriser le contrôle tactile sans root ?</string>
-    <string name="accessibility_disclosure_message">Pour mettre le tactile en pause sans root, TouchPause utilise le service d’Accessibilité d’Android afin d’accéder aux mouvements bruts de l’écran tactile et du stylet, notamment aux données de position et d’horodatage des contacts et du stylet, ainsi qu’à tous les événements des touches physiques lorsque le tactile est en pause. L’application bloque la transmission des mouvements de l’écran tactile et du stylet aux autres applications, traite tous les événements uniquement sur l’appareil, n’utilise les événements de touches que pour détecter la touche de volume sélectionnée et transmet les événements de toutes les autres touches. Elle supprime immédiatement tous les événements. Elle ne lit jamais le contenu de l’écran, ne stocke pas ces événements et ne les partage avec personne.</string>
+    <string name="accessibility_disclosure_title">Autoriser le contrôle tactile ?</string>
+    <string name="accessibility_disclosure_message">Pour mettre le tactile en pause, TouchPause utilise le service d’Accessibilité d’Android afin d’accéder aux mouvements bruts de l’écran tactile et du stylet, notamment aux données de position et d’horodatage des contacts et du stylet, ainsi qu’à tous les événements des touches physiques lorsque le tactile est en pause. L’application bloque la transmission des mouvements de l’écran tactile et du stylet aux autres applications, traite tous les événements uniquement sur l’appareil, n’utilise les événements de touches que pour détecter la touche de volume sélectionnée et transmet les événements de toutes les autres touches. Elle supprime immédiatement tous les événements. Elle ne lit jamais le contenu de l’écran, ne stocke pas ces événements et ne les partage avec personne.</string>
     <string name="accessibility_disclosure_agree">Accepter et continuer</string>
     <string name="accessibility_disclosure_decline">Pas maintenant</string>
-    <string name="root_fallback_title">Quand le root est utilisé</string>
-    <string name="root_fallback_summary">Le root et l’autorisation du gestionnaire root sont nécessaires sous Android 13 ou version antérieure, avec la touche Marche/Arrêt ou lorsque la capture sans root est indisponible. TouchPause ne demande le root qu’en cas de besoin.</string>
 
     <string name="feedback_header">Retour d’information</string>
     <string name="feedback_start_message_title">Message lors de la mise en pause du tactile</string>
@@ -80,8 +74,7 @@
     <string name="feedback_stop_vibration_title">Vibrer au rétablissement du tactile</string>
     <string name="touch_block_started">TouchPause : entrée tactile en pause</string>
     <string name="touch_block_released">TouchPause : entrée tactile rétablie</string>
-    <string name="root_backend_error">TouchPause n’a pas pu démarrer le contrôle tactile avec root. Vérifiez l’accès root et réessayez.</string>
-    <string name="accessibility_not_ready">Le mode sans root n’est pas prêt. Ouvrez TouchPause et terminez la configuration de l’Accessibilité.</string>
+    <string name="accessibility_not_ready">Le contrôle tactile n’est pas prêt. Ouvrez TouchPause et terminez la configuration de l’Accessibilité.</string>
 
     <string name="about_header">À propos</string>
     <string name="app_language_title">Langue de l’application</string>
@@ -89,7 +82,7 @@
     <string name="privacy_license_source_title">Confidentialité, licence et code source</string>
     <string name="privacy_license_source_summary">Le contrôle tactile reste sur l’appareil, sans publicité, analyse ni serveur du développeur. Google Play gère l’achat à vie facultatif.</string>
     <string name="about_dialog_title">Confidentialité, licence et code source</string>
-    <string name="about_dialog_message">Le contrôle tactile fonctionne entièrement sur votre appareil. TouchPause ne lit jamais le contenu de l’écran et ne stocke, n’envoie ni ne partage d’événements tactiles, de stylet ou de touches physiques. Le mode root ne lit temporairement les périphériques d’entrée que lorsqu’un blocage lancé par l’utilisateur est actif. Google Play gère l’achat à vie facultatif ; TouchPause ne conserve que l’utilisation de l’essai et l’état d’accès.\n\nTouchPause est sous licence GPL-3.0-or-later. L’utilitaire blockevent inclus est sous licence Apache-2.0. Code source et mentions complètes : github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">Le contrôle tactile fonctionne entièrement sur votre appareil. Pendant une pause lancée par l’utilisateur, le service d’Accessibilité reçoit les événements tactiles, de stylet et de touches physiques, puis les supprime immédiatement. TouchPause ne lit jamais le contenu de l’écran et ne stocke, n’envoie ni ne partage d’événements d’entrée. Google Play gère l’achat à vie facultatif ; TouchPause ne conserve que l’utilisation de l’essai et l’état d’accès.\n\nTouchPause est sous licence GPL-3.0-or-later. Code source et mentions complètes : github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Politique de confidentialité complète</string>
     <string name="no_browser_available">Aucun navigateur n’est disponible pour ouvrir la politique de confidentialité.</string>
     <string name="close">Fermer</string>

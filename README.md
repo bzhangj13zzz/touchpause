@@ -2,190 +2,135 @@
 
 *Pause touch. Keep everything running.*
 
-TouchPause is an Android Quick Settings tool that temporarily blocks touchscreen
-input. Its launcher screen is intentionally small: use it to complete setup,
-choose a hardware release key, and adjust feedback. Day-to-day control belongs
-in the Quick Settings tile.
+TouchPause is a completely rootless Android utility that temporarily pauses
+touchscreen and stylus input. Its primary control is a Quick Settings tile;
+the launcher screen is reserved for setup, safety, feedback, language, and
+purchase settings.
 
-Every installation includes 10 successfully started touch-pausing sessions.
-After those sessions, Google Play offers a one-time lifetime unlock; there are
-no subscriptions, ads, or developer-operated accounts.
+Every installation includes 10 successfully started sessions. After that,
+Google Play offers a one-time lifetime unlock. There are no subscriptions, ads,
+developer accounts, analytics, or developer-operated servers.
 
-TouchPause 1.0.0 uses the application ID
-`io.github.bzhangj13zzz.touchpause`. It is a substantially modified and
-rebranded derivative of Snowy; see [NOTICE.md](NOTICE.md) for its history and
-attributions.
+TouchPause is a substantially modified derivative of Snowy. See
+[NOTICE.md](NOTICE.md) for lineage and attribution.
 
-## Compatibility
+## Requirements
 
-| Android version | Touch blocking | Root required |
-| --- | --- | --- |
-| Android 14 or newer (API 34+) | Accessibility backend with Volume Up or Volume Down release | No |
-| Android 14 or newer with Power release, touch exploration, or a key-filter conflict | Native fallback | Yes |
-| Android 7.0–13 (API 24–33) | Native backend | Yes |
-| Older than Android 7.0 | Unsupported | — |
+- Android 14 or newer (API 34+).
+- A touchscreen.
+- TouchPause enabled as an Android Accessibility service after accepting its
+  in-app disclosure.
+- Volume Up or Volume Down as the physical release key.
 
-The root backend also depends on a compatible `su` implementation and approval
-from the device's root manager.
+TouchPause never requests root access and contains no native input helper. It
+does not support Android 13 or older because Android first exposed the required
+motion-source capture API in Android 14.
+
+Touch exploration and hardware-key filtering are shared Accessibility
+facilities. TouchPause will refuse to pause touch if touch exploration is
+active or another Accessibility service is already filtering hardware keys.
 
 ## Install and migrate
 
-No public APK location is assumed. Build and sign an APK locally, or install one
-provided through a trusted private channel.
-
-TouchPause installs alongside Snowy and earlier TouchQuell test builds because
-each has a different application ID. Their settings are not imported. Remove
-an old app and its Quick Settings tile manually when you no longer need them;
-otherwise Android may show multiple tiles.
-
-An APK can update an existing TouchPause installation only when both APKs use
-the same application ID and signing key.
-
-## Set up rootless mode on Android 14+
-
-1. Open TouchPause.
-2. Select **Volume Up** or **Volume Down** as the release key.
-3. Open **Rootless setup**, read the standalone input-access disclosure, and
-   choose **Agree and continue**. Then enable TouchPause in Android's
-   Accessibility settings.
-4. Return to TouchPause and tap **Add TouchPause tile**. If Android does not
-   show the add-tile prompt, swipe down twice, choose **Edit**, and drag the
-   tile into the active area.
-5. Tap the tile once to pause touch. Press the configured volume key to
-   release it.
+Install through Google Play when available, or install an APK signed by a
+source you trust. TouchPause uses the application ID
+`io.github.bzhangj13zzz.touchpause` and can coexist with Snowy or earlier
+TouchQuell test builds. Settings are not imported; remove old apps and their
+Quick Settings tiles manually when no longer needed.
 
 Android may restrict Accessibility for an APK installed outside an app store.
-If TouchPause is unavailable or disabled in the Accessibility list, open
-**App info → More/overflow menu → Allow restricted settings**, then return to
-Accessibility. Names and locations vary slightly between device makers.
+If TouchPause is unavailable in Accessibility, open **App info → More/overflow
+menu → Allow restricted settings**, then try again. Exact wording varies by
+device maker.
 
-TouchPause does not retrieve window content. After consent, the Accessibility
-service requests touchscreen and stylus motion plus hardware-key filtering only
-while a pause is active. It receives hardware-key events only to detect the
-selected volume key and forwards unrelated keys. Every event is handled in
-memory and immediately discarded. See [PRIVACY.md](PRIVACY.md) for the full
-disclosure.
+## Setup
 
-## Set up the root fallback
-
-The root fallback is used on API 24–33, for the Power release key, or when the
-rootless backend cannot guarantee a safe release key. Tapping the tile in one of
-those configurations can display a root-manager prompt.
-
-Approve access only for a build you trust. The native helper
-`libtouchpause-input.so` runs as root for the blocking session, finds the
-touchscreen under `/dev/input`, takes an exclusive Linux `EVIOCGRAB`, and watches
-eligible input devices for the configured release key. It does not make network
-requests.
-
-On an unrooted device, a configuration that requires this backend fails without
-blocking touch.
+1. Open TouchPause.
+2. Open **Set up touch control**, read the standalone disclosure, and choose
+   **Agree and continue**.
+3. Enable TouchPause in Android's Accessibility settings.
+4. Return to TouchPause and choose **Volume Up** or **Volume Down** as the
+   release key.
+5. Tap **Add TouchPause tile**. If Android does not add it, swipe down twice,
+   choose **Edit**, and drag TouchPause into the active tiles.
 
 ## Everyday use
 
-- Tap the inactive Quick Settings tile to pause touchscreen input.
-- Press the configured hardware release key to restore touch. Do not rely on an
-  on-screen control as the primary escape path.
-- An external mouse that is not part of a grabbed touchscreen may still be able
-  to reach the tile and toggle it off.
-- Blocking is never restored automatically after a reboot or service restart.
+1. Tap the inactive Quick Settings tile to pause touch.
+2. Press the selected volume key to restore touch.
 
-Touch exploration and hardware-key filtering are shared Android facilities. If
-touch exploration is active, or another enabled Accessibility service already
-owns hardware-key filtering, TouchPause does not start rootless capture and may
-use the disclosed root fallback instead.
+The app receives touchscreen and stylus motion plus hardware-key events only
+while a pause is active. It withholds touch/stylus motion, uses key events only
+to detect the selected volume key, forwards unrelated keys, and immediately
+discards every input event. It cannot retrieve window content. See
+[PRIVACY.md](PRIVACY.md) for the complete disclosure.
+
+An active pause is not restored after the Accessibility service stops or the
+device reboots.
 
 ## Trial and lifetime access
 
-TouchPause counts a trial session only after a backend has successfully started
-blocking touch. Failed root requests, setup screens, and stopping an active
-block do not consume a session. The release key always remains available,
-including on the tenth session.
+A trial session is counted only after input capture starts successfully. Setup
+attempts, conflicts, and ending a pause do not consume a session. After 10
+successful starts, the tile opens the lifetime-access screen instead of
+starting another pause.
 
-After 10 successful starts, the Quick Settings tile opens the lifetime-access
-screen instead of beginning another block. The unlock is a non-consumable,
-one-time Google Play product named `lifetime_access`, not a subscription.
-Google Play restores ownership on another device using the purchasing Google
-account. TouchPause caches the entitlement for offline use and stores the local
-trial count in private app data. Clearing app data can reset the local trial;
-preventing that would require a developer server, which this project
+The unlock is a non-consumable Google Play product named `lifetime_access`, not
+a subscription. TouchPause caches entitlement for offline use and stores the
+local trial count in private app data. Clearing app data can reset the local
+trial; preventing that would require a developer server, which TouchPause
 deliberately avoids.
 
 ## Emergency recovery
 
-Try the configured release key first. If that fails:
+Press the configured volume key first. If touch does not return:
 
-1. Reboot the phone. Neither backend restores blocking after reboot.
-2. With USB debugging already authorized, stop the rootless backend:
+1. Hold the phone's physical power button and reboot it.
+2. If USB debugging was already authorized, run:
 
    ```sh
    adb shell am force-stop io.github.bzhangj13zzz.touchpause
    ```
 
-3. The root helper can outlive the Android app process. With root access, stop
-   only processes whose executable is the packaged TouchPause helper:
-
-   ```sh
-   adb shell su -c 'for d in /proc/[0-9]*; do case "$(readlink "$d/exe")" in */libtouchpause-input.so|*/libtouchpause-input.so\ \(deleted\)) kill -INT "${d##*/}";; esac; done'
-   ```
-
-   This validates the executable instead of trusting the potentially stale PID
-   text in the lock file. Reboot remains the universal recovery path.
-
-More detail is available in [SECURITY.md](SECURITY.md).
+Stopping the app or rebooting makes Android remove Accessibility input capture.
+See [SECURITY.md](SECURITY.md) for the recovery and trust model.
 
 ## Build and test
 
-The Android app requires JDK 17 and Android SDK Platform 36. Rebuilding the
-vendored native helper additionally requires Android NDK r28 or newer.
+TouchPause requires JDK 17 and Android SDK Platform 36.
 
 ```sh
 export JAVA_HOME=/path/to/jdk-17
 export ANDROID_HOME=/path/to/android-sdk
-./gradlew clean testDebugUnitTest lintDebug assembleDebug
+./gradlew clean testDebugUnitTest lintDebug assembleDebug bundleRelease
 ```
 
-To rebuild `libtouchpause-input.so` for all packaged ABIs first:
-
-```sh
-ANDROID_NDK_HOME=/path/to/android-ndk ./update_lib.sh
-./gradlew assembleDebug
-```
-
-The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`. See
-[docs/BUILDING.md](docs/BUILDING.md) for signing, native builds, and artifact
-handling. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the backend and
-safety design.
+The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`. The
+release bundle remains unsigned unless the documented upload-key environment
+variables are provided. See [docs/BUILDING.md](docs/BUILDING.md) and
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Languages
 
-TouchPause follows the system language by default and also offers an in-app
-language picker. The interface and safety disclosures are available in English,
-Spanish, French, German, Brazilian Portuguese, Japanese, Korean, Simplified
-Chinese, and Traditional Chinese.
+The interface and safety disclosure are available in English, Spanish, French,
+German, Brazilian Portuguese, Japanese, Korean, Simplified Chinese, and
+Traditional Chinese. The in-app language picker works offline because all nine
+locales remain in the base app bundle.
 
 ## Play Store preparation
 
-The repository includes Play listing text, icon artwork, and a feature graphic.
-Publishing still requires a public privacy-policy URL, an upload key, a signed
-Android App Bundle, Play Console declarations, and device testing. The exact
-completed and external steps are tracked in
-[docs/PLAY_STORE.md](docs/PLAY_STORE.md).
+Listing text, artwork, screenshots, and a publication checklist are in
+[fastlane/metadata/android](fastlane/metadata/android) and
+[docs/PLAY_STORE.md](docs/PLAY_STORE.md). Publication still requires a public
+privacy-policy URL, a signed App Bundle, Play Console declarations, and final
+physical-device testing.
 
-## Project repository
+## Repository and license
 
 The canonical repository is
 [github.com/bzhangj13zzz/touchpause](https://github.com/bzhangj13zzz/touchpause).
-Access follows the repository's current visibility settings.
-
-## License and credits
 
 TouchPause is licensed under the
 [GNU General Public License, version 3 or later](LICENSE). It is based on Snowy,
-Copyright (C) 2022 N. Melih Sensoy.
-
-The vendored and modified `blockevent` helper remains under the Apache License
-2.0. Its license is in
-[app/src/main/cpp/LICENSE.blockevent](app/src/main/cpp/LICENSE.blockevent).
-Complete attribution and the dated modification notice are in
-[NOTICE.md](NOTICE.md).
+Copyright (C) 2022 N. Melih Sensoy. Complete attribution and the dated
+modification notice are in [NOTICE.md](NOTICE.md).

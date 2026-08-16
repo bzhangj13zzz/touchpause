@@ -5,19 +5,15 @@ Use it while cleaning your screen, tracing an image, presenting something withou
 HOW IT WORKS
 
 • Add the TouchPause tile to Quick Settings.
-• Choose Volume Up, Volume Down, or Power as the physical release key.
+• Choose Volume Up or Volume Down as the physical release key.
 • Tap the tile to pause touch.
 • Press the selected release key to restore touch at any time.
 
-ROOTLESS MODE ON ANDROID 14+
+TOUCH CONTROL ON ANDROID 14+
 
-TouchPause can use an optional Android Accessibility service to pause touchscreen and stylus motion without root. Only during an active pause, the service receives touchscreen and stylus motion, including positions and timing, and filters hardware keys. It receives all hardware-key events only to detect the selected volume key and forwards unrelated keys. All events are processed only on the device and discarded immediately. TouchPause never reads screen content and never stores or shares touch, stylus, or key events.
+TouchPause uses a user-enabled Android Accessibility service to pause touchscreen and stylus motion without root. Only during an active pause, the service receives touchscreen and stylus motion, including positions and timing, and filters hardware keys. It receives all hardware-key events only to detect the selected volume key and forwards unrelated keys. All events are processed only on the device and discarded immediately. TouchPause never reads screen content and never stores or shares touch, stylus, or key events.
 
-Rootless mode uses Volume Up or Volume Down as the release key. Touch exploration or another service that filters hardware keys can make rootless capture unavailable.
-
-ROOT FALLBACK
-
-Android 7–13, the Power release key, and incompatible Accessibility configurations require a rooted device and approval from your root manager. During a user-started pause, the bundled helper temporarily reads Android input devices and exclusively grabs the touchscreen. It releases the grab when the selected hardware key is pressed, the helper stops, or the device restarts.
+TouchPause requires Android 14 or newer and uses Volume Up or Volume Down as the release key. Touch exploration or another service that filters hardware keys can make touch pausing unavailable. The app never requests root access.
 
 TRY IT FIRST
 
@@ -31,4 +27,4 @@ PRIVATE BY DESIGN
 • Touch and key input never leaves your device
 • Preferences stay on your device
 
-TouchPause is open-source software licensed under GPL-3.0-or-later. The bundled blockevent helper is licensed under Apache-2.0. Google Play handles the optional lifetime purchase; TouchPause has no developer-operated server.
+TouchPause is open-source software licensed under GPL-3.0-or-later. Google Play handles the optional lifetime purchase; TouchPause has no developer-operated server.

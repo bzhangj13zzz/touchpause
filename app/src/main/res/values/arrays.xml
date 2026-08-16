@@ -3,13 +3,11 @@
     <string-array name="release_key_entries">
         <item>@string/release_volume_down</item>
         <item>@string/release_volume_up</item>
-        <item>@string/release_power</item>
     </string-array>
 
     <string-array name="release_key_values" translatable="false">
         <item>1</item>
         <item>2</item>
-        <item>3</item>
     </string-array>
 
     <string-array name="app_language_entries" translatable="false">

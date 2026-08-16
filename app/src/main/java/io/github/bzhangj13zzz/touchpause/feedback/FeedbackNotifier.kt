@@ -1,9 +1,7 @@
 package io.github.bzhangj13zzz.touchpause.feedback
 
 import android.content.Context
-import android.os.Build
 import android.os.VibrationEffect
-import android.os.Vibrator
 import android.os.VibratorManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -36,28 +34,11 @@ class FeedbackNotifier(context: Context) {
         if (options.vibrateOnStop) vibrate()
     }
 
-    fun showRootError() {
-        Toast.makeText(
-            appContext,
-            ContextCompat.getString(appContext, R.string.root_backend_error),
-            Toast.LENGTH_LONG
-        ).show()
-    }
-
-    @Suppress("DEPRECATION")
     private fun vibrate() {
-        val vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            appContext.getSystemService(VibratorManager::class.java)?.defaultVibrator
-        } else {
-            appContext.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
-        } ?: return
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(
-                VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE)
-            )
-        } else {
-            vibrator.vibrate(100)
-        }
+        val vibrator = appContext.getSystemService(VibratorManager::class.java)?.defaultVibrator
+            ?: return
+        vibrator.vibrate(
+            VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE)
+        )
     }
 }

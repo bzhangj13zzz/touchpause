@@ -1,196 +1,117 @@
 # TouchPause architecture
 
-## Design goals
+TouchPause is a small Android 14+ application. It intentionally uses Android
+framework APIs directly and has no dependency-injection framework, server, root
+process, shell command, JNI layer, or native library.
 
-TouchPause has one job: stop touchscreen input temporarily while preserving a
-dependable, non-touch escape path. The implementation favors a small number of
-Android components and explicit ownership over background orchestration.
-
-The primary invariants are:
-
-1. Never announce an active block before the selected backend owns capture.
-2. Never start rootless capture unless its hardware release key is guaranteed.
-3. Restore normal input before announcing release.
-4. Do not restore blocking after process death, service restart, or reboot.
-5. Let an old backend exit clear only the state it owns.
-
-## Component overview
+## Component flow
 
 ```text
 Quick Settings tile
-        |
-        +-- no active block and trial exhausted --> settings --> Google Play Billing
-        |
-        +-- API 34+ and safe volume release --> transparent toggle activity
-        |                                      --> Accessibility service
-        |
-        +-- root-required configuration ------> root controller --> su
-                                                          |
-                                                          v
-                                                libtouchpause-input.so
+  |-- setup needed ----------> SettingsActivity / SettingsFragment
+  |                              |-- disclosure -> Accessibility settings
+  |                              `-- trial/lifetime purchase -> Google Play
+  |
+  `-- ready -----------------> AccessibilityToggleActivity
+                                 `-- TouchBlockAccessibilityService
+                                      |-- capture touch + stylus motion
+                                      |-- filter hardware keys
+                                      `-- restore on selected volume key
 ```
 
-The launcher activity hosts the small setup and preferences screen. The Quick
-Settings tile is the normal runtime entry point. Shared preference helpers hold
-configuration and advisory UI state; they do not own an input grab.
+The transparent toggle activity exists because Android requires a
+`PendingIntent` to launch UI while collapsing Quick Settings. It immediately
+asks the connected service to toggle, reports failure if the service is not
+ready, and finishes without animation.
 
-## Trial and purchase boundary
+## Main responsibilities
 
-`EntitlementStore` owns two small pieces of private app data: the number of
-successfully started free sessions and the last Google Play lifetime-ownership
-result. A new block may start while lifetime access is cached or fewer than 10
-free sessions have succeeded. Stopping an existing block bypasses this gate so
-commercial logic can never interfere with input recovery.
+- `settings/SettingsActivity` hosts the minimal preference UI and applies
+  edge-to-edge insets.
+- `settings/SettingsFragment` owns setup, disclosure, release key, feedback,
+  language, trial status, purchase flow, privacy, and add-tile prompting.
+- `tile/TouchBlockTileService` is the primary interaction and routes taps to
+  setup, purchase, or the toggle activity.
+- `accessibility/TouchBlockAccessibilityService` owns all input capture.
+- `accessibility/AccessibilityStatus` explains readiness conflicts without
+  changing state.
+- `preferences/UserPreferences` provides typed user settings.
+- `block/BlockSessionStore` shares advisory active state between the service,
+  tile, and settings screen.
+- `billing/EntitlementStore` owns local trial and cached access state.
+- `billing/PlayBillingManager` talks to Google Play Billing.
+- `feedback/FeedbackNotifier` emits configured toasts and vibrations.
 
-Each backend records a session only after it owns capture: after verified
-Accessibility configuration and ownership publication, or after the root
-helper's readiness line. Errors and setup flows do not consume the trial.
+## Input capture lifecycle
 
-`PlayBillingManager` connects only from settings. It queries the non-consumable
-`lifetime_access` product and current purchases, launches Google Play's UI,
-grants only a `PURCHASED` item, and acknowledges it. The last successful
-ownership result is cached for offline use and refreshed whenever settings
-connects. The implementation intentionally has no developer backend or app
-account; this preserves privacy and simplicity at the cost of weaker fraud and
-refund detection than server-side verification.
+Starting a pause requires explicit disclosure consent, a connected service, no
+touch exploration, no competing key filter, and available trial/lifetime
+access.
 
-## Backend selection
+The service snapshots its current `AccessibilityServiceInfo`, adds touchscreen,
+stylus, and Bluetooth-stylus motion sources, and enables hardware-key filtering.
+Android withholds captured motion from other consumers. Only after Android
+reports that both capture settings are applied does TouchPause:
 
-Each tile click selects a backend from current conditions rather than a stored
-mode switch:
+1. publish advisory active state;
+2. record one successful trial session;
+3. refresh the Quick Settings tile; and
+4. show configured start feedback.
 
-1. API 34+ may use Accessibility when the release key is Volume Up or Volume
-   Down, the current disclosure has been accepted, the service is connected,
-   touch exploration is off, no other service owns key filtering, and no root
-   invocation is pending.
-2. Power release always selects the root backend.
-3. API 24–33 selects the root backend.
-4. An API 34+ safety conflict may select the disclosed root fallback.
+All received motion events are discarded. Hardware-key events are inspected
+only to recognize the selected volume key; unrelated keys are forwarded.
 
-This keeps persisted state from overriding current Android capabilities.
+Stopping restores the exact previous motion-source mask and service flags
+before clearing advisory state. If restoration throws, the service disables
+itself so Android removes the filter. The release-key latch is cleared before
+each new session and during disconnect because Android may stop delivering the
+previous key's `ACTION_UP` as filtering is removed.
 
-## Rootless flow
+## State and process boundaries
 
-Android requires a `PendingIntent` when a Quick Settings tile starts an
-activity on recent releases. A transparent, no-history activity collapses the
-status shade and asks the already connected Accessibility service to toggle.
+User settings live in Android's default private preferences. Runtime state uses
+the named `touchpause_runtime` file. Because Accessibility capture belongs to
+the app process and cannot survive process death, stale runtime state is cleared
+once when a new app process starts.
 
-To start blocking, the service:
+The active-state preference is advisory UI state; Android's connected
+Accessibility service and its applied service configuration are authoritative.
+No session is restored after process death, service disablement, or reboot.
 
-1. saves its previous motion-event source mask and service flags;
-2. adds touchscreen, stylus, and Bluetooth-stylus sources and requests key
-   filtering through the API 34 Accessibility service API;
-3. applies and verifies both configuration changes;
-4. freezes the release key and feedback settings for this session; and
-5. publishes advisory active state and user feedback.
+## Trial and billing
 
-Touchscreen and stylus motion delivered to the service is intentionally
-discarded. Android withholds those requested sources from other consumers,
-which creates the block without drawing an overlay. Capturing all three source
-constants is necessary because a single Android input device can advertise
-touchscreen and stylus capabilities together.
+`EntitlementStore` permits a start while either fewer than 10 sessions have
+succeeded or cached lifetime access is true. The service records usage only
+after capture is successfully applied. The selected release key continues to
+work regardless of entitlement state.
 
-The service consumes the actionable down event for the selected volume key and
-also consumes its matching up event if Android delivers it before filtering is
-restored. This releases touch without changing media volume. It then restores
-the prior motion-source mask and service flags, clears only
-Accessibility-owned state, and shows configured feedback. A stale matching-up
-latch is cleared before every new block so a missing up event cannot affect the
-next session.
+Google Play owns the non-consumable `lifetime_access` product. Purchase tokens
+are acknowledged but not persisted. The app stores only the successful-session
+count and cached entitlement. There is no developer server, so local app-data
+clearing can reset the trial by design.
 
-If capture setup fails, the service restores its previous input configuration.
-It disables itself only if that restoration also fails, ensuring Android
-removes its input filter. A service enabled directly in Android Settings is
-also disabled before it registers listeners when the in-app disclosure has not
-been accepted. Touch-exploration and enabled-service listeners stop an active
-block if the release-key guarantee changes.
+## Exported boundaries
 
-## Root flow
+- `SettingsActivity` is exported as the launcher and tile-preferences activity.
+- `TouchBlockTileService` is exported only behind
+  `android.permission.BIND_QUICK_SETTINGS_TILE`.
+- `TouchBlockAccessibilityService` is exported only behind
+  `android.permission.BIND_ACCESSIBILITY_SERVICE`.
+- The toggle activity is not exported.
 
-The app validates the configured trigger, creates a random invocation token,
-and reserves a pending-root marker before launching one complete, shell-quoted
-command through `su -c`.
-
-The packaged `libtouchpause-input.so` helper:
-
-1. opens `touch-blocker.lock` and attempts a kernel `fcntl` write lock;
-2. if another owner holds the lock, identifies that owner with `F_GETLK` and
-   sends it `SIGINT` instead of starting a second grab;
-3. scans `/dev/input/event*` for every direct touchscreen and all devices
-   capable of emitting the selected release key;
-4. takes `EVIOCGRAB` on every discovered touchscreen;
-5. writes a readiness line only after capture succeeds;
-6. polls input until the release event, a signal, or a device failure; and
-7. releases every grab and the lock during cleanup.
-
-The Android process promotes pending state to active root ownership only after
-it observes readiness. When the helper exits, an explicit broadcast protected
-by a signature permission clears state for the matching token and delivers
-optional stop feedback. The broadcast includes Android's stopped-package flag
-so it can reconcile a helper that outlived an app force-stop. That root-shell
-broadcast is the process-death recovery path; the process output observer
-performs the same reconciliation while the launching Android process remains
-alive.
-
-## State and concurrency
-
-Preferences store the active backend, an active root token, and a pending root
-token so System UI can render the tile. That state is advisory because a process
-can die between a kernel or Android input change and a preference write.
-The store records Android's boot count and discards all runtime ownership after
-a reboot, because neither input backend can survive one.
-
-Three ownership checks prevent stale callbacks:
-
-- synchronized app-state edits serialize in-process decisions;
-- random tokens associate root readiness and exit with one invocation; and
-- the native kernel lock identifies the real root owner even if its PID text is
-  stale.
-
-Accessibility and root capture are mutually exclusive. Root startup is not
-allowed to replace an Accessibility owner, and rootless capture waits while a
-root invocation is pending.
-
-## Security boundaries
-
-The exported tile and Accessibility service require Android system binding
-permissions. The root completion receiver is explicit and protected by a
-signature-level app permission. The transparent toggle activity is not
-exported.
-
-The Accessibility configuration does not permit retrieval of window content.
-The installed app has no developer-operated server. Its Billing Library uses
-network access only for the optional Google Play lifetime purchase; touch and
-input events remain on-device. Root mode has broader device authority by
-definition, so its source is vendored, auditable, and rebuilt for the four
-packaged Android ABIs.
-
-See [../SECURITY.md](../SECURITY.md) for the threat and recovery model and
-[../PRIVACY.md](../PRIVACY.md) for input-data handling.
-
-## Native artifacts
-
-The preferred native source and Apache license live under `app/src/main/cpp`.
-`update_lib.sh` compiles `libtouchpause-input.so` for:
-
-- `armeabi-v7a`;
-- `arm64-v8a`;
-- `x86`; and
-- `x86_64`.
-
-The linker uses a 16 KiB maximum page size for compatibility with newer Android
-devices. Packaged binaries are generated artifacts; source and the rebuild
-script are the reviewable authority.
+No app component accepts shell commands, file paths, PIDs, or native protocol
+arguments.
 
 ## Verification strategy
 
-- JVM tests cover release-key parsing, shell quoting, root command construction,
-  token propagation, and trial access boundaries.
-- Android lint checks manifest/component and API usage.
-- Instrumentation tests cover runtime ownership, consent persistence, trial
-  counting, and localized resources.
-- APK checks cover signing, alignment, packaged ABIs, and native ELF alignment.
-- Device or emulator tests exercise tile state, raw touchscreen and stylus
-  blocking, and hardware-key release. Root behavior must also be tested on a
-  rooted device because an emulator's app process is not a substitute for a
-  real root manager.
+- JVM tests cover release-key parsing and entitlement rules.
+- Instrumentation tests cover identity, manifest/accessibility metadata,
+  locale resources, preferences, runtime state, entitlement persistence, and
+  Accessibility consent.
+- Lint runs with missing and extra translations fatal.
+- Artifact checks confirm API 34 minimum/API 36 target, all nine locales in the
+  base bundle, no native libraries, and expected signing state.
+- Physical-device testing must cover actual Quick Settings behavior, disclosure
+  and service setup, touch/stylus suppression, both volume release keys,
+  conflicts, tenth-session behavior, purchase restoration, force-stop, and
+  reboot recovery.

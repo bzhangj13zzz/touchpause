@@ -5,19 +5,15 @@ Use-o para limpar a tela, traçar por cima de uma imagem, fazer uma apresentaç�
 COMO FUNCIONA
 
 • Adicione o bloco do TouchPause às Configurações rápidas.
-• Escolha Aumentar volume, Diminuir volume ou Liga/desliga como tecla física de reativação.
+• Escolha Aumentar volume ou Diminuir volume como tecla física de reativação.
 • Toque no bloco para pausar a entrada por toque.
 • Pressione a tecla de reativação selecionada para restaurar a entrada por toque a qualquer momento.
 
-MODO SEM ROOT NO ANDROID 14 OU MAIS RECENTE
+CONTROLE DE TOQUE NO ANDROID 14 OU MAIS RECENTE
 
-O TouchPause pode usar um serviço opcional de Acessibilidade do Android para pausar os movimentos da tela sensível ao toque e da stylus sem root. Somente durante uma pausa ativa, o serviço recebe os movimentos da tela sensível ao toque e da stylus, incluindo dados de posição e tempo, e filtra as teclas físicas. Ele recebe todos os eventos das teclas físicas somente para detectar a tecla de volume selecionada e encaminha os eventos das outras teclas. Todos os eventos são processados somente no dispositivo e descartados imediatamente. O TouchPause nunca lê o conteúdo da tela e não armazena nem compartilha eventos de toque, de stylus ou de teclas.
+O TouchPause usa um serviço de Acessibilidade do Android ativado pelo usuário para pausar os movimentos da tela sensível ao toque e da stylus sem root. Somente durante uma pausa ativa, o serviço recebe os movimentos da tela sensível ao toque e da stylus, incluindo dados de posição e tempo, e filtra as teclas físicas. Ele recebe todos os eventos das teclas físicas somente para detectar a tecla de volume selecionada e encaminha os eventos das outras teclas. Todos os eventos são processados somente no dispositivo e descartados imediatamente. O TouchPause nunca lê o conteúdo da tela e não armazena nem compartilha eventos de toque, de stylus ou de teclas.
 
-O modo sem root usa Aumentar volume ou Diminuir volume como tecla de reativação. O recurso Explorar por toque ou outro serviço que filtre teclas físicas pode tornar a captura sem root indisponível.
-
-ALTERNATIVA COM ROOT
-
-No Android 7–13, ao usar a tecla Liga/desliga ou quando a configuração de Acessibilidade é incompatível, são necessários um dispositivo com root e a aprovação do gerenciador de root. Durante uma pausa iniciada pelo usuário, o utilitário incluído lê temporariamente os dispositivos de entrada do Android e assume o controle exclusivo da tela sensível ao toque. Ele libera esse controle quando a tecla física selecionada é pressionada, o utilitário para ou o dispositivo é reiniciado.
+O TouchPause requer Android 14 ou mais recente e usa Aumentar volume ou Diminuir volume como tecla de reativação. O recurso Explorar por toque ou outro serviço que filtre teclas físicas pode impedir a pausa do toque. O app nunca solicita acesso root.
 
 EXPERIMENTE PRIMEIRO
 
@@ -31,4 +27,4 @@ PRIVACIDADE DESDE A CONCEPÇÃO
 • Toques e eventos de teclas nunca saem do dispositivo
 • As preferências permanecem no seu dispositivo
 
-O TouchPause é um software de código aberto licenciado sob GPL-3.0-or-later. O utilitário blockevent incluído é licenciado sob Apache-2.0. O Google Play processa a compra vitalícia opcional; o TouchPause não tem um servidor operado pelo desenvolvedor.
+O TouchPause é um software de código aberto licenciado sob GPL-3.0-or-later. O Google Play processa a compra vitalícia opcional; o TouchPause não tem um servidor operado pelo desenvolvedor.

@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Intent
-import android.os.Build
 import android.view.InputDevice
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityManager
-import androidx.annotation.RequiresApi
 import io.github.bzhangj13zzz.touchpause.block.BlockSessionStore
 import io.github.bzhangj13zzz.touchpause.block.FeedbackOptions
 import io.github.bzhangj13zzz.touchpause.block.ReleaseKey
@@ -19,8 +17,7 @@ import io.github.bzhangj13zzz.touchpause.feedback.FeedbackNotifier
 import io.github.bzhangj13zzz.touchpause.preferences.UserPreferences
 import io.github.bzhangj13zzz.touchpause.tile.TileRefresher
 
-/** Android 14+ backend that withholds direct touch/stylus motion until the release key is used. */
-@RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
+/** Withholds direct touch/stylus motion until the selected volume key is used. */
 class TouchBlockAccessibilityService : AccessibilityService() {
     private val accessibilityManager by lazy {
         getSystemService(AccessibilityManager::class.java)
@@ -116,11 +113,11 @@ class TouchBlockAccessibilityService : AccessibilityService() {
         if (!entitlements.canStartSession()) return false
 
         val selectedKey = userPreferences.releaseKey()
-        if (!selectedKey.supportsAccessibility || !captureIsAvailable()) return false
+        if (!captureIsAvailable()) return false
         return startBlocking(selectedKey)
     }
 
-    /** Applies capture first, then publishes ownership only if root did not win the race. */
+    /** Applies capture first, then publishes the active session for UI components. */
     @SuppressLint("WrongConstant") // API 34 docs allow SOURCE_TOUCHSCREEN; its lint stub omits it.
     private fun startBlocking(selectedKey: ReleaseKey): Boolean {
         val info = serviceInfo ?: return false
@@ -129,7 +126,6 @@ class TouchBlockAccessibilityService : AccessibilityService() {
         val selectedKeyCode = when (selectedKey) {
             ReleaseKey.VOLUME_DOWN -> KeyEvent.KEYCODE_VOLUME_DOWN
             ReleaseKey.VOLUME_UP -> KeyEvent.KEYCODE_VOLUME_UP
-            ReleaseKey.POWER -> return false
         }
 
         previousMotionSources = info.motionEventSources
@@ -195,7 +191,6 @@ class TouchBlockAccessibilityService : AccessibilityService() {
 
     private fun captureIsAvailable(): Boolean =
         userPreferences.hasAccessibilityConsent() &&
-            !sessions.hasPendingRootInvocation() &&
             !AccessibilityStatus.isTouchExplorationEnabled(this) &&
             !AccessibilityStatus.hasKeyFilterConflict(this)
 
@@ -222,9 +217,6 @@ class TouchBlockAccessibilityService : AccessibilityService() {
 
         fun isConnected(): Boolean = connectedService != null
 
-        fun isReady(): Boolean = connectedService?.let { service ->
-            service.userPreferences.releaseKey().supportsAccessibility &&
-                service.captureIsAvailable()
-        } == true
+        fun isReady(): Boolean = connectedService?.captureIsAvailable() == true
     }
 }

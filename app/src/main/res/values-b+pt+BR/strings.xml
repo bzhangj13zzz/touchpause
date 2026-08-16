@@ -3,7 +3,6 @@
     <string name="quick_settings_header">Configurações rápidas</string>
     <string name="add_tile_title">Adicionar bloco do TouchPause</string>
     <string name="tile_setup_summary">Adicione o TouchPause às Configurações rápidas para controlar a entrada por toque com um só toque.</string>
-    <string name="tile_setup_manual">Deslize para baixo duas vezes, toque em Editar e arraste o TouchPause para as Configurações rápidas.</string>
     <string name="tile_added_summary">O TouchPause está disponível nas Configurações rápidas.</string>
     <string name="tile_added_message">O TouchPause foi adicionado às Configurações rápidas</string>
     <string name="tile_already_added_message">O TouchPause já está nas Configurações rápidas</string>
@@ -51,27 +50,22 @@
     <string name="release_key_title">Tecla de reativação</string>
     <string name="release_volume_down">Diminuir volume</string>
     <string name="release_volume_up">Aumentar volume</string>
-    <string name="release_power">Liga/desliga</string>
     <string name="release_key_next_session_summary"><xliff:g id="release_key">%1$s</xliff:g> no próximo bloqueio. Um bloqueio ativo mantém a tecla de reativação original.</string>
 
-    <string name="accessibility_setup_title">Configurar o modo sem root</string>
-    <string name="accessibility_setup_summary">No Android 14 ou em uma versão mais recente, ative o TouchPause em Acessibilidade para pausar a entrada por toque sem root.</string>
-    <string name="accessibility_consent_required_summary">Leia as informações sobre Acessibilidade antes de ativar o modo sem root.</string>
-    <string name="accessibility_enabled_summary">O modo sem root está pronto. Use uma tecla de volume para restaurar a entrada por toque.</string>
+    <string name="accessibility_setup_title">Configurar o controle de toque</string>
+    <string name="accessibility_setup_summary">Ative o TouchPause em Acessibilidade para pausar a entrada por toque.</string>
+    <string name="accessibility_consent_required_summary">Leia as informações sobre Acessibilidade antes de ativar o controle de toque.</string>
+    <string name="accessibility_enabled_summary">O controle de toque está pronto. Use uma tecla de volume para restaurar a entrada por toque.</string>
     <string name="accessibility_waiting_summary">O TouchPause está ativado e aguardando a conexão do serviço de Acessibilidade.</string>
-    <string name="accessibility_touch_exploration_summary">O recurso Explorar por toque está ativo. Por isso, o TouchPause precisa usar a alternativa com root.</string>
-    <string name="accessibility_key_filter_conflict_summary">Outro serviço de Acessibilidade está filtrando as teclas físicas. Por isso, o TouchPause precisa usar a alternativa com root.</string>
-    <string name="accessibility_power_fallback_summary">A tecla liga/desliga não restaura o modo sem root de forma confiável. Por isso, o TouchPause precisa usar a alternativa com root.</string>
-    <string name="accessibility_unsupported_summary">O modo sem root requer o Android 14 ou uma versão mais recente.</string>
+    <string name="accessibility_touch_exploration_summary">O recurso Explorar por toque está ativo. Por isso, o TouchPause não pode pausar a entrada por toque.</string>
+    <string name="accessibility_key_filter_conflict_summary">Outro serviço de Acessibilidade está filtrando as teclas físicas. Por isso, o TouchPause não pode pausar a entrada por toque.</string>
     <string name="accessibility_service_label">Controle de toque do TouchPause</string>
     <string name="accessibility_service_summary">Pausa a entrada da tela sensível ao toque até que a tecla de volume selecionada seja pressionada.</string>
     <string name="accessibility_service_description">Enquanto a entrada por toque está pausada, o TouchPause recebe os movimentos da tela sensível ao toque e da stylus, incluindo dados de posição e tempo, e todos os eventos das teclas físicas. Ele processa esses eventos somente no dispositivo, usa os eventos de teclas somente para detectar a tecla de volume selecionada, encaminha os eventos das outras teclas e descarta todos os eventos imediatamente. Ele nunca lê o conteúdo da tela, não armazena eventos de entrada e não os compartilha.</string>
-    <string name="accessibility_disclosure_title">Permitir o controle de toque sem root?</string>
-    <string name="accessibility_disclosure_message">Para pausar a entrada por toque sem root, o TouchPause usa o serviço de Acessibilidade do Android para acessar dados brutos de movimento da tela sensível ao toque e da stylus, incluindo dados de posição e tempo dos toques e da stylus, e todos os eventos das teclas físicas enquanto a entrada por toque está pausada. Ele impede que os movimentos da tela sensível ao toque e da stylus cheguem a outros apps, processa todos os eventos somente no dispositivo, usa os eventos de teclas somente para detectar a tecla de volume selecionada e encaminha os eventos de todas as outras teclas. Ele descarta todos os eventos imediatamente. Ele nunca lê o conteúdo da tela, não armazena esses eventos e não os compartilha com ninguém.</string>
+    <string name="accessibility_disclosure_title">Permitir o controle de toque?</string>
+    <string name="accessibility_disclosure_message">Para pausar a entrada por toque, o TouchPause usa o serviço de Acessibilidade do Android para acessar dados brutos de movimento da tela sensível ao toque e da stylus, incluindo dados de posição e tempo dos toques e da stylus, e todos os eventos das teclas físicas enquanto a entrada por toque está pausada. Ele impede que os movimentos da tela sensível ao toque e da stylus cheguem a outros apps, processa todos os eventos somente no dispositivo, usa os eventos de teclas somente para detectar a tecla de volume selecionada e encaminha os eventos de todas as outras teclas. Ele descarta todos os eventos imediatamente. Ele nunca lê o conteúdo da tela, não armazena esses eventos e não os compartilha com ninguém.</string>
     <string name="accessibility_disclosure_agree">Concordar e continuar</string>
     <string name="accessibility_disclosure_decline">Agora não</string>
-    <string name="root_fallback_title">Quando o root é usado</string>
-    <string name="root_fallback_summary">O root e a aprovação do gerenciador de root são necessários no Android 13 ou anterior, ao usar a tecla liga/desliga ou quando a captura sem root não está disponível. O TouchPause solicita root somente quando necessário.</string>
 
     <string name="feedback_header">Feedback</string>
     <string name="feedback_start_message_title">Mensagem ao pausar a entrada por toque</string>
@@ -80,8 +74,7 @@
     <string name="feedback_stop_vibration_title">Vibrar ao restaurar a entrada por toque</string>
     <string name="touch_block_started">TouchPause: entrada por toque pausada</string>
     <string name="touch_block_released">TouchPause: entrada por toque restaurada</string>
-    <string name="root_backend_error">O TouchPause não conseguiu iniciar o controle de toque com root. Verifique o acesso root e tente novamente.</string>
-    <string name="accessibility_not_ready">O modo sem root não está pronto. Abra o TouchPause e conclua a configuração de Acessibilidade.</string>
+    <string name="accessibility_not_ready">O controle de toque não está pronto. Abra o TouchPause e conclua a configuração de Acessibilidade.</string>
 
     <string name="about_header">Sobre</string>
     <string name="app_language_title">Idioma do app</string>
@@ -89,7 +82,7 @@
     <string name="privacy_license_source_title">Privacidade, licença e código-fonte</string>
     <string name="privacy_license_source_summary">O controle de toque permanece no dispositivo, sem anúncios, análises ou servidor do desenvolvedor. O Google Play processa a compra vitalícia opcional.</string>
     <string name="about_dialog_title">Privacidade, licença e código-fonte</string>
-    <string name="about_dialog_message">O controle de toque é executado inteiramente no dispositivo. O TouchPause nunca lê o conteúdo da tela e não armazena, envia nem compartilha eventos de toque, de stylus ou de teclas. O modo root lê temporariamente os dispositivos de entrada somente enquanto um bloqueio iniciado pelo usuário está ativo. O Google Play processa a compra vitalícia opcional; o TouchPause armazena apenas o uso do teste e o estado de acesso.\n\nO TouchPause usa a licença GPL-3.0-or-later. O utilitário blockevent incluído usa a licença Apache-2.0. Código-fonte e avisos completos: github.com/bzhangj13zzz/touchpause</string>
+    <string name="about_dialog_message">O controle de toque é executado inteiramente no dispositivo. Durante uma pausa iniciada pelo usuário, o serviço de Acessibilidade recebe eventos de toque, stylus e teclas físicas e os descarta imediatamente. O TouchPause nunca lê o conteúdo da tela e não armazena, envia nem compartilha eventos de entrada. O Google Play processa a compra vitalícia opcional; o TouchPause armazena apenas o uso do teste e o estado de acesso.\n\nO TouchPause usa a licença GPL-3.0-or-later. Código-fonte e avisos completos: github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Política de privacidade completa</string>
     <string name="no_browser_available">Nenhum navegador está disponível para abrir a política de privacidade.</string>
     <string name="close">Fechar</string>

@@ -1,191 +1,102 @@
 # Building TouchPause
 
-These instructions build TouchPause 1.0.0 from the repository source. They do
-not assume a public APK or release service.
+## Requirements
 
-## Prerequisites
+- JDK 17
+- Android SDK Platform 36
+- Android SDK Build Tools installed through the SDK manager
+- the repository's Gradle wrapper
 
-- JDK 17;
-- Android SDK Platform 36 and Build Tools 35.0.0 or newer;
-- the repository's Gradle wrapper; and
-- Android NDK r28 or newer only when rebuilding the native helper.
+TouchPause contains no native code, so the Android NDK is not required.
 
-The app supports API 24 and newer while compiling and targeting API 36. The
-wrapper uses Gradle 8.11.1, Android Gradle Plugin 8.10.1, and Kotlin 2.2.10.
-App Bundles keep all nine small translation sets in the base install because
-the in-app language picker must also work offline and independently of the
-device language.
-
-## Configure the Android toolchain
-
-Set local paths for the current shell. Do not commit them.
+The machine used during development has a newer default Java runtime that is
+not suitable for this Gradle build. Set `JAVA_HOME` to JDK 17 explicitly.
 
 ```sh
 export JAVA_HOME=/path/to/jdk-17
 export ANDROID_HOME=/path/to/android-sdk
 ```
 
-`local.properties` may contain `sdk.dir` for Android Studio and is intentionally
-ignored by Git.
-
-Confirm that Gradle sees JDK 17:
-
-```sh
-./gradlew --version
-```
-
-## Test and build a debug APK
-
-Run unit tests, Android lint, and assembly from the repository root:
+## Verification build
 
 ```sh
 ./gradlew clean testDebugUnitTest lintDebug assembleDebug
 ```
 
-The installable debug APK is:
+Outputs:
 
-```text
-app/build/outputs/apk/debug/app-debug.apk
-```
+- debug APK: `app/build/outputs/apk/debug/app-debug.apk`
+- JVM results: `app/build/test-results/testDebugUnitTest/`
+- lint report: `app/build/reports/lint-results-debug.html`
 
-It uses a development certificate. It can replace another TouchPause debug
-installation only if the signing certificate matches.
-
-## Rebuild the native helper
-
-The repository vendors the preferred C source and generated binaries for four
-ABIs. Rebuild them when the source, compiler requirements, or native protocol
-changes:
+Run instrumentation tests on an Android 14+ emulator or device:
 
 ```sh
-ANDROID_NDK_HOME=/path/to/android-ndk ./update_lib.sh
+./gradlew connectedDebugAndroidTest
 ```
 
-The script produces one executable named `libtouchpause-input.so` under each ABI
-directory in `app/src/main/jniLibs`:
+## Release bundle
 
-```text
-armeabi-v7a/
-arm64-v8a/
-x86/
-x86_64/
-```
-
-The conventional `lib` prefix and `.so` suffix make Android package and extract
-the executable native helper, including on older Android installers. The app
-launches it as a separate root process rather than loading it through JNI. The
-build uses API 24 compiler targets, hardening flags, and 16 KiB maximum ELF page
-alignment.
-
-After rebuilding native artifacts, rerun the complete debug build:
-
-```sh
-./gradlew testDebugUnitTest lintDebug assembleDebug
-```
-
-Review the C source's 2026-08-12 and 2026-08-16 Apache modification notice and
-[../NOTICE.md](../NOTICE.md) whenever native behavior changes.
-
-## Install locally
-
-With one authorized device connected:
-
-```sh
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
-
-The package is `io.github.bzhangj13zzz.touchpause`. It installs alongside the
-original Snowy package and earlier TouchQuell test builds, and it does not
-inherit their preferences. If Android reports a certificate mismatch for an
-existing TouchPause installation,
-uninstall that installation only after deciding that its local settings can be
-discarded.
-
-## Release signing
-
-The repository intentionally contains no release keystore or signing secrets.
-It reads an upload key only from these environment variables:
+The build reads upload-signing values only from environment variables:
 
 ```sh
 export TOUCHPAUSE_UPLOAD_KEYSTORE=/absolute/path/to/upload-key.jks
 export TOUCHPAUSE_UPLOAD_KEY_ALIAS=upload
 export TOUCHPAUSE_UPLOAD_STORE_PASSWORD='...'
 export TOUCHPAUSE_UPLOAD_KEY_PASSWORD='...'
-```
-
-With all four values set, produce the Play upload bundle with:
-
-```sh
 ./gradlew clean testDebugUnitTest lintRelease bundleRelease
 ```
 
-The signed bundle is written to:
+The bundle is written to
+`app/build/outputs/bundle/release/app-release.aab`. Without all four variables,
+Gradle intentionally creates an unsigned release bundle.
 
-```text
-app/build/outputs/bundle/release/app-release.aab
-```
+Never commit the keystore, passwords, exported Play credentials, or
+`local.properties`. Prefer Play App Signing and keep secure backups of the
+upload key.
 
-When the variables are absent, Gradle can still build an unsigned release
-bundle for reproducibility checks, but it cannot be uploaded to Play. For a
-release:
+## Artifact checks
 
-1. keep the keystore outside the repository;
-2. provide credentials through local, ignored configuration;
-3. increment `versionCode` for every update;
-4. run tests and release lint before bundling;
-5. verify the bundle and Play-generated split APKs;
-6. enroll in Play App Signing; and
-7. record the exact source commit, native-source commit, toolchain versions, and
-   AAB checksum.
+Before distributing a build, confirm:
 
-Never commit keystores, passwords, `local.properties`, generated APKs, or AABs.
+1. package name `io.github.bzhangj13zzz.touchpause`;
+2. version code/name match the planned Play release;
+3. minimum SDK 34 and target SDK 36;
+4. release bundle is signed by the intended upload key;
+5. all nine locales are included in the base bundle because language splitting
+   is disabled for the offline language picker;
+6. no `lib/` entries, `.so` files, native executables, or root/shell helpers are
+   present;
+7. backup remains disabled;
+8. Accessibility metadata cannot retrieve window content and is not marked as
+   an accessibility tool;
+9. screenshots and disclosure match the exact shipped behavior; and
+10. the source commit corresponding to the bundle is tagged and available to
+    every APK/bundle recipient as required by GPL-3.0-or-later.
 
-If an APK is shared with another person, GPLv3 requires that recipient to be
-able to obtain its complete Corresponding Source under GPLv3. A private
-repository is sufficient only for recipients who have access; otherwise
-provide the matching source by another compliant method. Repository visibility
-does not change the software's license.
-
-## Useful verification checks
-
-The Android SDK supplies `apksigner` and `zipalign`:
+Useful read-only commands include:
 
 ```sh
-apksigner verify --verbose app/build/outputs/apk/debug/app-debug.apk
-zipalign -c -v 4 app/build/outputs/apk/debug/app-debug.apk
-zipalign -c -P 16 -v 4 app/build/outputs/apk/debug/app-debug.apk
+unzip -l app/build/outputs/bundle/release/app-release.aab
+shasum -a 256 app/build/outputs/bundle/release/app-release.aab
+git diff --check
+git status --short
 ```
 
-Also confirm that the APK contains `libtouchpause-input.so` for all four ABIs and
-that rebuilt ELF load segments satisfy the intended 16 KiB alignment. Before a
-Play rollout, use `bundletool` to generate and install APKs from the final AAB,
-then repeat the checks on those APKs and run them on a 16 KiB-page Android 15 or
-newer device/emulator.
+## Device matrix
 
-`useLegacyPackaging = true` is intentional. The native file is an executable
-launched from Android's extracted native-library directory, not a JNI library;
-compressed/extracted packaging preserves that execution path.
+At minimum test:
 
-See [PLAY_STORE.md](PLAY_STORE.md) for the publication checklist.
-
-## Configure the lifetime product
-
-TouchPause is free to install and uses one non-consumable Google Play product:
-
-```text
-Product ID: lifetime_access
-Type: one-time product, non-consumable
-Suggested base price: US$2.99
-```
-
-Create and activate that exact product in Play Console before testing purchase
-flows. The identifier is compiled into the app and cannot be substituted from
-the UI. Test with Play license testers and Play-installed bundles; a sideloaded
-debug APK normally cannot load product details from Google Play.
-
-The purchase implementation is intentionally client-only because TouchPause
-has no developer server or account system. It grants only `PURCHASED` items,
-acknowledges new purchases, queries current ownership when settings connects,
-and caches the last valid entitlement for offline use. This is simpler and less
-fraud-resistant than Google's recommended server verification; revisit that
-tradeoff only if abuse becomes material.
+- Android 14 (API 34) physical device;
+- current Android/API 36 emulator and a physical device when available;
+- gesture and three-button navigation;
+- light/dark mode and all nine locales;
+- Quick Settings add/toggle/remove;
+- disclosure acceptance and denial;
+- Accessibility enable/disable/reconnect;
+- touch, local stylus, and Bluetooth stylus where hardware is available;
+- Volume Up and Volume Down release;
+- touch-exploration and key-filter conflicts;
+- force-stop and reboot while a pause is active;
+- sessions 1 through 10, blocked session 11, purchase, pending purchase,
+  cancellation, offline cache, and restore on another Play-enabled device.

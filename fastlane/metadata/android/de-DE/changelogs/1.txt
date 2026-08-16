@@ -1,1 +1,1 @@
-Erste TouchPause-Version mit 10 kostenlosen Sitzungen, optionaler Dauerfreischaltung, Steuerung über die Schnelleinstellungen, rootlosem Modus ab Android 14, sicherer Root-Alternative, neun UI-Sprachen und Unterstützung für 16-KB-Speicherseiten.
+Erste TouchPause-Version mit 10 kostenlosen Sitzungen, optionaler Dauerfreischaltung, vollständig rootloser Touchsteuerung ab Android 14, Schnelleinstellungen und neun UI-Sprachen.

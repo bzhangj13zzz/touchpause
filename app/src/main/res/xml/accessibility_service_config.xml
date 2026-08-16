@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:accessibilityFeedbackType="feedbackGeneric"
     android:canRequestFilterKeyEvents="true"
     android:canRetrieveWindowContent="false"
@@ -8,5 +7,4 @@
     android:isAccessibilityTool="false"
     android:notificationTimeout="0"
     android:settingsActivity="io.github.bzhangj13zzz.touchpause.settings.SettingsActivity"
-    android:summary="@string/accessibility_service_summary"
-    tools:targetApi="31" />
+    android:summary="@string/accessibility_service_summary" />
