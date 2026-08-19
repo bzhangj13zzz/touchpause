@@ -1,0 +1,1 @@
+Die visuelle Aktualisierung der Feedback-Schalter auf einigen Samsung-Geräten wurde behoben und der Kontrast des Bedienungshilfe-Hinweises im dunklen Modus verbessert.

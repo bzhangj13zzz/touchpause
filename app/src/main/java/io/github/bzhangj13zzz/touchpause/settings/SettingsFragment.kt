@@ -115,6 +115,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             true
         }
 
+        configureFeedbackSwitches()
         configureLanguagePreference()
         findPreference<Preference>(KEY_ABOUT)?.setOnPreferenceClickListener {
             showAboutDialog()
@@ -356,6 +357,28 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
     }
 
+    /**
+     * Rebinds feedback switches on the next UI turn after their value changes.
+     *
+     * Some Samsung/One UI releases persist the new value but leave SwitchCompat's drawable stale
+     * until RecyclerView scrolls and rebinds the row. The delayed notification performs that same
+     * rebind immediately without changing preference behavior or animation settings.
+     */
+    private fun configureFeedbackSwitches() {
+        FEEDBACK_SWITCH_KEYS.forEach { key ->
+            val switchPreference =
+                findPreference<RefreshingSwitchPreference>(key) ?: return@forEach
+            switchPreference.setOnPreferenceChangeListener { _, newValue ->
+                if (newValue !is Boolean) return@setOnPreferenceChangeListener false
+                listView.post {
+                    switchPreference.refreshWidget()
+                    listView.invalidate()
+                }
+                true
+            }
+        }
+    }
+
     /** Shows Play's required standalone disclosure immediately before system settings. */
     private fun showAccessibilityDisclosure() {
         MaterialAlertDialogBuilder(requireContext())
@@ -460,5 +483,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         private const val SYSTEM_LANGUAGE_VALUE = "system"
         private const val ACCESSIBILITY_REFRESH_DELAY_MS = 1_000L
         private const val REVIEW_ACCESS_TAPS = 7
+        private val FEEDBACK_SWITCH_KEYS = listOf(
+            UserPreferences.KEY_START_MESSAGE,
+            UserPreferences.KEY_START_VIBRATION,
+            UserPreferences.KEY_STOP_MESSAGE,
+            UserPreferences.KEY_STOP_VIBRATION
+        )
     }
 }

@@ -1,6 +1,12 @@
 # Changelog
 
-## 1.0.0 — Unreleased
+## 1.0.1 — 2026-08-20
+
+- Fixed feedback switches whose visual state could remain stale until scrolling
+  on some Samsung/One UI devices.
+- Improved the contrast of Accessibility disclosure actions in dark mode.
+
+## 1.0.0 — 2026-08-20
 
 Initial TouchPause release:
 

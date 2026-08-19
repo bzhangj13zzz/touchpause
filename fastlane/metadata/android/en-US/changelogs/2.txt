@@ -1,0 +1,1 @@
+Fixed feedback switches not visually updating on some Samsung devices and improved Accessibility disclosure contrast in dark mode.

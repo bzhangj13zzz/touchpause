@@ -1,0 +1,1 @@
+Corrigida a atualização visual dos controles de feedback em alguns aparelhos Samsung e melhorado o contraste do aviso de Acessibilidade no modo escuro.

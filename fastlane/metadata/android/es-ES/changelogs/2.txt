@@ -1,0 +1,1 @@
+Se corrigió la actualización visual de los interruptores de respuesta en algunos dispositivos Samsung y se mejoró el contraste del aviso de Accesibilidad en modo oscuro.

@@ -10,6 +10,12 @@
         <item name="android:statusBarColor">@color/touchpause_indigo_dark</item>
         <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.TouchPause.MaterialAlertDialog</item>
+    </style>
+
+    <style name="ThemeOverlay.TouchPause.MaterialAlertDialog"
+        parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/touchpause_mint</item>
     </style>
 
     <style name="Theme.TouchPause.Transparent" parent="android:style/Theme.Translucent.NoTitleBar">

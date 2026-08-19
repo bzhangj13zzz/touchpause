@@ -1,0 +1,1 @@
+Correction de l'actualisation visuelle des interrupteurs de retour sur certains appareils Samsung et amélioration du contraste de l'avertissement d'accessibilité en mode sombre.

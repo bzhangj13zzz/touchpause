@@ -29,19 +29,19 @@
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/feedback_header">
-        <SwitchPreferenceCompat
+        <io.github.bzhangj13zzz.touchpause.settings.RefreshingSwitchPreference
             app:defaultValue="true"
             app:key="feedback_start_message"
             app:title="@string/feedback_start_message_title" />
-        <SwitchPreferenceCompat
+        <io.github.bzhangj13zzz.touchpause.settings.RefreshingSwitchPreference
             app:defaultValue="true"
             app:key="feedback_start_vibration"
             app:title="@string/feedback_start_vibration_title" />
-        <SwitchPreferenceCompat
+        <io.github.bzhangj13zzz.touchpause.settings.RefreshingSwitchPreference
             app:defaultValue="true"
             app:key="feedback_stop_message"
             app:title="@string/feedback_stop_message_title" />
-        <SwitchPreferenceCompat
+        <io.github.bzhangj13zzz.touchpause.settings.RefreshingSwitchPreference
             app:defaultValue="true"
             app:key="feedback_stop_vibration"
             app:title="@string/feedback_stop_vibration_title" />
