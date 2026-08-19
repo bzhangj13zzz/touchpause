@@ -28,7 +28,8 @@ API. Capture is enabled only after all of these checks pass:
 - the service is connected;
 - touch exploration is off;
 - no competing Accessibility service is filtering hardware keys; and
-- the trial or lifetime entitlement allows another session.
+- the trial, lifetime, or signed store-review entitlement allows another
+  session.
 
 The service cannot retrieve window content. During an active pause it receives
 touchscreen/stylus motion and hardware-key events, discards all input events in
@@ -60,10 +61,16 @@ Billing and acknowledges successful purchases. It deliberately has no server,
 so clearing app data can reset the local trial count; this is an accepted
 privacy-versus-enforcement tradeoff.
 
+Store-review access uses an Ed25519 signature. The APK contains only the public
+verification key; the private signing key and reusable reviewer code must stay
+outside the repository and be backed up securely. If the reviewer code is
+disclosed publicly, rotate the embedded public key, generate a replacement
+code, and upload a new build before review.
+
 ## Release hygiene
 
 - Never commit signing keys, passwords, Play service-account credentials, or
-  private contact data.
+  private contact data. This includes the store-review private key and code.
 - Build releases from a clean, reviewed commit with JDK 17.
 - Sign the App Bundle with the registered upload key and use Play App Signing.
 - Confirm the final bundle contains no native libraries or shell/root code.

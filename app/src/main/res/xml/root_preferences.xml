@@ -59,6 +59,10 @@
             app:key="about"
             app:summary="@string/privacy_license_source_summary"
             app:title="@string/privacy_license_source_title" />
+        <Preference
+            app:key="app_version"
+            app:persistent="false"
+            app:title="@string/app_name" />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -21,6 +21,7 @@ class EntitlementStore(context: Context) {
             .coerceIn(0, FREE_SESSION_LIMIT)
         Snapshot(
             lifetimeUnlocked = preferences.getBoolean(KEY_LIFETIME_UNLOCKED, false),
+            reviewAccessEnabled = preferences.getBoolean(KEY_REVIEW_ACCESS_ENABLED, false),
             usedSessions = usedSessions
         )
     }
@@ -30,13 +31,19 @@ class EntitlementStore(context: Context) {
     /** Records one successfully started block and returns the resulting access state. */
     fun recordSuccessfulSession(): Snapshot = synchronized(lock) {
         val current = snapshot()
-        if (current.lifetimeUnlocked || current.usedSessions >= FREE_SESSION_LIMIT) {
+        if (current.lifetimeUnlocked || current.reviewAccessEnabled ||
+            current.usedSessions >= FREE_SESSION_LIMIT
+        ) {
             return@synchronized current
         }
 
         val updated = current.usedSessions + 1
         preferences.edit().putInt(KEY_USED_SESSIONS, updated).commit()
-        Snapshot(lifetimeUnlocked = false, usedSessions = updated)
+        Snapshot(
+            lifetimeUnlocked = false,
+            reviewAccessEnabled = false,
+            usedSessions = updated
+        )
     }
 
     /** Caches the latest successful Google Play ownership query for offline use. */
@@ -45,6 +52,14 @@ class EntitlementStore(context: Context) {
             return@synchronized false
         }
         preferences.edit().putBoolean(KEY_LIFETIME_UNLOCKED, unlocked).commit()
+    }
+
+    /** Enables reusable store-review access for this installation after code verification. */
+    fun grantReviewAccess(): Boolean = synchronized(lock) {
+        if (preferences.getBoolean(KEY_REVIEW_ACCESS_ENABLED, false)) {
+            return@synchronized false
+        }
+        preferences.edit().putBoolean(KEY_REVIEW_ACCESS_ENABLED, true).commit()
     }
 
     fun registerListener(listener: SharedPreferences.OnSharedPreferenceChangeListener) {
@@ -57,10 +72,12 @@ class EntitlementStore(context: Context) {
 
     data class Snapshot(
         val lifetimeUnlocked: Boolean,
+        val reviewAccessEnabled: Boolean,
         val usedSessions: Int
     ) {
         val remainingSessions: Int = max(0, FREE_SESSION_LIMIT - usedSessions)
-        val canStartSession: Boolean = lifetimeUnlocked || remainingSessions > 0
+        val canStartSession: Boolean =
+            lifetimeUnlocked || reviewAccessEnabled || remainingSessions > 0
     }
 
     companion object {
@@ -69,6 +86,7 @@ class EntitlementStore(context: Context) {
 
         private const val KEY_USED_SESSIONS = "successful_trial_sessions"
         private const val KEY_LIFETIME_UNLOCKED = "lifetime_unlocked"
+        private const val KEY_REVIEW_ACCESS_ENABLED = "review_access_enabled"
         private val lock = Any()
     }
 }

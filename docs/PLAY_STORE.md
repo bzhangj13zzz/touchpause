@@ -19,6 +19,7 @@ submission.
   kept in the base install so selection also works offline;
 - 10 free successful sessions followed by an optional non-consumable
   `lifetime_access` Google Play purchase;
+- reusable signed store-review access that does not require a purchase;
 - no native libraries, shell execution, or root integration; and
 - localized Play listing text for all nine app languages, plus a Play icon,
   localization-neutral feature graphic, and four current phone screenshots
@@ -37,14 +38,16 @@ submission.
    [BUILDING.md](BUILDING.md), and build `bundleRelease`.
 4. Enroll in Play App Signing and retain secure backups of any key material the
    owner controls.
+   Also back up the store-review signing key and reusable review code kept in
+   the ignored `.release-secrets/` directory; Git is not a backup for them.
 5. Make the comprehensive privacy policy URL public, stable, non-geofenced, and
    accessible without login. Add the same URL in Play Console.
 6. Publish the exact Corresponding Source for the distributed GPL build, or
    provide every recipient another GPL-compliant source offer. The current
    private repository alone is not sufficient for Play users who cannot access
    it.
-7. Supply a public support email and the developer identity shown on the store
-   listing. Add those contact details to the privacy policy.
+7. Use `bzhangj13@gmail.com` as the public support address. Keep it current in
+   both the store listing and the public privacy policy.
 8. Recheck the four supplied screenshots against the signed release candidate
    and recapture any screen whose visible UI has changed.
 9. Generate APKs from the final signed AAB with `bundletool`; verify signatures,
@@ -77,9 +80,12 @@ submission.
 - Confirm that the package is registered to the verified developer identity
   before the applicable September 30, 2026 deadline. New Play apps are normally
   registered during creation, but the Console status still needs checking.
-- Reviewer instructions should use Android 14+, select a volume key, accept the
-  disclosure, enable TouchPause, add the Quick Settings tile, pause touch, and
-  release it with that key. State explicitly that the app never requests root.
+- Reviewer instructions should use Android 14+, open TouchPause settings, tap
+  the **TouchPause** version row seven times, enter the supplied reusable review
+  code, select a volume key, accept the disclosure, enable TouchPause, add the
+  Quick Settings tile, pause touch, and release it with that key. State
+  explicitly that the code grants full access without payment and that the app
+  never requests root.
 
 ## Testing tracks and rollout
 

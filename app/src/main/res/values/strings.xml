@@ -87,6 +87,13 @@
     <string name="about_dialog_message">Touch control runs entirely on your device. While a user-started pause is active, Accessibility receives touch, stylus, and hardware-key events and immediately discards them. TouchPause never reads screen content or stores, sends, or shares input events. Google Play handles the optional lifetime purchase; TouchPause caches only trial usage and access status.\n\nTouchPause is GPL-3.0-or-later. Source and full notices: github.com/bzhangj13zzz/touchpause</string>
     <string name="open_privacy_policy">Full privacy policy</string>
     <string name="no_browser_available">No browser is available to open the privacy policy.</string>
-    <string name="privacy_policy_url" translatable="false">https://github.com/bzhangj13zzz/touchpause/blob/main/PRIVACY.md</string>
+    <string name="privacy_policy_url" translatable="false">https://github.com/bzhangj13zzz/touchpause-privacy/blob/main/PRIVACY.md</string>
+    <string name="review_access_dialog_title" translatable="false">Store review access</string>
+    <string name="review_access_dialog_message" translatable="false">Enter the reusable access code supplied in the Google Play review instructions.</string>
+    <string name="review_access_code_hint" translatable="false">Review access code</string>
+    <string name="review_access_apply" translatable="false">Enable review access</string>
+    <string name="review_access_invalid" translatable="false">That review access code is invalid.</string>
+    <string name="review_access_enabled_title" translatable="false">Store review access enabled</string>
+    <string name="review_access_enabled_summary" translatable="false">Unlimited sessions are enabled for store review on this installation.</string>
     <string name="close">Close</string>
 </resources>

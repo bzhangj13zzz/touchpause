@@ -45,8 +45,8 @@ ready, and finishes without animation.
 ## Input capture lifecycle
 
 Starting a pause requires explicit disclosure consent, a connected service, no
-touch exploration, no competing key filter, and available trial/lifetime
-access.
+touch exploration, no competing key filter, and available trial, lifetime, or
+store-review access.
 
 The service snapshots its current `AccessibilityServiceInfo`, adds touchscreen,
 stylus, and Bluetooth-stylus motion sources, and enables hardware-key filtering.
@@ -80,15 +80,22 @@ No session is restored after process death, service disablement, or reboot.
 
 ## Trial and billing
 
-`EntitlementStore` permits a start while either fewer than 10 sessions have
-succeeded or cached lifetime access is true. The service records usage only
-after capture is successfully applied. The selected release key continues to
-work regardless of entitlement state.
+`EntitlementStore` permits a start while fewer than 10 sessions have succeeded,
+cached lifetime access is true, or signed store-review access is enabled. The
+service records usage only after capture is successfully applied. Review
+sessions do not consume the trial. The selected release key continues to work
+regardless of entitlement state.
 
 Google Play owns the non-consumable `lifetime_access` product. Purchase tokens
 are acknowledged but not persisted. The app stores only the successful-session
 count and cached entitlement. There is no developer server, so local app-data
 clearing can reset the trial by design.
+
+Store reviewers can tap the version row seven times and enter a reusable,
+signed review code. `ReviewAccessVerifier` contains only the Ed25519 public key;
+the signing key and generated code remain outside the repository. This gives
+reviewers full access without a purchase while preventing a plain-text bypass
+from being copied out of the APK.
 
 ## Exported boundaries
 

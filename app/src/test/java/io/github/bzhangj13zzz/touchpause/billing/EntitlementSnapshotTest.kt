@@ -10,6 +10,7 @@ class EntitlementSnapshotTest {
     fun freshTrialHasTenSessions() {
         val snapshot = EntitlementStore.Snapshot(
             lifetimeUnlocked = false,
+            reviewAccessEnabled = false,
             usedSessions = 0
         )
 
@@ -21,6 +22,7 @@ class EntitlementSnapshotTest {
     fun tenthSessionExhaustsTrial() {
         val snapshot = EntitlementStore.Snapshot(
             lifetimeUnlocked = false,
+            reviewAccessEnabled = false,
             usedSessions = 10
         )
 
@@ -32,10 +34,22 @@ class EntitlementSnapshotTest {
     fun lifetimePurchaseOverridesExhaustedTrial() {
         val snapshot = EntitlementStore.Snapshot(
             lifetimeUnlocked = true,
+            reviewAccessEnabled = false,
             usedSessions = 10
         )
 
         assertEquals(0, snapshot.remainingSessions)
+        assertTrue(snapshot.canStartSession)
+    }
+
+    @Test
+    fun reviewAccessOverridesExhaustedTrial() {
+        val snapshot = EntitlementStore.Snapshot(
+            lifetimeUnlocked = false,
+            reviewAccessEnabled = true,
+            usedSessions = 10
+        )
+
         assertTrue(snapshot.canStartSession)
     }
 }

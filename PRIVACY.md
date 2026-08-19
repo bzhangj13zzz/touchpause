@@ -1,6 +1,6 @@
 # TouchPause privacy notice
 
-Effective: 2026-08-17
+Effective: 2026-08-19
 
 TouchPause pauses touchscreen input locally. It has no advertising, developer
 analytics, developer account, or developer-operated server.
@@ -28,7 +28,8 @@ TouchPause stores these values in private app data:
 - selected app language;
 - the version of the Accessibility disclosure accepted by the user;
 - number of successfully started free sessions;
-- cached Google Play lifetime-access status; and
+- cached Google Play lifetime-access status;
+- whether a valid store-review code enabled review access;
 - short-lived advisory state indicating that a pause is active.
 
 TouchPause disables Android backup and excludes app storage from cloud backup
@@ -63,8 +64,9 @@ Stopping the service or rebooting removes active capture.
 
 ## Changes and questions
 
-Material changes update this notice and its effective date. The current policy
-is published at
-[github.com/bzhangj13zzz/touchpause](https://github.com/bzhangj13zzz/touchpause/blob/main/PRIVACY.md).
-That URL must be public before Play publication. The Play listing must also
-provide the developer's support and privacy contact address.
+Material changes update this notice and its effective date. The current public
+policy is published at
+[github.com/bzhangj13zzz/touchpause-privacy](https://github.com/bzhangj13zzz/touchpause-privacy/blob/main/PRIVACY.md).
+
+Questions about privacy or support can be sent to
+[bzhangj13@gmail.com](mailto:bzhangj13@gmail.com).

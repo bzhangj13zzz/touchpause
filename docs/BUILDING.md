@@ -55,6 +55,12 @@ Never commit the keystore, passwords, exported Play credentials, or
 `local.properties`. Prefer Play App Signing and keep secure backups of the
 upload key.
 
+The local `.release-secrets/` directory is ignored by Git, but it is not a
+backup. Securely back up the upload keystore and password, the store-review
+Ed25519 private key, and the generated reviewer code somewhere separate from
+this computer. Losing the upload key can interrupt releases; losing the review
+key prevents generating replacement reviewer codes for this app version.
+
 ## Artifact checks
 
 Before distributing a build, confirm:

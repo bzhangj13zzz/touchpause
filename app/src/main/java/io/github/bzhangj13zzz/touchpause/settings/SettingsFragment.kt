@@ -5,10 +5,13 @@ import android.content.ComponentName
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.text.InputType
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
@@ -21,6 +24,7 @@ import io.github.bzhangj13zzz.touchpause.accessibility.AccessibilityStatus
 import io.github.bzhangj13zzz.touchpause.accessibility.TouchBlockAccessibilityService
 import io.github.bzhangj13zzz.touchpause.billing.EntitlementStore
 import io.github.bzhangj13zzz.touchpause.billing.PlayBillingManager
+import io.github.bzhangj13zzz.touchpause.billing.ReviewAccessVerifier
 import io.github.bzhangj13zzz.touchpause.block.BlockSessionStore
 import io.github.bzhangj13zzz.touchpause.preferences.UserPreferences
 import io.github.bzhangj13zzz.touchpause.tile.TileRefresher
@@ -34,6 +38,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     private lateinit var billingManager: PlayBillingManager
     private var showAccessibilityDisclosureOnResume = false
     private var showPurchaseWhenReady = false
+    private var versionTapCount = 0
     private val accessibilityStatusRefresh = Runnable {
         if (isAdded) updateAccessibilitySummary()
     }
@@ -114,6 +119,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
         findPreference<Preference>(KEY_ABOUT)?.setOnPreferenceClickListener {
             showAboutDialog()
             true
+        }
+        findPreference<Preference>(KEY_APP_VERSION)?.apply {
+            summary = requireContext().packageManager.getPackageInfo(
+                requireContext().packageName,
+                PackageManager.PackageInfoFlags.of(0)
+            ).versionName
+            setOnPreferenceClickListener {
+                versionTapCount += 1
+                if (versionTapCount >= REVIEW_ACCESS_TAPS) {
+                    versionTapCount = 0
+                    showReviewAccessDialog()
+                }
+                true
+            }
         }
 
         updateSummaries()
@@ -204,6 +223,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val preference = findPreference<Preference>(KEY_LIFETIME_ACCESS) ?: return
         val access = entitlements.snapshot()
         when {
+            access.reviewAccessEnabled -> {
+                preference.setTitle(R.string.review_access_enabled_title)
+                preference.setSummary(R.string.review_access_enabled_summary)
+                preference.isSelectable = false
+            }
             access.lifetimeUnlocked -> {
                 preference.setTitle(R.string.lifetime_access_title)
                 preference.setSummary(R.string.lifetime_access_unlocked)
@@ -387,6 +411,39 @@ class SettingsFragment : PreferenceFragmentCompat() {
             .show()
     }
 
+    /** Grants reviewers reusable access after verifying a signed code supplied in Play Console. */
+    private fun showReviewAccessDialog() {
+        if (entitlements.snapshot().reviewAccessEnabled) return
+
+        val input = EditText(requireContext()).apply {
+            hint = getString(R.string.review_access_code_hint)
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            isSingleLine = true
+        }
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.review_access_dialog_title)
+            .setMessage(R.string.review_access_dialog_message)
+            .setView(input)
+            .setNegativeButton(R.string.not_now, null)
+            .setPositiveButton(R.string.review_access_apply, null)
+            .show()
+
+        dialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            if (!ReviewAccessVerifier.isValid(input.text.toString().trim())) {
+                input.error = getString(R.string.review_access_invalid)
+                return@setOnClickListener
+            }
+            entitlements.grantReviewAccess()
+            updateAccessSummary()
+            Toast.makeText(
+                requireContext(),
+                R.string.review_access_enabled_summary,
+                Toast.LENGTH_LONG
+            ).show()
+            dialog.dismiss()
+        }
+    }
+
     private fun openAccessibilitySettings() {
         startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
     }
@@ -399,7 +456,9 @@ class SettingsFragment : PreferenceFragmentCompat() {
         private const val KEY_ACCESSIBILITY_SETUP = "accessibility_setup"
         private const val KEY_APP_LANGUAGE = "app_language"
         private const val KEY_ABOUT = "about"
+        private const val KEY_APP_VERSION = "app_version"
         private const val SYSTEM_LANGUAGE_VALUE = "system"
         private const val ACCESSIBILITY_REFRESH_DELAY_MS = 1_000L
+        private const val REVIEW_ACCESS_TAPS = 7
     }
 }

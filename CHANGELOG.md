@@ -11,6 +11,7 @@ Initial TouchPause release:
 - explicit on-device input-access disclosure and fail-safe capture teardown;
 - 10 successfully started trial sessions and an optional one-time Google Play
   lifetime unlock;
+- signed reusable access for Google Play reviewers without a purchase;
 - English, Spanish, French, German, Brazilian Portuguese, Japanese, Korean,
   Simplified Chinese, and Traditional Chinese UI;
 - offline in-app language selection;

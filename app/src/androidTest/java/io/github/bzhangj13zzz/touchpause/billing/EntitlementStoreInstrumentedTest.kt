@@ -49,6 +49,16 @@ class EntitlementStoreInstrumentedTest {
         assertFalse(store.setLifetimeUnlocked(true))
     }
 
+    @Test
+    fun reviewAccessRestoresAccessWithoutChangingTrialCount() {
+        repeat(EntitlementStore.FREE_SESSION_LIMIT) { store.recordSuccessfulSession() }
+
+        assertTrue(store.grantReviewAccess())
+        assertTrue(store.canStartSession())
+        store.recordSuccessfulSession()
+        assertEquals(EntitlementStore.FREE_SESSION_LIMIT, store.snapshot().usedSessions)
+    }
+
     private fun clearPreferences() {
         context.getSharedPreferences(EntitlementStore.PREFERENCES_NAME, 0)
             .edit()
