@@ -30,7 +30,8 @@ few people leave early.
 
 ## Recruitment post
 
-Replace the two placeholders after the Play closed-test track is active.
+The Google Group is public and self-joinable. The Play link becomes installable
+after Google approves and publishes the closed-test release.
 
 > **Android 14+ testers wanted for TouchPause — test-for-test offered**
 >
@@ -42,9 +43,9 @@ Replace the two placeholders after the Play closed-test track is active.
 > closed test for at least 14 days and provide honest feedback. I will
 > reciprocate by genuinely testing your Android app.
 >
-> Join the tester group: `<TESTER_GROUP_LINK>`
+> Join the tester group: https://groups.google.com/g/touchpause-closed-testers
 >
-> Opt in and install: `<PLAY_OPT_IN_LINK>`
+> Opt in and install: https://play.google.com/apps/testing/io.github.bzhangj13zzz.touchpause
 >
 > Please test Accessibility setup, the Quick Settings tile, touch pause and
 > volume-key release, the 10-session trial, and light/dark mode. TouchPause has
